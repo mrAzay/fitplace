@@ -1,6 +1,6 @@
 <template>
   <nav class="right-nav">
-    <router-link to="/" class="right-nav__profile">
+    <router-link to="/search-coach" class="right-nav__profile">
       <img src="@/assets/img/user-icon.jpg" alt="">
     </router-link>
     <ul class="right-nav__links">
@@ -13,7 +13,7 @@
         </router-link>
       </li>
       <li class="right-nav__link-item">
-        <router-link class="right-nav__link" to="/">
+        <router-link class="right-nav__link" to="/training">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.5017 14.75C19.3301 14.75 20.0017 14.0785 20.0017 13.25C20.0017 12.4216 19.3301 11.75 18.5017 11.75C17.6733 11.75 17.0017 12.4216 17.0017 13.25C17.0017 14.0785 17.6733 14.75 18.5017 14.75Z" fill="black"/>
             <path d="M23.5017 14.75C24.3301 14.75 25.0017 14.0785 25.0017 13.25C25.0017 12.4216 24.3301 11.75 23.5017 11.75C22.6733 11.75 22.0017 12.4216 22.0017 13.25C22.0017 14.0785 22.6733 14.75 23.5017 14.75Z" fill="black"/>
