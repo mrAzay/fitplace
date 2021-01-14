@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'Search-coach',
+  name: 'SearchCoach',
   data: () => ({
     searchInput: '',
     itemActive: 1,

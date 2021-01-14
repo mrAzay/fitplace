@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Training from '../views/Training.vue'
-import SearchCoach from '../views/Search-coach.vue'
+import SearchCoach from '../views/SearchCoach.vue'
 
 Vue.use(VueRouter)
 
@@ -18,7 +18,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Сategory.vue')
+    component: () => import('../views/Сategory.vue')
   },
   {
     path: '/videocourses',
@@ -26,7 +26,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Videocourses.vue')
+    component: () => import('../views/Videocourses.vue')
   },
   {
     path: '/vebinar',
@@ -34,7 +34,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Vebinar.vue')
+    component: () => import('../views/Vebinar.vue')
   },
   {
     path: '/fitness-courses',
@@ -42,7 +42,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/FitnessCourses.vue')
+    component: () => import('../views/FitnessCourses.vue')
   },
   {
     path: '/training',
@@ -57,7 +57,42 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue')
+    component: () => import('../views/Profile.vue')
+  },
+  {
+    path: '/aboniments',
+    name: 'Aboniments',
+    component: () => import('../views/Aboniments.vue')
+  },
+  {
+    path: '/profile-user',
+    name: 'ProfileUser',
+    component: () => import('../views/ProfileUser.vue')
+  },
+  {
+    path: '/profile-trainer',
+    name: 'ProfileTrainer',
+    component: () => import('../views/ProfileTrainer.vue')
+  },
+  {
+    path: '/shop',
+    name: 'Shop',
+    component: () => import('../views/Shop.vue')
+  },
+  {
+    path: '/shop-item',
+    name: 'ShopItem',
+    component: () => import('../views/ShopItem.vue')
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('../views/Cart.vue')
+  },
+  {
+    path: '/chat',
+    name: 'Chat',
+    component: () => import('../views/Chat.vue')
   }
 ]
 

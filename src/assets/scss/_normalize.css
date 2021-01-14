@@ -355,14 +355,16 @@ li{
 a,
 button{
     color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
 }
-
 button{
     cursor: pointer;
     border: none;
     padding: 0;
     margin: 0;
     font-family: inherit;
+    background-color: transparent;
 }
 
 a{
@@ -389,6 +391,7 @@ p{
 
 input{
     border: none;
+    font-family: inherit;
 }
 
 input[type=number] {

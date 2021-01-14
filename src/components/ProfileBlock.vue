@@ -32,6 +32,9 @@
   </div>
 </template>
 <style lang="scss" scoped>
+  .block{
+    margin: 20px;
+  }
   .profile{
     display: flex;
     flex-direction: column;

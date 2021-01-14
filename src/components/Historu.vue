@@ -19,6 +19,9 @@
   </div>
 </template>
 <style lang="scss" scoped>
+  .block{
+    margin: 20px;
+  }
   .history{
     height: 627px;
     overflow: auto;
