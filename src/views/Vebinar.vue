@@ -6,8 +6,8 @@
           <img class="vebinar__block-img" src="@/assets/img/video.jpg">
           <div class="vebinar__block-info">
             <div class="vebinar__block-title block-title">ОСНОВЫ СТРЕТЧИНГА И ГИБКОСТИ</div>
-            <ul class="vebinar__block-list">
-              <li class="vebinar__block-list-item" v-for="(item, index) of items" :key="index">
+            <ul class="vebinar__block-list list">
+              <li class="vebinar__block-list-item list__item" v-for="(item, index) of items" :key="index">
                 {{item}}
               </li>
             </ul>
@@ -42,25 +42,10 @@
         margin-bottom: 24px;
       }
       &-list{
-        padding-left: 16px;
         margin-bottom: 32px;
         &-item{
-          position: relative;
           font-size: 14px;
           line-height: 17px;
-          &+&{
-            margin-top: 20px;
-          }
-          &:before{
-            content: '';
-            position: absolute;
-            top: 4px;
-            left: -16px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: $accent;
-          }
         }
       }
       &-info{
