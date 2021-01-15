@@ -57,7 +57,9 @@
                   </h4>
                 </div>
                 <div class="information-block__link coach-numb">
-                  353 руб <a href="#"> ></a>
+                  353 руб <a href="#">         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg></a>
                 </div>
               </div>
               <div class="information-block">
@@ -83,7 +85,9 @@
                   </p>
                 </div>
                 <div class="information-block__link coach-numb text-gray">
-                  >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
               </div>
               <div class="information-block">
@@ -96,7 +100,9 @@
                   </p>
                 </div>
                 <div class="information-block__link coach-numb text-gray">
-                  >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
               </div>
               <div class="information-block">
@@ -109,7 +115,9 @@
                   </p>
                 </div>
                 <div class="information-block__link coach-numb text-gray">
-                  >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
               </div>
               <div class="information-block">
@@ -119,7 +127,9 @@
                   </h4>
                 </div>
                 <div class="information-block__link coach-numb text-gray">
-                  >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
               </div>
               <div class="information-block">
@@ -129,7 +139,9 @@
                   </h4>
                 </div>
                 <div class="information-block__link coach-numb text-gray">
-                  >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
               </div>
               <a class="logout-block">
@@ -142,186 +154,36 @@
           </div>
           <div class="column-wrapper">
             <div class="profile-block review">
-              <div class="review__block">
+              <div class="review__block" v-for="item in 15" :key="item">
                 <img src="../assets/img/coach-modal-img.png" alt="" class="review__block-img">
                 <div class="review__block-content">
                   <h3 class="review__block-name">
                     Пётр Свиридов
                   </h3>
                   <div class="review__block-stars">
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star">*</span>
-                    <span class="review__block-star">*</span>
-                  </div>
-                  <p class="review__block-text">
-                    Мне всё очень понравилось, тренер замечательный, эффективные тренировки, купил весь курс.
-                  </p>
-                  <p class="review__block-date">
-                    25.05.2020
-                  </p>
-                </div>
-              </div>
-              <div class="review__block">
-                <img src="../assets/img/coach-modal-img.png" alt="" class="review__block-img">
-                <div class="review__block-content">
-                  <h3 class="review__block-name">
-                    Пётр Свиридов
-                  </h3>
-                  <div class="review__block-stars">
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star">*</span>
-                    <span class="review__block-star">*</span>
-                  </div>
-                  <p class="review__block-text">
-                    Мне всё очень понравилось, тренер замечательный, эффективные тренировки, купил весь курс.
-                  </p>
-                  <p class="review__block-date">
-                    25.05.2020
-                  </p>
-                </div>
-              </div>
-              <div class="review__block">
-                <img src="../assets/img/coach-modal-img.png" alt="" class="review__block-img">
-                <div class="review__block-content">
-                  <h3 class="review__block-name">
-                    Пётр Свиридов
-                  </h3>
-                  <div class="review__block-stars">
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star">*</span>
-                    <span class="review__block-star">*</span>
-                  </div>
-                  <p class="review__block-text">
-                    Мне всё очень понравилось, тренер замечательный, эффективные тренировки, купил весь курс.
-                  </p>
-                  <p class="review__block-date">
-                    25.05.2020
-                  </p>
-                </div>
-              </div>
-              <div class="review__block">
-                <img src="../assets/img/coach-modal-img.png" alt="" class="review__block-img">
-                <div class="review__block-content">
-                  <h3 class="review__block-name">
-                    Пётр Свиридов
-                  </h3>
-                  <div class="review__block-stars">
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star">*</span>
-                    <span class="review__block-star">*</span>
-                  </div>
-                  <p class="review__block-text">
-                    Мне всё очень понравилось, тренер замечательный, эффективные тренировки, купил весь курс.
-                  </p>
-                  <p class="review__block-date">
-                    25.05.2020
-                  </p>
-                </div>
-              </div>
-              <div class="review__block">
-                <img src="../assets/img/coach-modal-img.png" alt="" class="review__block-img">
-                <div class="review__block-content">
-                  <h3 class="review__block-name">
-                    Пётр Свиридов
-                  </h3>
-                  <div class="review__block-stars">
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star">*</span>
-                    <span class="review__block-star">*</span>
-                  </div>
-                  <p class="review__block-text">
-                    Мне всё очень понравилось, тренер замечательный, эффективные тренировки, купил весь курс.
-                  </p>
-                  <p class="review__block-date">
-                    25.05.2020
-                  </p>
-                </div>
-              </div>
-              <div class="review__block">
-                <img src="../assets/img/coach-modal-img.png" alt="" class="review__block-img">
-                <div class="review__block-content">
-                  <h3 class="review__block-name">
-                    Пётр Свиридов
-                  </h3>
-                  <div class="review__block-stars">
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star">*</span>
-                    <span class="review__block-star">*</span>
-                  </div>
-                  <p class="review__block-text">
-                    Мне всё очень понравилось, тренер замечательный, эффективные тренировки, купил весь курс.
-                  </p>
-                  <p class="review__block-date">
-                    25.05.2020
-                  </p>
-                </div>
-              </div>
-              <div class="review__block">
-                <img src="../assets/img/coach-modal-img.png" alt="" class="review__block-img">
-                <div class="review__block-content">
-                  <h3 class="review__block-name">
-                    Пётр Свиридов
-                  </h3>
-                  <div class="review__block-stars">
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star">*</span>
-                    <span class="review__block-star">*</span>
-                  </div>
-                  <p class="review__block-text">
-                    Мне всё очень понравилось, тренер замечательный, эффективные тренировки, купил весь курс.
-                  </p>
-                  <p class="review__block-date">
-                    25.05.2020
-                  </p>
-                </div>
-              </div>
-              <div class="review__block">
-                <img src="../assets/img/coach-modal-img.png" alt="" class="review__block-img">
-                <div class="review__block-content">
-                  <h3 class="review__block-name">
-                    Пётр Свиридов
-                  </h3>
-                  <div class="review__block-stars">
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star">*</span>
-                    <span class="review__block-star">*</span>
-                  </div>
-                  <p class="review__block-text">
-                    Мне всё очень понравилось, тренер замечательный, эффективные тренировки, купил весь курс.
-                  </p>
-                  <p class="review__block-date">
-                    25.05.2020
-                  </p>
-                </div>
-              </div>
-              <div class="review__block">
-                <img src="../assets/img/coach-modal-img.png" alt="" class="review__block-img">
-                <div class="review__block-content">
-                  <h3 class="review__block-name">
-                    Пётр Свиридов
-                  </h3>
-                  <div class="review__block-stars">
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star review__block-star-active">*</span>
-                    <span class="review__block-star">*</span>
-                    <span class="review__block-star">*</span>
+                    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M7.72352 13.4218L4.82723 15.0116C4.09625 15.4128 3.22417 14.7958 3.35927 13.9729L3.91082 10.6136C3.93154 10.4896 3.92343 10.3621 3.88721 10.2422C3.851 10.1223 3.78778 10.0138 3.70311 9.92615L1.37068 7.5512C0.799023 6.96911 1.12741 5.98432 1.93402 5.86184L5.16345 5.37145C5.27037 5.3542 5.37178 5.30952 5.459 5.24125C5.54622 5.17297 5.61665 5.08313 5.66425 4.97941L7.11354 1.91324C7.47449 1.14961 8.56102 1.14972 8.92181 1.91343L10.3702 4.97941C10.4178 5.08313 10.4883 5.17297 10.5755 5.24125C10.6627 5.30952 10.7641 5.3542 10.871 5.37145L14.0998 5.86088C14.9065 5.98318 15.2351 6.96811 14.6634 7.55028L12.3314 9.92479C12.2464 10.0125 12.183 10.1213 12.1468 10.2414C12.1106 10.3615 12.1026 10.4894 12.1237 10.6136L12.6752 13.9729C12.8103 14.7958 11.9382 15.4128 11.2073 15.0116L8.31097 13.4218C8.22014 13.3718 8.11943 13.3457 8.01724 13.3457C7.91505 13.3457 7.81434 13.3718 7.72352 13.4218Z"
+                            fill="#FFF000"/>
+                    </svg>
+                    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M7.72352 13.4218L4.82723 15.0116C4.09625 15.4128 3.22417 14.7958 3.35927 13.9729L3.91082 10.6136C3.93154 10.4896 3.92343 10.3621 3.88721 10.2422C3.851 10.1223 3.78778 10.0138 3.70311 9.92615L1.37068 7.5512C0.799023 6.96911 1.12741 5.98432 1.93402 5.86184L5.16345 5.37145C5.27037 5.3542 5.37178 5.30952 5.459 5.24125C5.54622 5.17297 5.61665 5.08313 5.66425 4.97941L7.11354 1.91324C7.47449 1.14961 8.56102 1.14972 8.92181 1.91343L10.3702 4.97941C10.4178 5.08313 10.4883 5.17297 10.5755 5.24125C10.6627 5.30952 10.7641 5.3542 10.871 5.37145L14.0998 5.86088C14.9065 5.98318 15.2351 6.96811 14.6634 7.55028L12.3314 9.92479C12.2464 10.0125 12.183 10.1213 12.1468 10.2414C12.1106 10.3615 12.1026 10.4894 12.1237 10.6136L12.6752 13.9729C12.8103 14.7958 11.9382 15.4128 11.2073 15.0116L8.31097 13.4218C8.22014 13.3718 8.11943 13.3457 8.01724 13.3457C7.91505 13.3457 7.81434 13.3718 7.72352 13.4218Z"
+                            fill="#FFF000"/>
+                    </svg><svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M7.72352 13.4218L4.82723 15.0116C4.09625 15.4128 3.22417 14.7958 3.35927 13.9729L3.91082 10.6136C3.93154 10.4896 3.92343 10.3621 3.88721 10.2422C3.851 10.1223 3.78778 10.0138 3.70311 9.92615L1.37068 7.5512C0.799023 6.96911 1.12741 5.98432 1.93402 5.86184L5.16345 5.37145C5.27037 5.3542 5.37178 5.30952 5.459 5.24125C5.54622 5.17297 5.61665 5.08313 5.66425 4.97941L7.11354 1.91324C7.47449 1.14961 8.56102 1.14972 8.92181 1.91343L10.3702 4.97941C10.4178 5.08313 10.4883 5.17297 10.5755 5.24125C10.6627 5.30952 10.7641 5.3542 10.871 5.37145L14.0998 5.86088C14.9065 5.98318 15.2351 6.96811 14.6634 7.55028L12.3314 9.92479C12.2464 10.0125 12.183 10.1213 12.1468 10.2414C12.1106 10.3615 12.1026 10.4894 12.1237 10.6136L12.6752 13.9729C12.8103 14.7958 11.9382 15.4128 11.2073 15.0116L8.31097 13.4218C8.22014 13.3718 8.11943 13.3457 8.01724 13.3457C7.91505 13.3457 7.81434 13.3718 7.72352 13.4218Z"
+                          fill="#FFF000"/>
+                  </svg>
+                    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M7.72352 13.4218L4.82723 15.0116C4.09625 15.4128 3.22417 14.7958 3.35927 13.9729L3.91082 10.6136C3.93154 10.4896 3.92343 10.3621 3.88721 10.2422C3.851 10.1223 3.78778 10.0138 3.70311 9.92615L1.37068 7.5512C0.799023 6.96911 1.12741 5.98432 1.93402 5.86184L5.16345 5.37145C5.27037 5.3542 5.37178 5.30952 5.459 5.24125C5.54622 5.17297 5.61665 5.08313 5.66425 4.97941L7.11354 1.91324C7.47449 1.14961 8.56102 1.14972 8.92181 1.91343L10.3702 4.97941C10.4178 5.08313 10.4883 5.17297 10.5755 5.24125C10.6627 5.30952 10.7641 5.3542 10.871 5.37145L14.0998 5.86088C14.9065 5.98318 15.2351 6.96811 14.6634 7.55028L12.3314 9.92479C12.2464 10.0125 12.183 10.1213 12.1468 10.2414C12.1106 10.3615 12.1026 10.4894 12.1237 10.6136L12.6752 13.9729C12.8103 14.7958 11.9382 15.4128 11.2073 15.0116L8.31097 13.4218C8.22014 13.3718 8.11943 13.3457 8.01724 13.3457C7.91505 13.3457 7.81434 13.3718 7.72352 13.4218Z"
+                            fill="#FFF000"/>
+                    </svg><svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M7.72352 13.4218L4.82723 15.0116C4.09625 15.4128 3.22417 14.7958 3.35927 13.9729L3.91082 10.6136C3.93154 10.4896 3.92343 10.3621 3.88721 10.2422C3.851 10.1223 3.78778 10.0138 3.70311 9.92615L1.37068 7.5512C0.799023 6.96911 1.12741 5.98432 1.93402 5.86184L5.16345 5.37145C5.27037 5.3542 5.37178 5.30952 5.459 5.24125C5.54622 5.17297 5.61665 5.08313 5.66425 4.97941L7.11354 1.91324C7.47449 1.14961 8.56102 1.14972 8.92181 1.91343L10.3702 4.97941C10.4178 5.08313 10.4883 5.17297 10.5755 5.24125C10.6627 5.30952 10.7641 5.3542 10.871 5.37145L14.0998 5.86088C14.9065 5.98318 15.2351 6.96811 14.6634 7.55028L12.3314 9.92479C12.2464 10.0125 12.183 10.1213 12.1468 10.2414C12.1106 10.3615 12.1026 10.4894 12.1237 10.6136L12.6752 13.9729C12.8103 14.7958 11.9382 15.4128 11.2073 15.0116L8.31097 13.4218C8.22014 13.3718 8.11943 13.3457 8.01724 13.3457C7.91505 13.3457 7.81434 13.3718 7.72352 13.4218Z"
+                          fill="#FFF000"/>
+                  </svg>
                   </div>
                   <p class="review__block-text">
                     Мне всё очень понравилось, тренер замечательный, эффективные тренировки, купил весь курс.
@@ -535,12 +397,15 @@ export default {
     align-items: center;
     &:nth-child(1){
       padding-top: 0;
+      .information-block__text{
+        max-width: 235px;
+      }
     }
     &__text{
       display: flex;
       flex-direction: column;
-      max-width: 240px;
       width: 100%;
+      max-width: 270px;
       &-title{
         margin-bottom: 8px;
         font-family: Montserrat;
@@ -566,6 +431,8 @@ export default {
       font-size: 14px;
       line-height: 17px;
       color: rgba(0, 0, 0, 0.64);
+      display: flex;
+      align-items: center;
     }
   }
   .logout-block{

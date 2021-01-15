@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Training from '../views/Training.vue'
-import SearchCoach from '../views/Search-coach.vue'
 import ProfileCoach from '../views/Profile-coach.vue'
 import ProfileUser from '../views/Profile-user.vue'
 import SendMessage from '../views/Send-message.vue'
@@ -96,6 +95,8 @@ const routes = [
     path: '/cash-now',
     name: 'CashNow',
     component: CashNow
+  },
+  {
     path: '/profile',
     name: 'Profile',
     component: () => import('../views/Profile.vue')

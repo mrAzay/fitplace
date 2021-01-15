@@ -17,7 +17,9 @@
                   </h4>
                 </div>
                 <div class="information-block__link coach-numb">
-                  353 руб <a href="#"> ></a>
+                  353 руб <a href="#">         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg></a>
                 </div>
               </div>
               <div class="information-block">
@@ -27,7 +29,9 @@
                   </h4>
                 </div>
                 <div class="information-block__link coach-numb text-gray">
-                  >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
               </div>
               <div class="information-block">
@@ -37,7 +41,9 @@
                   </h4>
                 </div>
                 <div class="information-block__link coach-numb text-gray">
-                  >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
               </div>
               <div class="profile-block__bot">
@@ -165,7 +171,7 @@ export default {
   &__text{
     display: flex;
     flex-direction: column;
-    max-width: 240px;
+    max-width: 234px;
     width: 100%;
     &-title{
       margin-bottom: 8px;
@@ -192,6 +198,8 @@ export default {
     font-size: 14px;
     line-height: 17px;
     color: rgba(0, 0, 0, 0.64);
+    display: flex;
+    align-items: center;
   }
 }
 
