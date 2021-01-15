@@ -2,15 +2,6 @@
   <section class="training">
     <div class="container">
       <div class="training__wrapper">
-        <div class="training__top">
-          <div class="training__top-block" v-for="(item, index) in statistic" :key="index">
-            <img class="training__top-block-icon" :src="require('@/assets/img/'+ item.icon+'.svg')" :alt="item.name">
-            <div class="training__top-block-info">
-              <h2 class="info-title">{{ item.name }}</h2>
-              <p class="info-text"> {{ item.number }} </p>
-            </div>
-          </div>
-        </div>
         <div class="training__content">
           <h2 class="training__content-title">
             Мои тренировки
@@ -39,6 +30,9 @@
             </div>
           </div>
         </div>
+        <router-link to="/send-message" class="button button-add">
+          Добавить занятие
+        </router-link>
       </div>
     </div>
     <coucher-popup :is-opened.sync="popupOpen"/>
@@ -49,78 +43,21 @@
 import CoucherPopup from '../components/coucher-popup'
 
 export default {
-  name: 'Training',
+  name: 'Couch training',
   components: {
     CoucherPopup
   },
   data: () => ({
-    statistic: [
-      {
-        name: 'Вес',
-        number: '102 кг',
-        icon: 'Vector'
-      },
-      {
-        name: 'Вода',
-        number: '3 250 / 2 000',
-        icon: 'Vector-1'
-      },
-      {
-        name: 'Калории',
-        number: '600 / 6 800',
-        icon: 'Vector-2'
-      }
-    ],
     popupOpen: false
   })
 }
 </script>
 
 <style scoped lang="scss">
-.training__top{
-  padding: 24px 47px;
-  background: #ffffff;
-  display: flex;
-  width: fit-content;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-  border-radius: 12px;
-  margin-bottom: 64px;
-  &-block{
-    display: flex;
-
-    &-icon{
-      max-width: 48px;
-      max-height: 48px;
-      object-fit: contain;
-    }
-    &-info{
-      margin-left: 12px;
-      .info-title{
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 20px;
-        color: #000000;
-        margin-bottom: 6px;
-      }
-      .info-text{
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 12px;
-        line-height: 15px;
-        color: #000000;
-      }
-    }
-    & + &{
-      margin-left: 40px;
-    }
-  }
-}
 .training__content{
   display: flex;
   flex-direction: column;
+  margin-bottom: 150px;
   &-title{
     margin-bottom: 20px;
   }
@@ -211,5 +148,11 @@ export default {
       }
     }
   }
+}
+.button-add{
+  padding: 13px 88px;
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
 }
 </style>
