@@ -2,6 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Training from '../views/Training.vue'
+import ProfileCoach from '../views/Profile-coach.vue'
+import ProfileUser from '../views/Profile-user.vue'
+import SendMessage from '../views/Send-message.vue'
+import CouchTraining from '../views/Couch-training.vue'
+import Upstatus from '../views/Upstatus.vue'
+import CoachNow from '../views/Coach-now.vue'
+import CashNow from '../views/Cash-now.vue'
 import SearchCoach from '../views/SearchCoach.vue'
 
 Vue.use(VueRouter)
@@ -53,6 +60,41 @@ const routes = [
     path: '/search-coach',
     name: 'Search',
     component: SearchCoach
+  },
+  {
+    path: '/profile-coach',
+    name: 'Profile Coach',
+    component: ProfileCoach
+  },
+  {
+    path: '/profile-user',
+    name: 'Profile User',
+    component: ProfileUser
+  },
+  {
+    path: '/send-message',
+    name: 'Send Message',
+    component: SendMessage
+  },
+  {
+    path: '/couch-training',
+    name: 'Couch Training',
+    component: CouchTraining
+  },
+  {
+    path: '/upstatus',
+    name: 'Upstatus',
+    component: Upstatus
+  },
+  {
+    path: '/coach-now',
+    name: 'CoachNow',
+    component: CoachNow
+  },
+  {
+    path: '/cash-now',
+    name: 'CashNow',
+    component: CashNow
   },
   {
     path: '/profile',
