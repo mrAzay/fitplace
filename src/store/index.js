@@ -5,6 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    city: [],
+    cartsMain: [],
+    storis: [],
+    users: [],
+    userBalance: '',
+    transactionHistory: [],
+    trainerMain: [],
+    trainerBalance: ''
   },
   mutations: {
   },
