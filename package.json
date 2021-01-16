@@ -8,12 +8,15 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@vue/composition-api": "^1.0.0-beta.26",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "firebase": "^8.2.3",
     "swiper": "5.4.5",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^3.2.0",
+    "vuefire": "^2.2.5",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

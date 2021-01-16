@@ -10,6 +10,11 @@
         </div>
       </div>
     </div>
+    <div class="modal">
+      <input type="text" class="modal-input" v-model="email">
+      <input type="text" class="modal-input" v-model="pass">
+      <button @click="push">click</button>
+    </div>
   </div>
 </template>
 
@@ -39,6 +44,8 @@ export default {
   },
   data () {
     return {
+      email: '',
+      pass: '',
       items: {
         item1: {
           img: 'home1'
@@ -68,6 +75,16 @@ export default {
           img: 'home3'
         }
       }
+    }
+  },
+  methods: {
+    async push () {
+      const formData = {
+        email: this.email,
+        password: this.pass
+      }
+
+      await this.$store.dispatch('login', formData)
     }
   }
 }

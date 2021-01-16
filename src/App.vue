@@ -14,6 +14,11 @@ export default {
   components: {
     TopNav,
     RightNav
+  },
+  data () {
+    return {
+      locations: []
+    }
   }
 }
 </script>
