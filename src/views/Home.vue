@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 <template>
   <div class="home">
     <div class="container">
@@ -5,33 +6,41 @@
       <div class="home__inner">
         <h1 class="home__title title">Курсы и уроки</h1>
         <div class="home__items grid">
-          <a href="#" class="home__item block" v-for="(item, index) in items" :key="index" :style="{backgroundImage: 'url('+require('@/assets/img/'+item.img+'.jpg')+')'}">
-          </a>
+          <router-link
+            class="home__item block"
+            v-for="(item, index, n) in items"
+            :key="index"
+            :to="{name: routeLinks[n]}"
+            :style="{
+              backgroundImage:
+                'url(' + require('@/assets/img/' + item.img + '.jpg') + ')'
+            }"
+          ></router-link>
         </div>
       </div>
     </div>
     <div class="modal">
-      <input type="text" class="modal-input" v-model="email">
-      <input type="text" class="modal-input" v-model="pass">
+      <input type="text" class="modal-input" v-model="email" />
+      <input type="text" class="modal-input" v-model="pass" />
       <button @click="push">click</button>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-  .swiper-wrapper{
-    margin-bottom: 64px;
+.swiper-wrapper {
+  margin-bottom: 64px;
+}
+.home {
+  &__items {
+    margin-bottom: -24px;
   }
-  .home{
-    &__items{
-      margin-bottom: -24px;
-    }
-    &__item{
-      display: block;
-      height: 198px;
-      margin-bottom: 24px;
-    }
+  &__item {
+    display: block;
+    height: 198px;
+    margin-bottom: 24px;
   }
+}
 </style>
 
 <script>
@@ -42,10 +51,19 @@ export default {
   components: {
     SliderTop
   },
-  data () {
+  // eslint-disable-next-line space-before-function-paren
+  data() {
     return {
       email: '',
       pass: '',
+      routeLinks: [
+        'Сategory',
+        'FitnessCourses',
+        'Search',
+        'Videocourses',
+        'Vebinar',
+        'Couch Training'
+      ],
       items: {
         item1: {
           img: 'home1'
@@ -78,7 +96,8 @@ export default {
     }
   },
   methods: {
-    async push () {
+    // eslint-disable-next-line space-before-function-paren
+    async push() {
       const formData = {
         email: this.email,
         password: this.pass

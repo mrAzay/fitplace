@@ -4,25 +4,48 @@
       <div class="search-coach__wrapper">
         <div class="search-coach__header">
           <h2 class="search-coach__header-title">Поиск тренера</h2>
-          <label><input type="text" class="search-coach__header-input" placeholder="Что вы хотите найти?" v-model="searchInput"></label>
+          <label
+            ><input
+              type="text"
+              class="search-coach__header-input"
+              placeholder="Что вы хотите найти?"
+              v-model="searchInput"
+          /></label>
         </div>
         <div class="search-coach__filter">
-          <img src="../assets/img/filter-icon.svg" @click.prevent="" class="search-coach__filter-button">
+          <img
+            src="../assets/img/filter-icon.svg"
+            @click.prevent=""
+            class="search-coach__filter-button"
+          />
           <nav class="filter__items">
-            <a href="#" class="filter__items-item" :class="item.id == itemActive ? 'filter-active' : ''" @click.prevent="itemActive = item.id" v-for="item in filters" :key="item.id">{{ item.name }}</a>
+            <a
+              href="#"
+              class="filter__items-item"
+              :class="item.id == itemActive ? 'filter-active' : ''"
+              @click.prevent="itemActive = item.id"
+              v-for="item in filters"
+              :key="item.id"
+              >{{ item.name }}</a
+            >
           </nav>
         </div>
         <div class="search-coach__content">
-          <div class="coach__block" v-for="item in 24" :key="item">
-            <img src="../assets/img/coach-img.png" alt="">
-            <div class="coach__block-info">
-              <h3 class="coach__block-info-name">Кэни Вест</h3>
-              <div class="coach__block-info-text">
-                <p>Рейтинг: <b>5.0</b></p>
-                <p>Стаж работы <b>10 лет</b></p>
-              </div>
-            </div>
-          </div>
+          <router-link
+            class="coach__block"
+            v-for="item in 24"
+            :key="item"
+            :to="{name: 'Profile Coach'}"
+          >
+            <img src="../assets/img/coach-img.png" alt="" />
+            <span class="coach__block-info">
+              <span class="coach__block-info-name">Кэни Вест</span>
+              <span class="coach__block-info-text">
+                <span>Рейтинг: <b>5.0</b></span>
+                <span>Стаж работы <b>10 лет</b></span>
+              </span>
+            </span>
+          </router-link>
         </div>
       </div>
     </div>
@@ -66,18 +89,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.search-coach{
-  &__wrapper{
+.coach__block span {
+  display: block;
+}
+
+.search-coach {
+  &__wrapper {
     display: flex;
     flex-direction: column;
   }
-  &__header{
+  &__header {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 24px;
-    &-title{
+    &-title {
       font-family: Montserrat;
       font-style: normal;
       font-weight: bold;
@@ -85,12 +112,12 @@ export default {
       line-height: 29px;
       color: #000000;
     }
-    label{
+    label {
       position: relative;
     }
-    label::before{
+    label::before {
       content: '';
-      background: url("../assets/img/search-icon.svg");
+      background: url('../assets/img/search-icon.svg');
       position: absolute;
       width: 20px;
       height: 20px;
@@ -98,39 +125,39 @@ export default {
       left: 16px;
       z-index: 2;
     }
-    &-input{
+    &-input {
       padding: 12px 44px;
       max-width: 352px;
       width: 100%;
-      background: #FFFFFF;
+      background: #ffffff;
       border: 1px solid rgba(0, 0, 0, 0.08);
       box-sizing: border-box;
       border-radius: 8px;
       position: relative;
-      &:focus{
+      &:focus {
         color: black;
       }
     }
   }
-  &__filter{
+  &__filter {
     width: 100%;
     display: flex;
     align-items: center;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     margin-bottom: 40px;
-    &-button{
+    &-button {
       display: block;
       width: fit-content;
       height: auto;
       padding: 12px 20px;
       border-right: 1px solid rgba(0, 0, 0, 0.08);
     }
-    .filter__items{
+    .filter__items {
       padding: 12px;
       display: flex;
-      &-item{
+      &-item {
         font-family: Montserrat;
         font-style: normal;
         font-weight: normal;
@@ -138,37 +165,37 @@ export default {
         line-height: 17px;
         color: #000000;
         margin-left: 20px;
-        &.filter-active{
+        &.filter-active {
           font-weight: 600;
         }
       }
     }
   }
-  &__content{
+  &__content {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    .coach__block{
+    .coach__block {
       display: flex;
       flex: 1 1 30%;
       max-width: 352px;
       padding: 20px 16px 30px 20px;
-      background: #FFFFFF;
+      background: #ffffff;
       box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
       border-radius: 12px;
       margin-bottom: 24px;
-      img{
+      img {
         width: 46px;
         height: 46px;
         object-fit: cover;
         border-radius: 50%;
       }
-      &-info{
+      &-info {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         margin-left: 12px;
-        &-name{
+        &-name {
           font-family: Montserrat;
           font-style: normal;
           font-weight: 600;
@@ -176,20 +203,20 @@ export default {
           line-height: 17px;
           color: #000000;
         }
-        &-text{
+        &-text {
           display: flex;
-          p{
+          span {
             font-family: Montserrat;
             font-style: normal;
             font-weight: normal;
             font-size: 14px;
             line-height: 17px;
             color: #000000;
-            b{
+            b {
               font-weight: 600;
             }
           }
-          p+p{
+          span + span {
             margin-left: 16px;
           }
         }
