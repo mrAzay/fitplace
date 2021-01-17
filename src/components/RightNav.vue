@@ -1,8 +1,15 @@
 <template>
   <nav class="right-nav">
-    <router-link :to="{name: 'Profile'}" class="right-nav__profile">
+    <router-link
+      v-if="authorizated"
+      :to="{name: 'Profile'}"
+      class="right-nav__profile"
+    >
       <img src="@/assets/img/user-icon.jpg" alt="" />
     </router-link>
+    <button v-if="!authorizated" @click="openModal" class="right-nav__profile">
+      Войти
+    </button>
     <ul class="right-nav__links">
       <li class="right-nav__link-item">
         <router-link class="right-nav__link" to="/">
@@ -165,7 +172,18 @@
 </style>
 
 <script>
+import {mapState} from 'vuex'
 export default {
-  name: 'RightNav'
+  name: 'RightNav',
+  computed: {
+    ...mapState({
+      authorizated: state => state.auth.authorizated
+    })
+  },
+  methods: {
+    openModal() {
+      this.$store.commit('changeStatusPopUp')
+    }
+  }
 }
 </script>
