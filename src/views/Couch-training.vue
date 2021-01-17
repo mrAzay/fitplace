@@ -13,18 +13,31 @@
                 <p class="training-block__header-time">12:30 - 13:30</p>
               </div>
               <p class="training-block__descr">
-                Курс по нутрициологии фитнеса.
-                Вы научитесь работать с дневниками питания и рационом.
+                Курс по нутрициологии фитнеса. Вы научитесь работать с
+                дневниками питания и рационом.
               </p>
               <div class="training-block__coach">
-                <img src="../assets/img/coach-img.png" :alt="item" class="training-block__coach-img">
-                <div class="training-block__coach-info">
+                <router-link :to="{name: 'ProfileTrainer'}"
+                  ><img
+                    src="../assets/img/coach-img.png"
+                    :alt="item"
+                    class="training-block__coach-img"
+                /></router-link>
+                <router-link
+                  :to="{name: 'ProfileTrainer'}"
+                  class="training-block__coach-info"
+                >
                   <h4 class="training-block__coach-name">Карина Зворыгина</h4>
                   <p class="training-block__coach-position">Тренер</p>
-                </div>
-                <a href="#" class="training-block__coach-link"
-                   @click.prevent="popupOpen = !popupOpen"
-                   :style="{backgroundImage: 'url('+require('@/assets/img/group.svg')+')'}"
+                </router-link>
+                <a
+                  href="#"
+                  class="training-block__coach-link"
+                  @click.prevent="popupOpen = !popupOpen"
+                  :style="{
+                    backgroundImage:
+                      'url(' + require('@/assets/img/group.svg') + ')'
+                  }"
                 ></a>
               </div>
             </div>
@@ -35,7 +48,7 @@
         </router-link>
       </div>
     </div>
-    <coucher-popup :is-opened.sync="popupOpen"/>
+    <coucher-popup :is-opened.sync="popupOpen" />
   </section>
 </template>
 
@@ -54,43 +67,43 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.training__content{
+.training__content {
   display: flex;
   flex-direction: column;
   margin-bottom: 150px;
-  &-title{
+  &-title {
     margin-bottom: 20px;
   }
-  &-blocks{
+  &-blocks {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    .training-block{
+    .training-block {
       display: flex;
       flex-direction: column;
       flex: 1 1 30%;
       max-width: 355px;
-      background: #FFFFFF;
+      background: #ffffff;
       box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
       border-radius: 12px;
       margin-bottom: 24px;
       padding: 16px 0;
-      &__header{
+      &__header {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 16px;
         margin-bottom: 12px;
-        &-name{
+        &-name {
           font-family: Montserrat;
           font-style: normal;
           font-weight: 600;
           font-size: 14px;
           line-height: 17px;
         }
-        &-time{
+        &-time {
           font-family: Montserrat;
           font-style: normal;
           font-weight: 600;
@@ -98,7 +111,7 @@ export default {
           line-height: 17px;
         }
       }
-      &__descr{
+      &__descr {
         padding: 0 16px 16px;
         margin-bottom: 16px;
         color: rgba(0, 0, 0, 0.64);
@@ -109,20 +122,20 @@ export default {
         line-height: 130%;
         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
       }
-      &__coach{
+      &__coach {
         display: flex;
         width: 100%;
         padding: 0 16px;
-        &-img{
+        &-img {
           object-fit: cover;
           width: 40px;
           height: 40px;
           border-radius: 50%;
         }
-        &-info{
+        &-info {
           margin-left: 8px;
         }
-        &-name{
+        &-name {
           font-family: Montserrat;
           font-style: normal;
           font-weight: 500;
@@ -131,7 +144,7 @@ export default {
           color: #000000;
           margin-bottom: 6px;
         }
-        &-position{
+        &-position {
           font-family: Montserrat;
           font-style: normal;
           font-weight: 500;
@@ -139,7 +152,7 @@ export default {
           line-height: 15px;
           color: rgba(0, 0, 0, 0.64);
         }
-        &-link{
+        &-link {
           margin-left: auto;
           margin-top: auto;
           width: 16px;
@@ -149,7 +162,7 @@ export default {
     }
   }
 }
-.button-add{
+.button-add {
   padding: 13px 88px;
   width: fit-content;
   margin: 0 auto;

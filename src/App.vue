@@ -1,8 +1,9 @@
+/* eslint-disable space-before-function-paren */
 <template>
   <div id="app">
     <TopNav></TopNav>
     <RightNav></RightNav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -15,7 +16,8 @@ export default {
     TopNav,
     RightNav
   },
-  data () {
+  // eslint-disable-next-line space-before-function-paren
+  data() {
     return {
       locations: []
     }
