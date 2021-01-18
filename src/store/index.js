@@ -11,7 +11,8 @@ export default new Vuex.Store({
     homeCards: null,
     products: null,
     shopStories: null,
-    videocourse: null
+    videocourse: null,
+    users: null
   },
   getters: {
     STORIES: (state) => {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     },
     VIDEOCOURSE: (state) => {
       return state.videocourse
+    },
+    USERS: (state) => {
+      return state.users
     }
   },
   mutations: {
@@ -68,6 +72,11 @@ export default new Vuex.Store({
       state.videocourse = payload.map((video) => ({
         id: video.id,
         image: video.preview_url
+      }))
+    },
+    SET_USERS: (state, payload) => {
+      state.users = payload.map((user) => ({
+        id: user.id
       }))
     }
   },
@@ -121,6 +130,16 @@ export default new Vuex.Store({
         }
       })
       context.commit('SET_VIDEOCOURSE', data)
+    },
+    GET_USERS: async (context) => {
+      const token = context.state.auth.token
+      const {data} = await server.get('users', {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      })
+      context.commit('SET_USERS', data)
     }
   },
   modules: {
