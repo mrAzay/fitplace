@@ -15,7 +15,7 @@
         <div class="shop__top-item"></div>
         <div class="shop__top-item"></div>
       </div>
-      <SliderTop></SliderTop>
+      <SliderTop :slider="SHOP_STORIES"></SliderTop>
       <div class="shop__big-items">
         <a href="#" class="shop__big-item"
           ><img src="@/assets/img/shop-big1.png" alt=""
@@ -96,9 +96,20 @@
 
 <script>
 import SliderTop from '../components/SliderTop'
+import {mapGetters, mapActions} from 'vuex'
 export default {
   name: 'Shop',
   // eslint-disable-next-line object-curly-spacing
-  components: {SliderTop}
+  components: {SliderTop},
+  computed: {
+    ...mapGetters(['SHOP_STORIES', 'PRODUCTS'])
+  },
+  methods: {
+    ...mapActions(['GET_SHOP_STORIES', 'GET_PRODUCT'])
+  },
+  mounted() {
+    this.GET_SHOP_STORIES()
+    this.GET_PRODUCT()
+  }
 }
 </script>

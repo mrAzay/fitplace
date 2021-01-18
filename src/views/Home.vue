@@ -1,24 +1,24 @@
 <template>
   <div class="home">
     <div class="container">
-      <SliderTop></SliderTop>
+      <SliderTop :slider="STORIES"></SliderTop>
       <div class="home__inner">
         <h1 class="home__title title">Курсы и уроки</h1>
         <div class="home__items grid">
           <router-link
             class="home__item block"
-            v-for="(item, index, n) in items"
+            v-for="(item, index, n) in CARDS"
             :key="index"
             :to="{name: routeLinks[n]}"
             :style="{
               backgroundImage:
-                'url(' + require('@/assets/img/' + item.img + '.jpg') + ')'
+                'url('+ item.image.min +')',
+                backgroundSize: 'cover'
             }"
           ></router-link>
         </div>
       </div>
     </div>
-
     <!-- модальное окно (авторизация) -->
     <div class="modal" :class="statusPopUp ? 'modal--active' : ''">
       <form class="modal__form d-flex-column" @submit.prevent="push">
@@ -251,7 +251,7 @@
 <script>
 import SliderTop from '@/components/SliderTop'
 import ValidationError from '@/components/ValidationError'
-import {mapState} from 'vuex'
+import {mapState, mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'Home',
@@ -308,7 +308,13 @@ export default {
       isSubmitting: state => state.auth.isSubmitting,
       validationErrors: state => state.auth.validationErrors,
       statusPopUp: state => state.auth.statusPopUp
-    })
+    }),
+    ...mapGetters(
+      [
+        'STORIES',
+        'CARDS'
+      ]
+    )
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
@@ -319,10 +325,19 @@ export default {
       }
 
       await this.$store.dispatch('login', formData)
+      this.GET_STORIES()
+      this.GET_CARDS()
     },
     closePopUp() {
       this.$store.commit('changeStatusPopUp')
-    }
+    },
+    ...mapActions([
+      'GET_STORIES',
+      'GET_CARDS'
+    ])
+  },
+  mounted() {
+
   }
 }
 </script>
