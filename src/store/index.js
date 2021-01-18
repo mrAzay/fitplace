@@ -20,7 +20,7 @@ export default new Vuex.Store({
       return state.homeCards
     },
     PRODUCTS: (state) => {
-      return state.homeCards
+      return state.products
     },
     SHOP_STORIES: (state) => {
       return state.shopStories
