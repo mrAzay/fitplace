@@ -93,24 +93,30 @@
 }
 
 .modal {
-  display: none;
-}
-
-.modal.modal--active {
   position: fixed;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0;
   z-index: 3;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0);
+  opacity: 0;
+  transform: translate(-100%, -50%);
+  transition: 0.3s transform, 0.4s background 0.3s, 0.4s opacity;
+}
+
+.modal.modal--active {
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px 0;
+  opacity: 1;
   margin: auto;
   overflow-y: auto;
+  pointer-events: all;
 }
 
 .modal__form {

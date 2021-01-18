@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import {setItem} from '@/helpers/persistanceStorage'
+import authWithToken from '@/api/auth'
 
 export default {
   state: {
@@ -54,6 +55,18 @@ export default {
             setItem('accesToken', idToken)
           })
       } catch (e) {}
+    },
+
+    auth(context, token) {
+      return new Promise(resolve => {
+        authWithToken(token)
+          .then(res => {
+            resolve(res)
+          })
+          .catch(e => {
+            console.log('error', e)
+          })
+      })
     }
   }
 }
