@@ -6,3 +6,12 @@ export const setItem = (key, data) => {
     return null
   }
 }
+
+export const getItem = key => {
+  try {
+    return JSON.parse(localStorage.getItem(key))
+  } catch (e) {
+    console.log('Error getting data from localStorage', e)
+    return null
+  }
+}

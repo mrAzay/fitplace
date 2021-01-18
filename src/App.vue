@@ -12,16 +12,22 @@ import TopNav from '@/components/TopNav'
 import RightNav from '@/components/RightNav'
 
 export default {
-  components: {
-    TopNav,
-    RightNav
-  },
-  // eslint-disable-next-line space-before-function-paren
+  name: 'App',
   data() {
     return {
       locations: []
     }
+  },
+  components: {
+    TopNav,
+    RightNav
+  },
+  mounted() {
+    this.$store.dispatch('auth', this.$store.state.auth.token).then(res => {
+      console.log(res)
+    })
   }
+  // eslint-disable-next-line space-before-function-paren
 }
 </script>
 

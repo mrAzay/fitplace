@@ -1,9 +1,15 @@
 <template>
 <div class="swiper-wrapper">
   <swiper ref="mySwiper" :options="swiperOptions">
-    <swiper-slide class="swiper-item" v-for="(item, index) in slider" :key="index" :style="{backgroundImage: 'url('+require('@/assets/img/'+item.img+'.jpg')+')'}">
+    <swiper-slide class="swiper-item"
+                  v-for="(item, index) in slider"
+                  :key="index"
+                  :style="{
+                    backgroundImage: 'url('+item.previewImage.min+')',
+                    backgroundSize: 'cover'
+                  }">
       <a href="#">
-        {{item.text}}
+        {{ item.title }}
       </a>
     </swiper-slide>
   </swiper>
@@ -63,36 +69,6 @@ export default {
   },
   data () {
     return {
-      slider: {
-        slide1: {
-          text: 'Правильное питание - залог успеха!',
-          img: 'slide1'
-        },
-        slide2: {
-          text: 'Пробежки по программе от тренера',
-          img: 'slide2'
-        },
-        slide3: {
-          text: 'Йога и персональные тренировки',
-          img: 'slide3'
-        },
-        slide4: {
-          text: 'Лови момент',
-          img: 'slide4'
-        },
-        slide5: {
-          text: 'Правильное питание - залог успеха!',
-          img: 'slide5'
-        },
-        slide6: {
-          text: 'Пробежки по программе от тренера',
-          img: 'slide6'
-        },
-        slide7: {
-          text: 'Пробежки по программе от тренера',
-          img: 'slide6'
-        }
-      },
       swiperOptions: {
         slidesPerView: 'auto',
         spaceBetween: 16,
@@ -102,6 +78,9 @@ export default {
         }
       }
     }
+  },
+  props: {
+    slider: null
   },
   computed: {
     swiper () {
