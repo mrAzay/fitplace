@@ -67,7 +67,7 @@ export default new Vuex.Store({
     SET_VIDEOCOURSE: (state, payload) => {
       state.videocourse = payload.map((video) => ({
         id: video.id,
-        image: video.image_url
+        image: video.preview_url
       }))
     }
   },
@@ -114,13 +114,13 @@ export default new Vuex.Store({
     },
     GET_VIDEOCOURSE: async (context) => {
       const token = context.state.auth.token
-      const {data} = await server.get('shop/products', {
+      const {data} = await server.get('videolibrary/cards', {
         headers: {
           Authorization: token,
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }
       })
-      context.commit('SET_PRODUCTS', data)
+      context.commit('SET_VIDEOCOURSE', data)
     }
   },
   modules: {

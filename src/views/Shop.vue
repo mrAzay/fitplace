@@ -20,9 +20,9 @@
         <a href="#" class="shop__big-item"
           ><img src="@/assets/img/shop-big1.png" alt=""
         /></a>
-        <a href="#" class="shop__big-item"
-          ><img src="@/assets/img/shop-big2.png" alt=""
-        /></a>
+        <router-link :to="{name: 'Videocourses'}" class="shop__big-item">
+          <img src="@/assets/img/shop-big2.png" alt="" />
+        </router-link>
       </div>
       <div class="shop__items">
         <router-link
