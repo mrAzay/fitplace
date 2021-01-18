@@ -10,7 +10,8 @@ export default new Vuex.Store({
     homeStories: null,
     homeCards: null,
     products: null,
-    shopStories: null
+    shopStories: null,
+    videocourse: null
   },
   getters: {
     STORIES: (state) => {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     SHOP_STORIES: (state) => {
       return state.shopStories
+    },
+    VIDEOCOURSE: (state) => {
+      return state.videocourse
     }
   },
   mutations: {
@@ -59,6 +63,12 @@ export default new Vuex.Store({
         title: product.title,
         image: product.image_urls
       }))
+    },
+    SET_VIDEOCOURSE: (state, payload) => {
+      state.videocourse = payload.map((video) => ({
+        id: video.id,
+        image: video.image_url
+      }))
     }
   },
   actions: {
@@ -93,6 +103,16 @@ export default new Vuex.Store({
       context.commit('SET_SHOP_STORIES', data)
     },
     GET_PRODUCT: async (context) => {
+      const token = context.state.auth.token
+      const {data} = await server.get('shop/products', {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      })
+      context.commit('SET_PRODUCTS', data)
+    },
+    GET_VIDEOCOURSE: async (context) => {
       const token = context.state.auth.token
       const {data} = await server.get('shop/products', {
         headers: {
