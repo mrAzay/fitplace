@@ -1,5 +1,5 @@
 import firebase from 'firebase/app'
-import {setItem} from '@/helpers/persistanceStorage'
+import { setItem } from '@/helpers/persistanceStorage'
 import authWithToken from '@/api/auth'
 
 export default {
@@ -8,30 +8,34 @@ export default {
     isSubmitting: false,
     validationErrors: null,
     statusPopUp: false,
-    authorizated: false
+    authorizated: false,
+    uid: ''
   },
   mutations: {
-    saveToken(state, token) {
+    saveToken (state, token) {
       state.token = token
     },
-    authStart(state) {
+    authStart (state) {
       state.isSubmitting = true
     },
-    authEnd(state) {
+    authEnd (state) {
       state.isSubmitting = false
     },
-    validationErrors(state, payload) {
+    validationErrors (state, payload) {
       state.validationErrors = payload
     },
-    changeStatusPopUp(state) {
+    changeStatusPopUp (state) {
       state.statusPopUp = !state.statusPopUp
     },
-    authorizated(state) {
+    authorizated (state) {
       state.authorizated = true
+    },
+    saveUId(state, uid) {
+      state.uid = uid
     }
   },
   actions: {
-    async login({dispatch, commit}, {email, password}) {
+    async login ({ dispatch, commit }, { email, password }) {
       try {
         commit('authStart')
         await firebase
@@ -50,10 +54,15 @@ export default {
         await firebase
           .auth()
           .currentUser.getIdToken(true)
-          .then(function(idToken) {
+          .then(function (idToken) {
             commit('saveToken', idToken)
             setItem('accesToken', idToken)
           })
+        await firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            commit('saveUId', user.uid)
+          }
+        })
       } catch (e) {}
     },
 

@@ -4,9 +4,9 @@
       <div class="category__inner">
         <h1 class="category__title title">Курсы и уроки</h1>
         <div class="category__items grid">
-          <a href="#" class="category__item block" v-for="(item, index) in items" :key="index">
+          <router-link to="/videocourses" class="category__item block" v-for="(item, index) in items" :key="index">
             <img :src="require('@/assets/img/'+item.img+'.jpg')" alt="">
-          </a>
+          </router-link>
         </div>
       </div>
     </div>

@@ -78,6 +78,9 @@ export default new Vuex.Store({
       state.users = payload.map((user) => ({
         id: user.id
       }))
+    },
+    SET_USER_INFO: (state, info) => {
+      state.userInfo = info
     }
   },
   actions: {
@@ -140,6 +143,17 @@ export default new Vuex.Store({
         }
       })
       context.commit('SET_USERS', data)
+    },
+    GET_USER_INFO: async (context) => {
+      const token = context.state.auth.token
+      const uid = context.state.auth.uid
+      const {data} = await server.get(`users/${uid}`, {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      })
+      context.commit('SET_USER_INFO', data)
     }
   },
   modules: {

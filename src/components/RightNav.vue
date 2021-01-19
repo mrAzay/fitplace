@@ -12,7 +12,7 @@
     </button>
     <ul class="right-nav__links">
       <li class="right-nav__link-item">
-        <router-link class="right-nav__link" to="/">
+        <router-link class="right-nav__link" to="/category">
           <svg
             width="32"
             height="32"
@@ -172,7 +172,7 @@
 </style>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 export default {
   name: 'RightNav',
   computed: {
@@ -181,7 +181,7 @@ export default {
     })
   },
   methods: {
-    openModal() {
+    openModal () {
       this.$store.commit('changeStatusPopUp')
     }
   }

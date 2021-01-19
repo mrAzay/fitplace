@@ -4,11 +4,11 @@
     <div class="profile__name block-title">Виктор Артемьев</div>
     <div class="profile__info">г. Москва, 30 лет</div>
     <div class="profile__links">
-      <a href="" class="profile__link"><span>Мои данные</span>
+      <router-link to="/profile-user-info" class="profile__link"><span>Мои данные</span>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-      </a>
+      </router-link>
       <a href="" class="profile__link"><span>Изменить номер</span>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.5 15L12.5 10L7.5 5" stroke="black" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

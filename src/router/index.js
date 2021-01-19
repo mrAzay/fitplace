@@ -107,7 +107,7 @@ const routes = [
     component: () => import('../views/Aboniments.vue')
   },
   {
-    path: '/profile-user',
+    path: '/profile-user-info',
     name: 'ProfileUser',
     component: () => import('../views/ProfileUser.vue')
   },

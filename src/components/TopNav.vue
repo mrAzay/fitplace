@@ -2,6 +2,12 @@
   <div class="top-nav">
     <div class="container">
       <div class="top-nav__inner">
+        <router-link class="top-nav__back" :to="`/${path.link}`" v-if="path">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 5L7.5 10L12.5 15" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          {{ path.text }}
+        </router-link>
         <router-link to="/" class="top-nav__link">
           <svg width="100" height="32" viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M63.151 4.65559C56.6851 -1.51469 46.1637 -1.55908 39.6515 4.56681C33.0235 10.7815 32.9772 20.9691 39.5125 27.2726C42.6643 30.2911 46.7431 31.8448 50.8682 31.9558C51.2159 31.978 51.5403 31.978 51.8647 31.9558L67.1371 31.9336C67.5774 31.9336 67.9482 31.6006 67.9482 31.1567L68.0177 16.8408C68.064 16.3081 68.064 15.7976 68.0409 15.2649C67.8555 11.403 66.2332 7.58537 63.151 4.65559ZM58.6782 23.0555C54.5994 26.9174 48.0177 26.8953 43.9853 22.9889C39.9296 19.0825 39.976 12.7791 44.0316 8.91708C48.1104 5.05511 54.6921 5.0773 58.7245 8.98367C62.7802 12.8678 62.7338 19.1713 58.6782 23.0555Z" fill="#FFEF00"/>
@@ -24,12 +30,49 @@
   }
   &__link{
    display: block;
+
+  }
+  &__back{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    svg{
+      margin-right: 8px;
+    }
   }
 }
 </style>
 
 <script>
 export default {
-  name: 'TopNav'
+  name: 'TopNav',
+  computed: {
+    path () {
+      if (this.$route.path === '/category') {
+        return {
+          text: 'Видеобиблиотека',
+          link: ''
+        }
+      } else if (this.$route.path === '/videocourses') {
+        return {
+          text: 'Видеокурсы',
+          link: ''
+        }
+      } else if (this.$route.path === '/vebinar') {
+        return {
+          text: 'Вебинары',
+          link: ''
+        }
+      } else {
+        return ''
+      }
+    }
+  }
 }
 </script>
