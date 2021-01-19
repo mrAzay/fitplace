@@ -11,16 +11,18 @@
             :key="index"
             :to="{name: routeLinks[n]}"
             :style="{
-              backgroundImage:
-                'url('+ item.image.min +')',
-                backgroundSize: 'cover'
+              backgroundImage: 'url(' + item.image.min + ')',
+              backgroundSize: 'cover'
             }"
           ></router-link>
         </div>
       </div>
     </div>
     <!-- модальное окно (авторизация) -->
-    <div class="modal" :class="statusPopUp ? 'modal--active' : ''">
+    <div
+      class="modal"
+      :class="statusPopUp && childPopUp == 0 ? 'modal--active' : ''"
+    >
       <form class="modal__form d-flex-column" @submit.prevent="push">
         <div class="modal__wrapper-header">
           <legend class="modal__title">Авторизация</legend>
@@ -55,7 +57,11 @@
           <button :disabled="isSubmitting" class="modal__btn" type="submit">
             Войти
           </button>
-          <button class="modal__btn modal__btn--light">
+          <button
+            type="button"
+            class="modal__btn modal__btn--light"
+            @click="raiseChildPopUp"
+          >
             Войти по номеру телефона
           </button>
         </div>
@@ -74,8 +80,187 @@
         </div>
       </form>
     </div>
+
+    <!-- Модальное окно для авторизаци по номеру телефона -->
+    <div class="modal" :class="childPopUp == 1 ? 'modal--active' : ''">
+      <form class="modal__form d-flex-column" @submit.prevent="pushPhone">
+        <div class="modal__wrapper-header">
+          <legend class="modal__title">Авторизация по номеру</legend>
+          <button
+            class="modal__btn-close"
+            @click="closeChildPopUp"
+            type="button"
+            aria-label="Закрыть модальное окно"
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        <div class="modal__wrapper-content d-flex-column">
+          <validation-error
+            v-if="validationErrors"
+            :validation-errors="validationErrors"
+          />
+          <input
+            type="tel"
+            class="modal__input"
+            placeholder="Номер телефона"
+            v-model="phone"
+          />
+          <!-- <code-input
+            :loading="false"
+            class="input"
+            v-on:change="onChange"
+            v-on:complete="onComplete"
+          /> -->
+          <div class="modal__agreement">
+            <p class="modal__agreement-text">
+              Введите номер мобильного телефона в формате: код страны и номер.
+              Например: +71111111111
+            </p>
+          </div>
+          <div style="display:flex" class="phone-btns__wrapper">
+            <button :disabled="isSubmitting" class="modal__btn" type="submit">
+              Войти
+            </button>
+            <button
+              type="button"
+              class="modal__btn modal__btn--light"
+              @click="backToPrevPopUp"
+            >
+              Назад
+            </button>
+          </div>
+          <div class="modal__agreement">
+            <p class="modal__agreement-text">
+              Авторизуясь, вы соглашаетесь с<br /><a href="#"
+                >условиями использования политикой конфиденциальности</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="modal__nav-helpers">
+          <a href="#">Хочу стать тренером</a>
+          <a href="#">Нужна помощь</a>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
+
+<script>
+import SliderTop from '@/components/SliderTop'
+import ValidationError from '@/components/ValidationError'
+import {mapState, mapGetters, mapActions} from 'vuex'
+// import CodeInput from 'vue-verification-code-input'
+
+export default {
+  name: 'Home',
+  components: {
+    SliderTop,
+    ValidationError
+    // CodeInput
+  },
+  // eslint-disable-next-line space-before-function-paren
+  data() {
+    return {
+      email: '',
+      pass: '',
+      phone: '',
+      childPopUp: '',
+      routeLinks: [
+        'Сategory',
+        'FitnessCourses',
+        'Search',
+        'Videocourses',
+        'Vebinar',
+        'Couch Training'
+      ],
+      items: {
+        item1: {
+          img: 'home1'
+        },
+        item2: {
+          img: 'home2'
+        },
+        item3: {
+          img: 'home3'
+        },
+        item4: {
+          img: 'home4'
+        },
+        item5: {
+          img: 'home5'
+        },
+        item6: {
+          img: 'home6'
+        },
+        item7: {
+          img: 'home1'
+        },
+        item8: {
+          img: 'home2'
+        },
+        item9: {
+          img: 'home3'
+        }
+      }
+    }
+  },
+  computed: {
+    ...mapState({
+      isSubmitting: state => state.auth.isSubmitting,
+      validationErrors: state => state.auth.validationErrors,
+      statusPopUp: state => state.auth.statusPopUp
+    }),
+    ...mapGetters(['STORIES', 'CARDS'])
+  },
+  methods: {
+    // eslint-disable-next-line space-before-function-paren
+    async push() {
+      const formData = {
+        email: this.email,
+        password: this.pass
+      }
+
+      await this.$store.dispatch('login', formData)
+      this.GET_STORIES()
+      this.GET_CARDS()
+    },
+    pushPhone() {
+      this.$store.dispatch('authPhone', this.phone)
+    },
+    closePopUp() {
+      this.$store.commit('changeStatusPopUp')
+    },
+    onChange(v) {
+      console.log('onChange ', v)
+    },
+    onComplete(v) {
+      console.log('onComplete ', v)
+    },
+    ...mapActions(['GET_STORIES', 'GET_CARDS']),
+
+    // вызов попапа авторизации следующего
+    raiseChildPopUp() {
+      this.childPopUp++
+    },
+
+    // Вернуться к прошлому попапу
+    backToPrevPopUp() {
+      this.childPopUp--
+    },
+
+    // закрытие попапа с номером телефона
+    closeChildPopUp() {
+      this.childPopUp = null
+    }
+  },
+  mounted() {}
+}
+</script>
 
 <style scoped lang="scss">
 .swiper-wrapper {
@@ -246,98 +431,12 @@
     }
   }
 }
-</style>
 
-<script>
-import SliderTop from '@/components/SliderTop'
-import ValidationError from '@/components/ValidationError'
-import {mapState, mapGetters, mapActions} from 'vuex'
-
-export default {
-  name: 'Home',
-  components: {
-    SliderTop,
-    ValidationError
-  },
-  // eslint-disable-next-line space-before-function-paren
-  data() {
-    return {
-      email: '',
-      pass: '',
-      routeLinks: [
-        'Сategory',
-        'FitnessCourses',
-        'Search',
-        'Videocourses',
-        'Vebinar',
-        'Couch Training'
-      ],
-      items: {
-        item1: {
-          img: 'home1'
-        },
-        item2: {
-          img: 'home2'
-        },
-        item3: {
-          img: 'home3'
-        },
-        item4: {
-          img: 'home4'
-        },
-        item5: {
-          img: 'home5'
-        },
-        item6: {
-          img: 'home6'
-        },
-        item7: {
-          img: 'home1'
-        },
-        item8: {
-          img: 'home2'
-        },
-        item9: {
-          img: 'home3'
-        }
-      }
-    }
-  },
-  computed: {
-    ...mapState({
-      isSubmitting: state => state.auth.isSubmitting,
-      validationErrors: state => state.auth.validationErrors,
-      statusPopUp: state => state.auth.statusPopUp
-    }),
-    ...mapGetters(
-      [
-        'STORIES',
-        'CARDS'
-      ]
-    )
-  },
-  methods: {
-    // eslint-disable-next-line space-before-function-paren
-    async push() {
-      const formData = {
-        email: this.email,
-        password: this.pass
-      }
-
-      await this.$store.dispatch('login', formData)
-      this.GET_STORIES()
-      this.GET_CARDS()
-    },
-    closePopUp() {
-      this.$store.commit('changeStatusPopUp')
-    },
-    ...mapActions([
-      'GET_STORIES',
-      'GET_CARDS'
-    ])
-  },
-  mounted() {
-
-  }
+.phone-btns__wrapper {
+  justify-content: space-between;
 }
-</script>
+
+.phone-btns__wrapper button {
+  flex: 0 0 calc(50% - 5px);
+}
+</style>
