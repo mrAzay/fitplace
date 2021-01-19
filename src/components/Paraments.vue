@@ -4,15 +4,11 @@
     <div class="paraments__uved">
       <div class="paraments__uved-text">Уведомления</div>
       <label class="paraments__uved-check">
-<<<<<<< HEAD
-        <input class="paraments__uved-check-input check" type="checkbox" />
-=======
         <input
           class="paraments__uved-check-input check"
           type="checkbox"
           :checked="USER_INFO.notification"
         />
->>>>>>> c746dccf811c2b238e99a2e7fb9d24eaeca6a9a7
         <span class="paraments__uved-check-input-castom castom-check"></span>
       </label>
     </div>
@@ -23,10 +19,6 @@
       </div>
       <div class="paraments__napomit-schet schet">
         <button
-<<<<<<< HEAD
-          @click.passive="remindForDecrement"
-=======
->>>>>>> c746dccf811c2b238e99a2e7fb9d24eaeca6a9a7
           class="paraments__napomit-schet-btn paraments__napomit-chet-btn-minus schet-btn schet-btn-minus"
         >
           <svg
@@ -46,16 +38,9 @@
           </svg>
         </button>
         <div class="paraments__napomit-schet-value schet-value">
-<<<<<<< HEAD
-          {{ remindMinuteCount }}
-        </div>
-        <button
-          @click.passive="remindForIncrement"
-=======
           {{ USER_INFO.workout_notification_for }}
         </div>
         <button
->>>>>>> c746dccf811c2b238e99a2e7fb9d24eaeca6a9a7
           class="paraments__napomit-schet-btn paraments__napomit-chet-btn-plus schet-btn schet-btn-plus"
         >
           <svg
@@ -121,23 +106,8 @@ import {mapGetters} from 'vuex'
 
 export default {
   name: 'Paraments',
-<<<<<<< HEAD
-  data() {
-    return {
-      remindMinuteCount: 0
-    }
-  },
-  methods: {
-    remindForDecrement() {
-      this.remindMinuteCount--
-    },
-    remindForIncrement() {
-      this.remindMinuteCount++
-    }
-=======
   computed: {
     ...mapGetters(['USER_INFO'])
->>>>>>> c746dccf811c2b238e99a2e7fb9d24eaeca6a9a7
   }
 }
 </script>
