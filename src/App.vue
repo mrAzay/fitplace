@@ -60,6 +60,10 @@ li {
   list-style-type: none;
 }
 
+#app {
+  position: relative;
+}
+
 button,
 input,
 textarea {
@@ -72,6 +76,10 @@ textarea {
 
 button:disabled {
   cursor: not-allowed;
+}
+
+.container {
+  padding: 0 100px 0 calc(100px - 66px) !important;
 }
 
 .d-flex-column {
@@ -105,6 +113,12 @@ button:disabled {
   &:hover,
   &:focus {
     transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding: 0 40px 100px !important;
   }
 }
 </style>

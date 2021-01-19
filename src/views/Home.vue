@@ -4,7 +4,7 @@
       <SliderTop :slider="STORIES"></SliderTop>
       <div class="home__inner">
         <h1 class="home__title title">Курсы и уроки</h1>
-        <div class="home__items grid">
+        <div class="home__items">
           <router-link
             class="home__item block"
             v-for="(item, index, n) in CARDS"
@@ -263,6 +263,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.block {
+  max-width: unset;
+}
+
 .swiper-wrapper {
   margin-bottom: 64px;
 }
@@ -438,5 +442,47 @@ export default {
 
 .phone-btns__wrapper button {
   flex: 0 0 calc(50% - 5px);
+}
+
+// home items
+
+.home__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-right: -32px;
+}
+
+.home__item {
+  flex: 0 1 calc(33.3333% - 32px);
+  margin-right: 32px;
+}
+
+.home__item:last-child {
+  margin-right: auto;
+}
+
+@media (max-width: 1200px) {
+  .home__items {
+    margin-right: -10px;
+  }
+
+  .home__item {
+    margin-right: 10px;
+    flex: 0 1 calc(33.3333% - 10px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .home__item {
+    margin-right: 32px;
+    flex: 0 0 calc(50% - 32px);
+    max-width: unset;
+    height: calc(170px + 70 * ((100vw - 768px) / (1100 - 768)));
+  }
+
+  .home__items {
+    margin-right: -32px;
+  }
 }
 </style>

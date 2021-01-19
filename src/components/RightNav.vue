@@ -169,6 +169,43 @@
     }
   }
 }
+
+@media (max-width: 991px) {
+  .right-nav {
+    width: 100%;
+    height: 64px;
+    bottom: 0;
+    top: unset;
+    z-index: 3;
+  }
+
+  .right-nav__links {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .right-nav__links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .right-nav__links {
+    align-items: center;
+  }
+
+  .right-nav__profile {
+    display: none;
+  }
+
+  .right-nav__link-item {
+    margin-top: 0 !important;
+  }
+
+  .right-nav__links {
+    max-width: 512px;
+  }
+}
 </style>
 
 <script>

@@ -58,10 +58,13 @@
     display: block;
     font-size: 0;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    flex: 0 0 calc(50% - 32px);
+    border-radius: 12px;
     img {
       max-width: 544px;
       width: 100%;
       max-height: 220px;
+      border-radius: 12px;
     }
   }
   &__items {
@@ -78,7 +81,6 @@
     margin-left: 20px;
     padding: 0;
     overflow: hidden;
-    max-width: 256px;
     &-info {
       padding: 20px;
     }
@@ -90,6 +92,12 @@
       line-height: 130%;
       margin-bottom: 24px;
     }
+  }
+}
+
+@media (max-width: 1100px) {
+  .shop .shop__big-items .shop__big-item {
+    flex: 0 0 calc(50% - 10px) !important;
   }
 }
 </style>
