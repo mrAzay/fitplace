@@ -33,6 +33,9 @@ export default new Vuex.Store({
     },
     USERS: (state) => {
       return state.users
+    },
+    USER_INFO: (state) => {
+      return state.userInfo
     }
   },
   mutations: {
@@ -154,6 +157,7 @@ export default new Vuex.Store({
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }
       })
+      console.log(data)
       context.commit('SET_USER_INFO', data)
     }
   },
