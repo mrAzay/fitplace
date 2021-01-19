@@ -1,105 +1,147 @@
 <template>
-    <div class="time block">
-      <div class="time__title block-title">Предпочитаемый режим занятий</div>
-      <div class="time__item">
-        <div class="time__item-title">Дни недели</div>
-        <div class="time__item-checkboxs">
-          <label class="time__item-checkbox-wrap">
-            <input type="checkbox" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text">Пн</span>
-          </label>
-          <label class="time__item-checkbox-wrap">
-            <input type="checkbox" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text">Вт</span>
-          </label>
-          <label class="time__item-checkbox-wrap">
-            <input type="checkbox" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text">Ср</span>
-          </label>
-          <label class="time__item-checkbox-wrap">
-            <input type="checkbox" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text">Чт</span>
-          </label>
-          <label class="time__item-checkbox-wrap">
-            <input type="checkbox" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text">Пт</span>
-          </label>
-          <label class="time__item-checkbox-wrap">
-            <input type="checkbox" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text">Сб</span>
-          </label>
-          <label class="time__item-checkbox-wrap">
-            <input type="checkbox" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text">Вс</span>
-          </label>
-        </div>
-      </div>
-      <div class="time__item">
-        <div class="time__item-title">Время суток</div>
-        <div class="time__item-checkboxs">
-          <label class="time__item-checkbox-wrap">
-            <input type="radio" name="vremia" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text time__item-checkbox-long">Утро</span>
-          </label>
-          <label class="time__item-checkbox-wrap">
-            <input type="radio" name="vremia" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text time__item-checkbox-long">День</span>
-          </label>
-          <label class="time__item-checkbox-wrap">
-            <input type="radio" name="vremia" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text time__item-checkbox-long">Вечер</span>
-          </label>
-        </div>
-      </div>
-      <div class="time__item">
-        <div class="time__item-title">Время суток</div>
-        <div class="time__item-checkboxs">
-          <label class="time__item-checkbox-wrap">
-            <input type="radio" name="time" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text time__item-checkbox-long">30 мин</span>
-          </label>
-          <label class="time__item-checkbox-wrap">
-            <input type="radio" name="time" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text time__item-checkbox-long">45 мин</span>
-          </label>
-          <label class="time__item-checkbox-wrap">
-            <input type="radio" name="time" class="time__item-checkbox check">
-            <span class="time__item-checkbox-text time__item-checkbox-long">60 мин</span>
-          </label>
-        </div>
+  <div class="time block">
+    <div class="time__title block-title">Предпочитаемый режим занятий</div>
+    <div class="time__item">
+      <div class="time__item-title">Дни недели</div>
+      <div class="time__item-checkboxs">
+        <label class="time__item-checkbox-wrap">
+          <input type="checkbox" class="time__item-checkbox check" />
+          <span class="time__item-checkbox-text">Пн</span>
+        </label>
+        <label class="time__item-checkbox-wrap">
+          <input type="checkbox" class="time__item-checkbox check" />
+          <span class="time__item-checkbox-text">Вт</span>
+        </label>
+        <label class="time__item-checkbox-wrap">
+          <input type="checkbox" class="time__item-checkbox check" />
+          <span class="time__item-checkbox-text">Ср</span>
+        </label>
+        <label class="time__item-checkbox-wrap">
+          <input type="checkbox" class="time__item-checkbox check" />
+          <span class="time__item-checkbox-text">Чт</span>
+        </label>
+        <label class="time__item-checkbox-wrap">
+          <input type="checkbox" class="time__item-checkbox check" />
+          <span class="time__item-checkbox-text">Пт</span>
+        </label>
+        <label class="time__item-checkbox-wrap">
+          <input type="checkbox" class="time__item-checkbox check" />
+          <span class="time__item-checkbox-text">Сб</span>
+        </label>
+        <label class="time__item-checkbox-wrap">
+          <input type="checkbox" class="time__item-checkbox check" />
+          <span class="time__item-checkbox-text">Вс</span>
+        </label>
       </div>
     </div>
+    <div class="time__item">
+      <div class="time__item-title">Время суток</div>
+      <div class="time__item-checkboxs">
+        <label class="time__item-checkbox-wrap">
+          <input
+            type="radio"
+            name="vremia"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.daytime == 1"
+          />
+          <span class="time__item-checkbox-text time__item-checkbox-long"
+            >Утро</span
+          >
+        </label>
+        <label class="time__item-checkbox-wrap">
+          <input
+            type="radio"
+            name="vremia"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.daytime == 2"
+          />
+          <span class="time__item-checkbox-text time__item-checkbox-long"
+            >День</span
+          >
+        </label>
+        <label class="time__item-checkbox-wrap">
+          <input
+            type="radio"
+            name="vremia"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.daytime == 3"
+          />
+          <span class="time__item-checkbox-text time__item-checkbox-long"
+            >Вечер</span
+          >
+        </label>
+      </div>
+    </div>
+    <div class="time__item">
+      <div class="time__item-title">Время суток</div>
+      <div class="time__item-checkboxs">
+        <label class="time__item-checkbox-wrap">
+          <input
+            type="radio"
+            name="time"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.duration == 30"
+          />
+          <span class="time__item-checkbox-text time__item-checkbox-long"
+            >30 мин</span
+          >
+        </label>
+        <label class="time__item-checkbox-wrap">
+          <input
+            type="radio"
+            name="time"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.duration == 45"
+          />
+          <span class="time__item-checkbox-text time__item-checkbox-long"
+            >45 мин</span
+          >
+        </label>
+        <label class="time__item-checkbox-wrap">
+          <input
+            type="radio"
+            name="time"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.duration == 60"
+          />
+          <span class="time__item-checkbox-text time__item-checkbox-long"
+            >60 мин</span
+          >
+        </label>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/_vars.scss';
 .time {
   margin: 20px;
-  &__title{
+  &__title {
     margin-bottom: 32px;
   }
-  &__item{
-    &+&{
+  &__item {
+    & + & {
       margin-top: 24px;
     }
-    &-title{
+    &-title {
       font-size: 14px;
       line-height: 17px;
       margin-bottom: 12px;
     }
-    &-checkboxs{
+    &-checkboxs {
       display: flex;
     }
-    &-checkbox{
-      &:checked+&-text{
+    &-checkbox {
+      &:checked + &-text {
         background-color: $accent;
       }
-      &-wrap{
-        &+&{
+      &-wrap {
+        & + & {
           margin-left: 11px;
         }
       }
-      &-text{
+      &-text {
         font-weight: 600;
         font-size: 12px;
         line-height: 15px;
@@ -112,7 +154,7 @@
         border-radius: 50%;
         cursor: pointer;
       }
-      &-long{
+      &-long {
         width: 96px;
         border-radius: 18px;
       }
@@ -122,7 +164,12 @@
 </style>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
-  name: 'Time'
+  name: 'Time',
+  computed: {
+    ...mapGetters(['USER_INFO'])
+  }
 }
 </script>

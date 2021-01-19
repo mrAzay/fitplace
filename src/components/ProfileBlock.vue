@@ -4,7 +4,9 @@
     <div class="profile__name block-title">
       {{ USER_INFO.name }} {{ USER_INFO.surname }}
     </div>
-    <div class="profile__info">г. Москва, 30 лет</div>
+    <div class="profile__info">
+      г. {{ USER_INFO.city }}, {{ Math.round(USER_INFO.age / 31536000) }} лет
+    </div>
     <div class="profile__links">
       <router-link to="/profile-user-info" class="profile__link"
         ><span>Мои данные</span>
@@ -63,7 +65,9 @@
           />
         </svg>
       </a>
-      <a href="" class="profile__link">Скопировать ID</a>
+      <a href="" :data-id="USER_INFO.id" class="profile__link"
+        >Скопировать ID</a
+      >
     </div>
     <a href="#" class="profile__log">
       <svg

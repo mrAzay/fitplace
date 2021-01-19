@@ -78,6 +78,26 @@ export default {
       })
     },
 
+    // authPhone(context, phoneNumber, appVerifier) {
+    //   return new Promise((resolve) => {
+    //     context.commit('authStart')
+    //     firebase
+    //       .auth()
+    //       .verifyPhoneNumber(phoneNumber)
+    //       .then((confirmationResult) => {
+    //         window.confirmationResult = confirmationResult
+    //         context.commit('authEnd')
+    //         context.commit('changeStatusPopUp')
+    //         context.commit('authorizated')
+    //         resolve(confirmationResult)
+    //       })
+    //       .catch((error) => {
+    //         context.commit('authEnd')
+    //         context.commit('validationErrors', error)
+    //       })
+    //   })
+    // }
+
     authPhone(context, phoneNumber, appVerifier) {
       return new Promise((resolve) => {
         context.commit('authStart')
@@ -97,25 +117,5 @@ export default {
           })
       })
     }
-
-    // authPhone(context, phoneNumber, appVerifier) {
-    //   return new Promise(resolve => {
-    //     context.commit('authStart')
-    //     firebase
-    //       .auth()
-    //       .verifyPhoneNumber(phoneNumber)
-    //       .then(confirmationResult => {
-    //         window.confirmationResult = confirmationResult
-    //         context.commit('authEnd')
-    //         context.commit('changeStatusPopUp')
-    //         context.commit('authorizated')
-    //         resolve(confirmationResult)
-    //       })
-    //       .catch(error => {
-    //         context.commit('authEnd')
-    //         context.commit('validationErrors', error)
-    //       })
-    //   })
-    // }
   }
 }

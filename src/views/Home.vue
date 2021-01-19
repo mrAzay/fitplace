@@ -120,7 +120,7 @@
               Например: +71111111111
             </p>
           </div>
-          <div style="display:flex" class="phone-btns__wrapper">
+          <div style="display: flex" class="phone-btns__wrapper">
             <button :disabled="isSubmitting" class="modal__btn" type="submit">
               Войти
             </button>
@@ -211,11 +211,11 @@ export default {
   },
   computed: {
     ...mapState({
-      isSubmitting: state => state.auth.isSubmitting,
-      validationErrors: state => state.auth.validationErrors,
-      statusPopUp: state => state.auth.statusPopUp
+      isSubmitting: (state) => state.auth.isSubmitting,
+      validationErrors: (state) => state.auth.validationErrors,
+      statusPopUp: (state) => state.auth.statusPopUp
     }),
-    ...mapGetters(['STORIES', 'CARDS'])
+    ...mapGetters(['STORIES', 'CARDS', 'USER_INFO'])
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
@@ -228,6 +228,7 @@ export default {
       await this.$store.dispatch('login', formData)
       this.GET_STORIES()
       this.GET_CARDS()
+      this.GET_USER_INFO()
     },
     pushPhone() {
       this.$store.dispatch('authPhone', this.phone)
@@ -241,7 +242,7 @@ export default {
     onComplete(v) {
       console.log('onComplete ', v)
     },
-    ...mapActions(['GET_STORIES', 'GET_CARDS']),
+    ...mapActions(['GET_STORIES', 'GET_CARDS', 'GET_USER_INFO']),
 
     // вызов попапа авторизации следующего
     raiseChildPopUp() {
