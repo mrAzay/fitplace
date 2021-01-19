@@ -4,29 +4,21 @@
     <div class="paraments__uved">
       <div class="paraments__uved-text">Уведомления</div>
       <label class="paraments__uved-check">
-<<<<<<< HEAD
-        <input class="paraments__uved-check-input check" type="checkbox" />
-=======
+        <input class="paraments__uved-check-input check" type="checkbox"/>
         <input
           class="paraments__uved-check-input check"
           type="checkbox"
           :checked="USER_INFO.notification"
         />
->>>>>>> c746dccf811c2b238e99a2e7fb9d24eaeca6a9a7
+        <input class="paraments__uved-check-input check" type="checkbox">
         <span class="paraments__uved-check-input-castom castom-check"></span>
       </label>
     </div>
     <div class="paraments__napomit">
-      <div class="paraments__napomit-text">
-        Напомнить о <br />
-        тренировке за
-      </div>
+      <div class="paraments__napomit-text">Напомнить о <br> тренировке за</div>
       <div class="paraments__napomit-schet schet">
         <button
-<<<<<<< HEAD
           @click.passive="remindForDecrement"
-=======
->>>>>>> c746dccf811c2b238e99a2e7fb9d24eaeca6a9a7
           class="paraments__napomit-schet-btn paraments__napomit-chet-btn-minus schet-btn schet-btn-minus"
         >
           <svg
@@ -46,16 +38,14 @@
           </svg>
         </button>
         <div class="paraments__napomit-schet-value schet-value">
-<<<<<<< HEAD
           {{ remindMinuteCount }}
         </div>
         <button
           @click.passive="remindForIncrement"
-=======
+        >
           {{ USER_INFO.workout_notification_for }}
-        </div>
+        </button>
         <button
->>>>>>> c746dccf811c2b238e99a2e7fb9d24eaeca6a9a7
           class="paraments__napomit-schet-btn paraments__napomit-chet-btn-plus schet-btn schet-btn-plus"
         >
           <svg
@@ -82,62 +72,65 @@
           </svg>
         </button>
       </div>
+
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
-@import '@/assets/scss/_vars.scss';
-.block {
-  margin: 20px;
-}
-.paraments {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  display: flex;
-  flex-direction: column;
-  &__title {
-    margin-bottom: 32px;
+  @import '@/assets/scss/_vars.scss';
+
+  .block {
+    margin: 20px;
   }
 
-  &__uved {
-    width: 100%;
+  .paraments {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    margin-bottom: 20px;
+    flex-direction: column;
+
+    &__title {
+      margin-bottom: 32px;
+    }
+
+    &__uved {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+    }
+
+    &__napomit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
-  &__napomit {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
 </style>
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Paraments',
-<<<<<<< HEAD
-  data() {
+  data () {
     return {
       remindMinuteCount: 0
     }
   },
   methods: {
-    remindForDecrement() {
+    remindForDecrement () {
       this.remindMinuteCount--
     },
-    remindForIncrement() {
+    remindForIncrement () {
       this.remindMinuteCount++
     }
-=======
+  },
   computed: {
     ...mapGetters(['USER_INFO'])
->>>>>>> c746dccf811c2b238e99a2e7fb9d24eaeca6a9a7
   }
 }
 </script>
