@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VCalendar from 'v-calendar'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -8,6 +9,9 @@ import 'firebase/auth'
 import 'firebase/database'
 
 Vue.config.productionTip = false
+Vue.use(VCalendar, {
+  componentPrefix: 'vc'
+})
 
 firebase.initializeApp({
   apiKey: 'AIzaSyDWKNaKsJJ9c5NeHFvbAdOuMFb4dV7rJrc',
