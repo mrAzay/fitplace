@@ -9,58 +9,66 @@
 </template>
 
 <style scoped lang="scss">
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-    "profile balance aboniment"
-    "profile history aboniment"
-    "paraments history aboniment";
-  }
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    'profile balance aboniment'
+    'profile history aboniment'
+    'paraments history aboniment';
+}
 
+.profile {
+  grid-area: profile;
+}
+
+.paraments {
+  grid-area: paraments;
+}
+
+.balance {
+  grid-area: balance;
+}
+
+.history {
+  grid-area: history;
+}
+
+.aboniment {
+  grid-area: aboniment;
+}
+
+.column {
+  max-width: 352px;
+  width: 100%;
+}
+@media (max-width: 1220px) {
   .profile {
-    grid-area: profile;
-  }
-
-  .paraments {
-    grid-area: paraments;
-  }
-
-  .balance {
-    grid-area: balance;
+    min-height: unset;
   }
 
   .history {
-    grid-area: history;
+    height: unset;
   }
 
-  .aboniment {
-    grid-area: aboniment;
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 191px 264px auto 240px;
+    gap: 30px 20px;
+    grid-template-areas:
+      'profile paraments'
+      'profile balance'
+      'aboniment aboniment'
+      'history history';
   }
-
-  .column {
-    max-width: 352px;
-    width: 100%;
+  .block {
+    max-width: none;
+    margin: 0;
   }
-  @media (max-width: 1220px) {
-    .grid-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 191px 264px auto 240px;
-      gap: 30px 20px;
-      grid-template-areas:
-    "profile paraments"
-    "profile balance"
-    "aboniment aboniment"
-    "history history";
-    }
-    .block{
-      max-width: none;
-      margin: 0;
-    }
-  }
+}
 </style>
 
 <script>
@@ -69,7 +77,7 @@ import Paraments from '@/components/Paraments'
 import Balance from '../components/Balance'
 import History from '../components/Historu'
 import Aboniment from '../components/Aboniment'
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 
 export default {
   name: 'Profile',
@@ -83,7 +91,7 @@ export default {
   methods: {
     ...mapActions(['GET_USER_INFO'])
   },
-  mounted () {
+  mounted() {
     this.GET_USER_INFO()
   }
 }
