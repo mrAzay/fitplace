@@ -11,9 +11,8 @@
             :key="index"
             :to="{name: routeLinks[n]}"
             :style="{
-              backgroundImage:
-                'url('+ item.image.min +')',
-                backgroundSize: 'cover'
+              backgroundImage: 'url(' + item.image.min + ')',
+              backgroundSize: 'cover'
             }"
           ></router-link>
         </div>
@@ -305,16 +304,11 @@ export default {
   },
   computed: {
     ...mapState({
-      isSubmitting: state => state.auth.isSubmitting,
-      validationErrors: state => state.auth.validationErrors,
-      statusPopUp: state => state.auth.statusPopUp
+      isSubmitting: (state) => state.auth.isSubmitting,
+      validationErrors: (state) => state.auth.validationErrors,
+      statusPopUp: (state) => state.auth.statusPopUp
     }),
-    ...mapGetters(
-      [
-        'STORIES',
-        'CARDS'
-      ]
-    )
+    ...mapGetters(['STORIES', 'CARDS'])
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
@@ -327,17 +321,13 @@ export default {
       await this.$store.dispatch('login', formData)
       this.GET_STORIES()
       this.GET_CARDS()
+      this.GET_USER_INFO()
     },
     closePopUp() {
       this.$store.commit('changeStatusPopUp')
     },
-    ...mapActions([
-      'GET_STORIES',
-      'GET_CARDS'
-    ])
+    ...mapActions(['GET_STORIES', 'GET_CARDS', 'GET_USER_INFO'])
   },
-  mounted() {
-
-  }
+  mounted() {}
 }
 </script>
