@@ -25,7 +25,6 @@
   margin: 20px;
 }
 .history {
-  height: 627px;
   overflow: auto;
   display: flex;
   flex-direction: column;

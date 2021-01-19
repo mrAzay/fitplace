@@ -110,14 +110,6 @@ export default {
   name: 'Paraments',
   computed: {
     ...mapGetters(['USER_INFO'])
-  },
-  methods: {
-    remindForDecrement() {
-      this.remindMinuteCount--
-    },
-    remindForIncrement() {
-      this.remindMinuteCount++
-    }
   }
 }
 </script>

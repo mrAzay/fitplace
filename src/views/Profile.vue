@@ -18,6 +18,7 @@
     'profile balance aboniment'
     'profile history aboniment'
     'paraments history aboniment';
+  padding-bottom: 30px !important;
 }
 
 .profile {
@@ -45,14 +46,6 @@
   width: 100%;
 }
 @media (max-width: 1220px) {
-  .profile {
-    min-height: unset;
-  }
-
-  .history {
-    height: unset;
-  }
-
   .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -67,6 +60,12 @@
   .block {
     max-width: none;
     margin: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .grid-container {
+    padding-bottom: 80px !important;
   }
 }
 </style>
