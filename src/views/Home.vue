@@ -352,6 +352,9 @@ export default {
   &:hover::placeholder,
   &:focus::placeholder {
     color: rgba(0, 0, 0, 1);
+  }
+  &:hover,
+  &:focus{
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
   }
 }
