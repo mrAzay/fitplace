@@ -3,8 +3,20 @@
     <div class="container container-top-nav">
       <div class="top-nav__inner">
         <router-link class="top-nav__back" :to="`/${path.link}`" v-if="path">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.5 5L7.5 10L12.5 15" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.5 5L7.5 10L12.5 15"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
           {{ path.text }}
         </router-link>
@@ -88,12 +100,12 @@
 </style>
 
 <script>
-import {mapState} from 'vuex'
+// import {mapState} from 'vuex'
 
 export default {
   name: 'TopNav',
   computed: {
-    path () {
+    path() {
       if (this.$route.path === '/category') {
         return {
           text: 'Видеобиблиотека',
