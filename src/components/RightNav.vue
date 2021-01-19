@@ -5,11 +5,9 @@
       :to="{name: 'Profile'}"
       class="right-nav__profile"
     >
-      <img src="@/assets/img/user-icon.jpg" alt="" />
+      <img :src="USER_INFO.photo_main_url.min" alt="" />
     </router-link>
-    <button v-if="!authorizated" @click="openModal" class="right-nav__profile">
-      Войти
-    </button>
+    <button v-else @click="openModal" class="right-nav__profile">Войти</button>
     <ul class="right-nav__links">
       <li class="right-nav__link-item">
         <router-link class="right-nav__link" to="/category">
@@ -158,6 +156,12 @@
   &__profile {
     position: absolute;
     top: 32px;
+    img {
+      width: 45px;
+      height: 45px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
   }
   &__link {
     display: block;
@@ -209,16 +213,17 @@
 </style>
 
 <script>
-import { mapState } from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 export default {
   name: 'RightNav',
   computed: {
     ...mapState({
-      authorizated: state => state.auth.authorizated
-    })
+      authorizated: (state) => state.auth.authorizated
+    }),
+    ...mapGetters(['USER_INFO'])
   },
   methods: {
-    openModal () {
+    openModal() {
       this.$store.commit('changeStatusPopUp')
     }
   }

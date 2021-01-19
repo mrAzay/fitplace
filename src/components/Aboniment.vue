@@ -5,7 +5,11 @@
       <div class="aboniment__prod-title">
         <span>Продлевать автоматически</span>
         <label class="aboniment__check">
-          <input type="checkbox" class="check" />
+          <input
+            type="checkbox"
+            class="check"
+            :checked="USER_INFO.abonement_recurring"
+          />
           <span class="castom-check"></span>
         </label>
       </div>
@@ -14,7 +18,9 @@
         Согласен с условиями использования и политикой конфиденциальности
       </div>
     </div>
-    <div class="aboniment__title block-title">Действует до 28.10.2020</div>
+    <div class="aboniment__title block-title">
+      Действует до {{ USER_INFO.abonement_valid_until }}
+    </div>
     <ul class="aboniment__list list">
       <li class="aboniment__list-item list__item">
         Библиотека видеокурсов от тренеров по топовым направлениям
@@ -141,7 +147,12 @@
 </style>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
-  name: 'Aboniment'
+  name: 'Aboniment',
+  computed: {
+    ...mapGetters(['USER_INFO'])
+  }
 }
 </script>
