@@ -72,8 +72,28 @@ export default {
           .then(res => {
             resolve(res)
           })
-          .catch(e => {
-            console.log('error', e)
+          .catch(() => {
+            context.commit('changeStatusPopUp')
+          })
+      })
+    },
+
+    authPhone(context, phoneNumber, appVerifier) {
+      return new Promise(resolve => {
+        context.commit('authStart')
+        firebase
+          .auth()
+          .verifyPhoneNumber(phoneNumber)
+          .then(confirmationResult => {
+            window.confirmationResult = confirmationResult
+            context.commit('authEnd')
+            context.commit('changeStatusPopUp')
+            context.commit('authorizated')
+            resolve(confirmationResult)
+          })
+          .catch(error => {
+            context.commit('authEnd')
+            context.commit('validationErrors', error)
           })
       })
     },
