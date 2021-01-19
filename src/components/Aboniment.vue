@@ -19,7 +19,7 @@
           >Как получить абонемент?</a
         >
         <div class="aboniment__title block-title aboniment__title--media-1220">
-          Действует до 28.10.2020
+          Действует до {{ USER_INFO.abonement_valid_until }}
         </div>
         <ul class="aboniment__list aboniment__list--media-1220  list">
           <li class="aboniment__list-item list__item">
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="aboniment__col-wrapper">
-      <div class="aboniment__title block-title">Действует до 28.10.2020</div>
+      <div class="aboniment__title block-title">Действует до {{ USER_INFO.abonement_valid_until }}</div>
       <div class="aboniment__prod-title aboniment__prod-title--media-1220">
         <span>Продлевать автоматически</span>
         <label class="aboniment__check">
@@ -55,32 +55,6 @@
       >
         Согласен с условиями использования и политикой конфиденциальности
       </div>
-<<<<<<< HEAD
-      <ul class="aboniment__list list">
-        <li class="aboniment__list-item list__item">
-          Библиотека видеокурсов от тренеров по топовым направлениям
-        </li>
-        <li class="aboniment__list-item list__item">
-          150+ групповых занятий в месяц
-        </li>
-        <li class="aboniment__list-item list__item">
-          Бесплатная персональная тренировка с тренером
-        </li>
-        <li class="aboniment__list-item list__item">
-          Приоритетная поддержка сервиса
-        </li>
-      </ul>
-      <a href="#" class="aboniment__link">Как получить абонемент?</a>
-      <a href="#" class="aboniment__button aboniment__button-first button"
-        >Пробный период 3 дня</a
-      >
-      <a href="#" class="aboniment__button button">1 месяц 999 руб</a>
-      <a href="#" class="aboniment__button button">3 месяца 2 499 руб</a>
-      <a href="#" class="aboniment__button button">6 месяцев 4 999 руб</a>
-      <a href="#" v-if="false" class="aboniment__button button"
-        >1 год 7 990 руб</a
-=======
-    </div>
     <div class="aboniment__title block-title">
       Действует до {{ USER_INFO.abonement_valid_until }}
     </div>
@@ -119,29 +93,15 @@
         viewBox="0 0 20 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
->>>>>>> c746dccf811c2b238e99a2e7fb9d24eaeca6a9a7
       >
+
+      </router-link>
 
       <router-link
         class="aboniment__down-link block-title"
         :to="{name: 'Aboniments'}"
       >
-        Смотреть все абонементы<svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7.5 15L12.5 10L7.5 5"
-            stroke="black"
-            stroke-opacity="0.32"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+        Смотреть все абонементы
       </router-link>
     </div>
   </div>
