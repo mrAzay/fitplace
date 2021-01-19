@@ -12,7 +12,8 @@ export default new Vuex.Store({
     products: null,
     shopStories: null,
     videocourse: null,
-    users: null
+    users: null,
+    userInfo: {}
   },
   getters: {
     STORIES: (state) => {
