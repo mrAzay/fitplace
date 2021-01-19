@@ -8,4 +8,9 @@ const authWithToken = token => {
   })
 }
 
-export default authWithToken
+const authWithPhone = credentials => {
+  return axios.post('/sign_in', {
+    phone: credentials
+  })
+}
+export {authWithToken, authWithPhone}

@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
-import { setItem } from '@/helpers/persistanceStorage'
-import authWithToken from '@/api/auth'
+import {setItem} from '@/helpers/persistanceStorage'
+import {authWithToken} from '@/api/auth'
 
 export default {
   state: {
@@ -54,7 +54,7 @@ export default {
         await firebase
           .auth()
           .currentUser.getIdToken(true)
-          .then(function (idToken) {
+          .then(function(idToken) {
             commit('saveToken', idToken)
             setItem('accesToken', idToken)
           })
@@ -74,6 +74,26 @@ export default {
           })
           .catch(e => {
             console.log('error', e)
+          })
+      })
+    },
+
+    authPhone(context, phoneNumber, appVerifier) {
+      return new Promise(resolve => {
+        context.commit('authStart')
+        firebase
+          .auth()
+          .verifyPhoneNumber(phoneNumber)
+          .then(confirmationResult => {
+            window.confirmationResult = confirmationResult
+            context.commit('authEnd')
+            context.commit('changeStatusPopUp')
+            context.commit('authorizated')
+            resolve(confirmationResult)
+          })
+          .catch(error => {
+            context.commit('authEnd')
+            context.commit('validationErrors', error)
           })
       })
     }
