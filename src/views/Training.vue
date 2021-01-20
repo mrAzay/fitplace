@@ -1,5 +1,6 @@
 <template>
   <section class="training">
+    <Calendar color="orange" />
     <div class="container">
       <div class="training__wrapper">
         <div class="training__top">
@@ -69,11 +70,13 @@
 
 <script>
 import CoucherPopup from '../components/coucher-popup'
+import Calendar from '../components/Calendar'
 
 export default {
   name: 'Training',
   components: {
-    CoucherPopup
+    CoucherPopup,
+    Calendar
   },
   data: () => ({
     statistic: [
@@ -99,6 +102,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.training .container {
+  padding: 0 100px !important;
+}
+
 .training__top {
   padding: 24px 47px;
   background: #ffffff;
@@ -150,12 +157,12 @@ export default {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    margin-right: -30px;
     .training-block {
       display: flex;
       flex-direction: column;
-      flex: 1 1 30%;
-      max-width: 355px;
+      flex: 0 0 calc(33.333% - 30px);
+      margin-right: 30px;
       background: #ffffff;
       box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
       border-radius: 12px;
@@ -232,6 +239,54 @@ export default {
         }
       }
     }
+  }
+}
+
+@media (max-width: 1220px) {
+  .training__content-blocks {
+    margin-right: -10px;
+
+    .training-block {
+      flex: 0 0 calc(33.333% - 10px);
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .training__content-blocks {
+    margin-right: -20px;
+
+    .training-block {
+      flex: 0 0 calc(50% - 20px);
+      margin-right: 20px;
+    }
+  }
+
+  .training__top {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .training__top-block {
+    flex: 0 0 27%;
+    margin: 0;
+    justify-content: center;
+  }
+
+  .training__top-block + .training__top-block {
+    margin: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .training {
+    padding-top: 70px;
+    padding-bottom: 60px;
+  }
+
+  .training .container {
+    padding: 0 40px !important;
   }
 }
 </style>

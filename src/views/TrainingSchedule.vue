@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="trainer-schedule">
-
       <div class="container">
         <div class="trainer-schedule__inner">
           <div
@@ -32,76 +31,87 @@
         </div>
       </div>
     </div>
-    <DatePicker class="calendar" color="orange"/>
+    <Calendar />
   </div>
-
 </template>
 
 <style lang="scss">
+.trainer-schedule {
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -30px;
+  }
+
+  .trainer-schedule__block {
+    flex: 0 0 calc(33.33% - 30px);
+    margin-right: 30px;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__block {
+    padding: 0;
+    margin-bottom: 24px;
+  }
+
+  &__text {
+    color: rgba(0, 0, 0, 0.64);
+    font-size: 14px;
+    line-height: 17px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.trainer-schedule .container {
+  padding: 0 100px !important;
+}
+
+@media (max-width: 1220px) {
   .trainer-schedule {
     &__inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    &__title {
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 17px;
-      padding: 16px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-wrap: wrap;
+      margin-right: -30px;
     }
 
-    &__block {
-      padding: 0;
-      margin-bottom: 24px;
+    .trainer-schedule__block {
+      flex: 0 0 calc(50% - 30px);
+      margin-right: 30px;
+      max-width: unset;
     }
+  }
+}
 
-    &__text {
-      color: rgba(0, 0, 0, 0.64);
-      font-size: 14px;
-      line-height: 17px;
-      padding: 16px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+@media (max-width: 991px) {
+  .trainer-schedule {
+    padding-bottom: 70px;
+    .container {
+      padding-right: calc(100px - 66px) !important;
     }
   }
-  .vc-container{
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-  .vc-weekday{
-    display: none;
-  }
-  .is-not-in-month{
-    display: none !important;
-  }
-  .vc-weeks{
-    display: flex !important;
-    flex-direction: column;
-  }
-  .vc-pane{
-    min-width: auto !important;
-  }
-  .vc-header{
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    padding-bottom: 32px !important;
-  }
+}
 </style>
 
 <script>
-import DatePicker from 'v-calendar/lib/components/date-picker.umd'
+import Calendar from '@/components/Calendar'
 
 export default {
   name: 'TrainingSchedule',
   components: {
-    DatePicker
+    Calendar
   }
 }
 </script>

@@ -100,7 +100,7 @@
 </style>
 
 <script>
-// import {mapState} from 'vuex'
+import {mapState} from 'vuex'
 
 export default {
   name: 'TopNav',
@@ -124,7 +124,10 @@ export default {
       } else {
         return ''
       }
-    }
+    },
+    ...mapState({
+      authorizated: state => state.auth.authorizated
+    })
   }
 }
 </script>
