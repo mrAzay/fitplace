@@ -9,11 +9,14 @@
 </template>
 
 <style scoped lang="scss">
+  .block{
+    max-width: none;
+  }
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 0px;
+  grid-template-rows: 1fr 191px 274px;
+  gap: 24px 32px;
   grid-template-areas:
     'profile balance aboniment'
     'profile history aboniment'

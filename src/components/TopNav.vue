@@ -62,6 +62,9 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
+    svg {
+      margin-right: 8px;
+    }
   }
 .top-nav {
   padding: 20px 0 20px;
@@ -168,6 +171,11 @@ export default {
         return {
           text: 'Список товаров',
           link: ''
+        }
+      } else if (this.$route.path === '/profile-user-info') {
+        return {
+          text: 'Профиль',
+          link: 'profile'
         }
       } else {
         return ''

@@ -13,9 +13,7 @@
   </div>
 </template>
 <style scoped lang="scss">
-.block {
-  margin: 20px;
-}
+
 .balance {
   &__title {
     display: flex;

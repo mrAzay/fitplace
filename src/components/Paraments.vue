@@ -74,9 +74,7 @@
 </template>
 <style lang="scss" scoped>
 @import '@/assets/scss/_vars.scss';
-.block {
-  margin: 20px;
-}
+
 .paraments {
   font-weight: 500;
   font-size: 14px;

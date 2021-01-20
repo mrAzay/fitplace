@@ -80,7 +80,7 @@
 
 <style lang="scss" scoped>
 .data {
-  margin: 20px;
+
   &__select {
     position: relative;
     &-list {
