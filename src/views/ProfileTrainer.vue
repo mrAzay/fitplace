@@ -260,6 +260,9 @@
 </template>
 
 <style lang="scss" scoped>
+  .block{
+    max-width: none;
+  }
 .profile-trainer {
   .column {
     flex: 0 0 calc(50% - 30px);

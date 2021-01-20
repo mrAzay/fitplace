@@ -1,5 +1,5 @@
 <template>
-  <div class="top-nav">
+  <div class="top-nav" v-if="$route.path !== '/chat'">
     <div class="container container-top-nav">
       <div class="top-nav__inner">
         <router-link class="top-nav__back" :to="`/${path.link}`" v-if="path">
@@ -52,8 +52,20 @@
 </template>
 
 <style scoped lang="scss">
+  .top-nav__back{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
 .top-nav {
-  padding: 20px 0 52px;
+  padding: 20px 0 20px;
+
   &__inner {
     position: relative;
     display: flex;
@@ -69,10 +81,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.container.container-top-nav {
-  padding: 0 !important;
 }
 
 .right-nav__profile {
@@ -119,6 +127,46 @@ export default {
       } else if (this.$route.path === '/vebinar') {
         return {
           text: 'Вебинары',
+          link: ''
+        }
+      } else if (this.$route.path === '/fitness-courses') {
+        return {
+          text: 'Главная',
+          link: ''
+        }
+      } else if (this.$route.path === '/profile-trainer') {
+        return {
+          text: 'Видеокурсы',
+          link: ''
+        }
+      } else if (this.$route.path === '/profile-user') {
+        return {
+          text: 'Тренировки',
+          link: ''
+        }
+      } else if (this.$route.path === '/send-message') {
+        return {
+          text: 'Занятия',
+          link: ''
+        }
+      } else if (this.$route.path === '/coach-now') {
+        return {
+          text: 'Профиль',
+          link: ''
+        }
+      } else if (this.$route.path === '/cash-now') {
+        return {
+          text: 'Профиль',
+          link: ''
+        }
+      } else if (this.$route.path === '/cart') {
+        return {
+          text: 'Список товаров',
+          link: ''
+        }
+      } else if (this.$route.path === '/shop-item') {
+        return {
+          text: 'Список товаров',
           link: ''
         }
       } else {

@@ -184,10 +184,7 @@
         </div>
       </div>
     </div>
-    <pre>
-      Users
-      {{ USERS }}
-    </pre>
+
   </div>
 </template>
 

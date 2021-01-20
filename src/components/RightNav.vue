@@ -124,7 +124,7 @@
   </nav>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/_vars.scss';
 
 .massege-numb {
