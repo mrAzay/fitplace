@@ -15,7 +15,7 @@
         <div class="shop__top-item"></div>
         <div class="shop__top-item"></div>
       </div>
-      <SliderTop :slider="SHOP_STORIES"></SliderTop>
+      <SliderTop :slider="STORIES"></SliderTop>
       <div class="shop__big-items">
         <a href="#" class="shop__big-item"
           ><img src="@/assets/img/shop-big1.png" alt=""
@@ -28,18 +28,29 @@
         <router-link
           :to="{name: 'ShopItem'}"
           class="shop__item block"
-          v-for="(item, index) in PRODUCTS"
+          v-for="(item, index) in 6"
           :key="index"
         >
-          <img :src="item.image.max" alt="" class="shop__item-img" />
+          <!--          <img :src="item.image.max" alt="" class="shop__item-img" />-->
+          <!--          <div class="shop__item-info">-->
+          <!--            <div class="shop__item-title block-title">{{ item.title }}</div>-->
+          <!--            <div class="shop__item-desc">-->
+          <!--              {{ item.description }}-->
+          <!--            </div>-->
+          <!--            <div class="shop__item-price block-title">{{ item.price }} руб</div>-->
+          <!--          </div>-->
+          <img src="@/assets/img/shop.png" alt="" class="shop__item-img" />
           <div class="shop__item-info">
-            <div class="shop__item-title block-title">{{ item.title }}</div>
+            <div class="shop__item-title block-title">СТЕП-ПЛАТФОРМА</div>
             <div class="shop__item-desc">
-              {{ item.description }}
+              Профессиональная степ-платформа REEBOK RSP-16150WH
             </div>
-            <div class="shop__item-price block-title">{{ item.price }} руб</div>
+            <div class="shop__item-price block-title">11 200 руб</div>
           </div>
         </router-link>
+        <pre>
+          {{ PRODUCTS }}
+        </pre>
       </div>
     </div>
   </div>
@@ -110,7 +121,7 @@ export default {
   // eslint-disable-next-line object-curly-spacing
   components: {SliderTop},
   computed: {
-    ...mapGetters(['SHOP_STORIES', 'PRODUCTS'])
+    ...mapGetters(['STORIES', 'PRODUCTS'])
   },
   methods: {
     ...mapActions(['GET_SHOP_STORIES', 'GET_PRODUCT'])
