@@ -1,5 +1,6 @@
 <template>
   <section class="training">
+    <Calendar color="orange" />
     <div class="container">
       <div class="training__wrapper">
         <div class="training__top">
@@ -63,17 +64,19 @@
         </div>
       </div>
     </div>
-    <coucher-popup :is-opened.sync="popupOpen"/>
+    <coucher-popup :is-opened.sync="popupOpen" />
   </section>
 </template>
 
 <script>
 import CoucherPopup from '../components/coucher-popup'
+import Calendar from '../components/Calendar'
 
 export default {
   name: 'Training',
   components: {
-    CoucherPopup
+    CoucherPopup,
+    Calendar
   },
   data: () => ({
     statistic: [
@@ -99,164 +102,191 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .training__top {
-    padding: 24px 47px;
-    background: #ffffff;
+.training .container {
+  padding: 0 100px !important;
+}
+
+.training__top {
+  padding: 24px 47px;
+  background: #ffffff;
+  display: flex;
+  width: fit-content;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  margin-bottom: 64px;
+  &-block {
     display: flex;
-    width: fit-content;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    margin-bottom: 64px;
 
-    &-block {
-      display: flex;
-
-      &-icon {
-        max-width: 48px;
-        max-height: 48px;
-        object-fit: contain;
+    &-icon {
+      max-width: 48px;
+      max-height: 48px;
+      object-fit: contain;
+    }
+    &-info {
+      margin-left: 12px;
+      .info-title {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        color: #000000;
+        margin-bottom: 6px;
       }
-
-      &-info {
-        margin-left: 12px;
-
-        .info-title {
+      .info-text {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 15px;
+        color: #000000;
+      }
+    }
+    & + & {
+      margin-left: 40px;
+    }
+  }
+}
+.training__content {
+  display: flex;
+  flex-direction: column;
+  &-title {
+    margin-bottom: 20px;
+  }
+  &-blocks {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-right: -30px;
+    .training-block {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 calc(33.333% - 30px);
+      margin-right: 30px;
+      background: #ffffff;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      margin-bottom: 24px;
+      padding: 16px 0;
+      &__header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        margin-bottom: 12px;
+        &-name {
           font-family: Montserrat;
           font-style: normal;
           font-weight: 600;
-          font-size: 16px;
-          line-height: 20px;
+          font-size: 14px;
+          line-height: 17px;
+        }
+        &-time {
+          font-family: Montserrat;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 17px;
+        }
+      }
+      &__descr {
+        padding: 0 16px 16px;
+        margin-bottom: 16px;
+        color: rgba(0, 0, 0, 0.64);
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 130%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      &__coach {
+        display: flex;
+        width: 100%;
+        padding: 0 16px;
+        &-img {
+          object-fit: cover;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+        &-info {
+          margin-left: 8px;
+        }
+        &-name {
+          font-family: Montserrat;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 17px;
           color: #000000;
           margin-bottom: 6px;
         }
-
-        .info-text {
+        &-position {
           font-family: Montserrat;
           font-style: normal;
-          font-weight: 600;
+          font-weight: 500;
           font-size: 12px;
           line-height: 15px;
-          color: #000000;
-        }
-      }
-
-      & + & {
-        margin-left: 40px;
-      }
-    }
-  }
-
-  .training__content {
-    display: flex;
-    flex-direction: column;
-
-    &-title {
-      margin-bottom: 20px;
-    }
-
-    &-blocks {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-
-      .training-block {
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 30%;
-        max-width: 355px;
-        background: #ffffff;
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-        border-radius: 12px;
-        margin-bottom: 24px;
-        padding: 16px 0;
-
-        &__header {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 16px;
-          margin-bottom: 12px;
-
-          &-name {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 17px;
-          }
-
-          &-time {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 17px;
-          }
-        }
-
-        &__descr {
-          padding: 0 16px 16px;
-          margin-bottom: 16px;
           color: rgba(0, 0, 0, 0.64);
-          font-family: Montserrat;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 14px;
-          line-height: 130%;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
-
-        &__coach {
-          display: flex;
-          width: 100%;
-          padding: 0 16px;
-
-          &-img {
-            object-fit: cover;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-          }
-
-          &-info {
-            margin-left: 8px;
-          }
-
-          &-name {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 17px;
-            color: #000000;
-            margin-bottom: 6px;
-          }
-
-          &-position {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 15px;
-            color: rgba(0, 0, 0, 0.64);
-          }
-
-          &-link {
-            margin-left: auto;
-            margin-top: auto;
-            width: 16px;
-            height: 16px;
-          }
+        &-link {
+          margin-left: auto;
+          margin-top: auto;
+          width: 16px;
+          height: 16px;
         }
       }
     }
   }
+}
 
-  @media (max-width: 1235px) {
-  .training-block {
-      flex: none !important;
+@media (max-width: 1220px) {
+  .training__content-blocks {
+    margin-right: -10px;
+
+    .training-block {
+      flex: 0 0 calc(33.333% - 10px);
+      margin-right: 10px;
     }
   }
+}
+
+@media (max-width: 1100px) {
+  .training__content-blocks {
+    margin-right: -20px;
+
+    .training-block {
+      flex: 0 0 calc(50% - 20px);
+      margin-right: 20px;
+    }
+  }
+
+  .training__top {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .training__top-block {
+    flex: 0 0 27%;
+    margin: 0;
+    justify-content: center;
+  }
+
+  .training__top-block + .training__top-block {
+    margin: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .training {
+    padding-top: 70px;
+    padding-bottom: 60px;
+  }
+
+  .training .container {
+    padding: 0 40px !important;
+  }
+}
 </style>
