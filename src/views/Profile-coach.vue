@@ -393,14 +393,17 @@ export default {
 .mb-24 {
   margin-bottom: 24px;
 }
+
 .wrapper {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-right: -10px;
   .column-wrapper {
     display: flex;
     flex-direction: column;
     max-width: 352px;
+    margin-right: 10px;
     width: 100%;
     .profile-block {
       width: 100%;
@@ -669,6 +672,28 @@ export default {
       line-height: 15px;
       color: rgba(0, 0, 0, 0.64);
     }
+  }
+}
+
+@media (max-width: 1220px) {
+  div.wrapper {
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 0 !important;
+
+    .column-wrapper {
+      max-width: unset;
+      width: 80%;
+      margin: 0 auto;
+
+      &:first-child {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .wrapper .column-wrapper .profile-block .profile-block__video {
+    height: auto;
   }
 }
 </style>

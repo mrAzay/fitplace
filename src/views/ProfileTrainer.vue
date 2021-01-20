@@ -261,10 +261,14 @@
 
 <style lang="scss" scoped>
 .profile-trainer {
+  .column {
+    flex: 0 0 calc(50% - 30px);
+  }
   .trainer {
     padding: 0;
     overflow: hidden;
-    max-width: 544px;
+    flex: 0 0 calc(50% - 30px);
+    max-width: unset;
 
     &__img {
       width: 100%;
@@ -321,7 +325,7 @@
     }
 
     &__use {
-      padding: 20px 0 0;
+      padding: 20px 0 20px;
       margin-bottom: 20px;
       border-top: 1px solid rgba(0, 0, 0, 0.08);
       border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -368,7 +372,7 @@
 
     &__button {
       display: block;
-      max-width: 244px;
+      flex: 0 0 calc(50% - 5px);
       padding: 13px 0;
       width: 100%;
 
@@ -379,7 +383,6 @@
   }
 
   .review {
-    max-width: 544px;
     max-height: 561px;
     overflow: auto;
     margin-bottom: 20px;
@@ -422,7 +425,6 @@
   }
 
   .push {
-    max-width: 544px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -440,7 +442,7 @@
     }
 
     &__stars {
-      max-width: 244px;
+      flex: 0 0 calc(50% - 5px);
       width: 100%;
       display: flex;
       align-items: center;
@@ -458,8 +460,34 @@
     }
 
     &__button {
-      padding: 13px 63px;
+      padding: 13px 0px;
+      text-align: center;
+      flex: 0 0 calc(50% - 5px);
     }
+  }
+}
+
+@media (max-width: 991px) {
+  .profile-trainer__inner {
+    flex-direction: column;
+    justify-content: center;
+
+    .column {
+      float: 0 0 100%;
+    }
+
+    .trainer {
+      flex: 0 0 100%;
+    }
+  }
+
+  .profile-trainer .review,
+  .profile-trainer .push {
+    max-width: unset;
+  }
+
+  .profile-trainer .review {
+    margin-top: 20px;
   }
 }
 </style>
