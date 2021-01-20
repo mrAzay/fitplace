@@ -82,6 +82,14 @@
     }
 
   }
+  @media (max-width: 991px) {
+    .block{
+      max-width: none;
+    }
+    .vebinar__block-img{
+      width: 100%;
+    }
+  }
 </style>
 
 <script>

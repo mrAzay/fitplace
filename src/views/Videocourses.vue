@@ -148,6 +148,21 @@
     }
   }
 }
+@media(max-width: 1230px) {
+  .grid{
+    flex-direction: column;
+    align-items: center;
+  }
+  .videocourses__big{
+    margin-bottom: 24px;
+  }
+  .block{
+    max-width: none;
+  }
+  .videocourses__items{
+    width: 100%;
+  }
+}
 </style>
 
 <script>
