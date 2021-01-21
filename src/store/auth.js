@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
-import {setItem} from '@/helpers/persistanceStorage'
+import {setCookie, getCookie} from '@/helpers/persistanceStorage'
+import {getCategoryCards} from '@/api/category'
 import {authWithToken} from '@/api/auth'
 
 export default {
@@ -9,7 +10,8 @@ export default {
     validationErrors: null,
     statusPopUp: false,
     authorizated: false,
-    uid: ''
+    uid: '',
+    dataCategory: ''
   },
   mutations: {
     saveToken(state, token) {
@@ -32,6 +34,9 @@ export default {
     },
     saveUId(state, uid) {
       state.uid = uid
+    },
+    saveCategoryDate(state, data) {
+      state.dataCategory = data
     }
   },
   actions: {
@@ -41,24 +46,24 @@ export default {
         await firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
-          .then((resp) => {
+          .then(resp => {
             console.log(resp)
             commit('authEnd')
             commit('changeStatusPopUp')
             commit('authorizated')
           })
-          .catch((e) => {
+          .catch(e => {
             commit('authEnd')
             commit('validationErrors', e)
           })
         await firebase
           .auth()
           .currentUser.getIdToken(true)
-          .then(function (idToken) {
+          .then(function(idToken) {
             commit('saveToken', idToken)
-            setItem('accesToken', idToken)
+            setCookie('accesToken', idToken, 'yes', '/')
           })
-        await firebase.auth().onAuthStateChanged(function (user) {
+        await firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             commit('saveUId', user.uid)
           }
@@ -66,14 +71,27 @@ export default {
       } catch (e) {}
     },
 
-    auth(context, token) {
-      return new Promise((resolve) => {
-        authWithToken(token)
-          .then((res) => {
+    auth(context) {
+      return new Promise(resolve => {
+        authWithToken(getCookie('accesToken'))
+          .then(res => {
             resolve(res)
           })
           .catch(() => {
             context.commit('changeStatusPopUp')
+          })
+      })
+    },
+
+    getCategory(context, token) {
+      return new Promise(resolve => {
+        getCategoryCards(token)
+          .then(res => {
+            context.commit('saveCategoryDate', res)
+            resolve(res)
+          })
+          .catch(e => {
+            console.log('error', e)
           })
       })
     },
@@ -99,19 +117,19 @@ export default {
     // }
 
     authPhone(context, phoneNumber, appVerifier) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         context.commit('authStart')
         firebase
           .auth()
           .verifyPhoneNumber(phoneNumber)
-          .then((confirmationResult) => {
+          .then(confirmationResult => {
             window.confirmationResult = confirmationResult
             context.commit('authEnd')
             context.commit('changeStatusPopUp')
             context.commit('authorizated')
             resolve(confirmationResult)
           })
-          .catch((error) => {
+          .catch(error => {
             context.commit('authEnd')
             context.commit('validationErrors', error)
           })

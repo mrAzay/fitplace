@@ -23,8 +23,10 @@ export default {
     RightNav
   },
   mounted() {
-    this.$store.dispatch('auth', this.$store.state.auth.token).then(res => {
-      console.log(res)
+    setTimeout(() => {
+      this.$store.dispatch('auth').then(res => {
+        console.log(res)
+      })
     })
   }
   // eslint-disable-next-line space-before-function-paren

@@ -7,9 +7,9 @@
         <div class="home__items">
           <router-link
             class="home__item block"
-            v-for="(item, index, n) in CARDS"
+            v-for="(item, index) in CARDS"
             :key="index"
-            :to="{name: routeLinks[n]}"
+            :to="{name: routeLinks[index]}"
             :style="{
               backgroundImage: 'url(' + item.image.min + ')',
               backgroundSize: 'cover'
@@ -172,8 +172,8 @@ export default {
       childPopUp: '',
       routeLinks: [
         'Сategory',
-        'FitnessCourses',
         'Search',
+        'FitnessCourses',
         'Videocourses',
         'Vebinar',
         'Couch Training'
@@ -211,9 +211,9 @@ export default {
   },
   computed: {
     ...mapState({
-      isSubmitting: (state) => state.auth.isSubmitting,
-      validationErrors: (state) => state.auth.validationErrors,
-      statusPopUp: (state) => state.auth.statusPopUp
+      isSubmitting: state => state.auth.isSubmitting,
+      validationErrors: state => state.auth.validationErrors,
+      statusPopUp: state => state.auth.statusPopUp
     }),
     ...mapGetters(['STORIES', 'CARDS', 'USER_INFO'])
   },
@@ -355,7 +355,7 @@ export default {
     color: rgba(0, 0, 0, 1);
   }
   &:hover,
-  &:focus{
+  &:focus {
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
   }
 }
