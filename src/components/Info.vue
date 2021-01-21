@@ -49,7 +49,6 @@
 
 <style lang="scss" scoped>
 .info {
-  margin: 20px;
   &__item {
     & + & {
       margin-top: 24px;

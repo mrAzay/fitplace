@@ -57,6 +57,10 @@
 </template>
 
 <style lang="scss" scoped>
+  .container{
+    max-width: 1120px;
+    box-sizing: content-box;
+  }
 .shop {
   &__big-items {
     display: flex;
@@ -69,7 +73,6 @@
     display: block;
     font-size: 0;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-    flex: 0 0 calc(50% - 32px);
     border-radius: 12px;
     img {
       max-width: 544px;
@@ -83,15 +86,16 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-left: -20px;
+    margin-left: -32px;
     margin-bottom: -20px;
   }
   &__item {
     display: block;
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 32px;
     padding: 0;
     overflow: hidden;
+    max-width: 256px;
     &-info {
       padding: 20px;
     }
