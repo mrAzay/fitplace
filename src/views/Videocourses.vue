@@ -4,12 +4,17 @@
       <div class="grid videocourses__inner">
         <div class="videocourses__big block">
           <div class="videocourses__big-video">
-            <video controls="controls" :poster="course.data.preview_url.max">
-              <source
-                :src="course.data.preview_video_url"
-                type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-              />
-            </video>
+            <!--            :poster="course.data.preview_url.max"-->
+            <VideoCastom :options="{
+        autoplay: false,
+        controls: true,
+        sources: [
+          {
+            src: this.course.data.preview_video_url,
+            type: 'video/mp4'
+          }
+        ]
+      }"></VideoCastom>
           </div>
           <div class="videocourses__big-info">
             <div class="videocourses__big-title block-title">
@@ -26,7 +31,8 @@
                 >
               </div>
               <router-link to="/" class="videocourses__big-link button"
-                >Купить курс</router-link
+              >Купить курс
+              </router-link
               >
             </div>
           </div>
@@ -79,138 +85,114 @@
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/scss/_vars.scss';
+  @import '@/assets/scss/_vars.scss';
 
-.videocourses {
-  &__big {
-    max-width: 544px;
-    padding: 0;
-    overflow: hidden;
+  .videocourses {
+    &__big {
+      max-width: 544px;
+      padding: 0;
+      overflow: hidden;
 
-    &-info {
-      padding: 20px;
-    }
-
-    &-title {
-      margin-bottom: 12px;
-    }
-
-    &-text {
-      margin-bottom: 32px;
-    }
-
-    &-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    &-link {
-      padding: 13px 77px;
-    }
-
-    &-price {
-      display: flex;
-      flex-direction: column;
+      &-info {
+        padding: 20px;
+      }
 
       &-title {
-        margin-bottom: 8px;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 17px;
-        color: $text-opacite-two;
+        margin-bottom: 12px;
       }
 
-      &-value {
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 22px;
+      &-text {
+        margin-bottom: 32px;
       }
-    }
-  }
 
-  &__item {
-    max-width: 544px;
-    padding: 0;
-    display: flex;
-    height: 172px;
-    overflow: hidden;
+      &-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-    & + & {
-      margin-top: 12px;
-    }
+      &-link {
+        padding: 13px 77px;
+      }
 
-    &-info {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-  }
-}
+      &-price {
+        display: flex;
+        flex-direction: column;
 
-.videocourses__item-top {
-  display: flex;
-  justify-content: space-between;
-}
+        &-title {
+          margin-bottom: 8px;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 17px;
+          color: $text-opacite-two;
+        }
 
-.videocourses__item-img {
-  display: block;
-  flex: 0 0 200px;
-  width: 200px;
-  max-width: unset;
-  height: 100%;
-  object-fit: cover;
-}
-@media (max-width: 1230px) {
-  .grid {
-    flex-direction: column;
-    align-items: center;
-  }
-  .videocourses__big {
-    margin-bottom: 24px;
-  }
-  .block {
-    max-width: none;
-  }
-  .videocourses__items {
-    width: 100%;
-  }
-}
-</style>
-
-<script>
-import {mapState} from 'vuex'
-
-export default {
-  name: 'Videocourses',
-  data() {
-    return {
-      items: {
-        item1: {
-          title: 'Power Training',
-          text:
-            'Занятие с элементами силового тренинга, направленное на развитие основных мышечных групп',
-          img: 'videocourses1',
-          time: '11 мин'
-        },
-        item2: {
-          title: 'Power Training',
-          text:
-            'Занятие с элементами силового тренинга, направленное на развитие основных мышечных групп',
-          img: 'videocourses2',
-          time: '15 мин'
-        },
-        item3: {
-          title: 'Power Training',
-          text:
-            'Занятие с элементами силового тренинга, направленное на развитие основных мышечных групп',
-          img: 'videocourses3',
-          time: '18 мин'
+        &-value {
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 22px;
         }
       }
     }
-  },
+
+    &__item {
+      max-width: 544px;
+      padding: 0;
+      display: flex;
+      height: 172px;
+      overflow: hidden;
+
+      & + & {
+        margin-top: 12px;
+      }
+
+      &-info {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .videocourses__item-top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .videocourses__item-img {
+    display: block;
+    flex: 0 0 200px;
+    width: 200px;
+    max-width: unset;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 1230px) {
+    .grid {
+      flex-direction: column;
+      align-items: center;
+    }
+    .videocourses__big {
+      margin-bottom: 24px;
+    }
+    .block {
+      max-width: none;
+    }
+    .videocourses__items {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+import { mapState } from 'vuex'
+import VideoCastom from '../components/VideoCastom'
+
+export default {
+  name: 'Videocourses',
+  components: { VideoCastom },
   props: ['itemID'],
   computed: {
     ...mapState({
@@ -218,18 +200,87 @@ export default {
     })
   },
   methods: {
-    getCourse() {
+    getCourse () {
       return this.$store.dispatch('getCouese', this.itemID)
     }
   },
-  mounted() {
+  mounted () {
     this.getCourse()
   }
 }
 </script>
 
 <style lang="scss">
-.videocourses__big-video video {
-  width: 100%;
-}
+  .videocourses__big-video video {
+    width: 100%;
+  }
+  .video-js{
+    width: 100%;
+    min-height: 300px;
+    height: auto;
+  }
+  .vjs-icon-play:before, .video-js .vjs-play-control .vjs-icon-placeholder:before, .video-js .vjs-big-play-button .vjs-icon-placeholder:before{
+    content: '';
+  }
+  .vjs-paused .vjs-big-play-button{
+    display: block !important;
+  }
+  .video-js .vjs-big-play-button {
+    width: 58px;
+    height: 58px;
+    background-image: url("../assets/img/play.svg");
+    background-color: transparent;
+    background-size: 100% 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    outline: transparent;
+    border: none;
+  }
+  .vjs-mouse-display .vjs-time-tooltip{
+    display: none;
+  }
+  .vjs-current-time{
+    display: none;
+  }
+  .video-js:hover .vjs-big-play-button, .video-js .vjs-big-play-button:focus{
+    background-color: transparent;
+  }
+  .video-js .vjs-play-control{
+    display: none;
+  }
+  .video-js .vjs-volume-panel{
+    display: none;
+  }
+  .video-js .vjs-time-control{
+    display: none;
+  }
+  .video-js .vjs-picture-in-picture-control{
+    display: none;
+  }
+  .video-js .vjs-fullscreen-control{
+    display: none;
+  }
+  .video-js .vjs-control-bar{
+    background-color: transparent !important;
+    height: 5px;
+  }
+  .video-js .vjs-play-progress{
+    background-color: #FFF000;
+  }
+  .video-js .vjs-progress-control .vjs-mouse-display{
+    display: none !important;
+  }
+  .video-js .vjs-progress-control .vjs-progress-holder{
+    margin: 0;
+  }
+  .vjs-time-tooltip:before{
+    display: none;
+  }
+  .vjs-time-tooltip{
+    height: 100%;
+  }
+  .vjs-time-tooltip{
+    display: none !important;
+  }
 </style>

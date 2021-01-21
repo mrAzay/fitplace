@@ -8,9 +8,9 @@
             class="category__item"
             v-for="(item, index) in categoryData['data']"
             :key="index"
-            :style="{'background-image': 'url(' + item.preview_url.min + ')'}"
             :to="{name: 'Videocourses', params: {itemID: item.id}}"
           >
+            <img :src="item.preview_url.min" alt="">
           </router-link>
         </div>
       </div>
@@ -78,12 +78,13 @@ export default {
 .category__item {
   flex: 0 0 calc(33.333% - 10px);
   margin-right: 10px;
-  height: 210px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   margin-bottom: 24px;
   border-radius: 12px;
+  overflow: hidden;
+  img{
+    width: 100%;
+    border-radius: 12px;
+  }
 
   &:last-child {
     margin-right: auto;
@@ -94,7 +95,6 @@ export default {
   .category__item {
     flex: 0 0 calc(50% - 15px);
     margin-right: 15px;
-    height: calc(200px + 100 * ((100vw - 768px) / (1200 - 768)));
   }
 
   .category__items {

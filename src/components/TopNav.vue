@@ -68,7 +68,7 @@
   }
 .top-nav {
   padding: 20px 0 20px;
-
+  margin-bottom: 32px;
   &__inner {
     position: relative;
     display: flex;
@@ -165,7 +165,7 @@ export default {
       } else if (this.$route.path === '/cart') {
         return {
           text: 'Список товаров',
-          link: ''
+          link: 'shop'
         }
       } else if (this.$route.path === '/shop-item') {
         return {
