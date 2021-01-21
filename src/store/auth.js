@@ -46,6 +46,9 @@ export default {
     },
     saveCourse(state, data) {
       state.dataCourse = data
+    },
+    deleteCourse(state) {
+      state.dataCourse = null
     }
   },
   actions: {
@@ -129,6 +132,9 @@ export default {
             console.log('error', e)
           })
       })
+    },
+    deleteCourse(context) {
+      context.commit('deleteCourse')
     },
 
     // authPhone(context, phoneNumber, appVerifier) {

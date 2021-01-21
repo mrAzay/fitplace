@@ -28,7 +28,7 @@ const routes = [
     component: () => import('../views/Сategory.vue')
   },
   {
-    path: '/videocourses',
+    path: '/videocourses/:id',
     name: 'Videocourses',
     props: true,
     // route level code-splitting
