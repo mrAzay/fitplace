@@ -57,10 +57,11 @@
 </template>
 
 <style lang="scss" scoped>
-  .container{
-    max-width: 1120px;
-    box-sizing: content-box;
-  }
+.shop .container {
+  max-width: 1120px;
+  box-sizing: border-box;
+  padding: 0 100px 0 calc(100px - 66px) !important;
+}
 .shop {
   &__big-items {
     display: flex;
@@ -70,21 +71,20 @@
     margin-bottom: 40px;
   }
   &__big-item {
-    display: block;
     font-size: 0;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
+    flex: 0 0 calc(50% - 30px);
     img {
-      max-width: 544px;
       width: 100%;
+      display: block;
       max-height: 220px;
       border-radius: 12px;
     }
   }
   &__items {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin-left: -32px;
     margin-bottom: -20px;
@@ -93,9 +93,21 @@
     display: block;
     margin-bottom: 20px;
     margin-left: 32px;
+    border-radius: 12px;
     padding: 0;
-    overflow: hidden;
-    max-width: 256px;
+    flex: 0 0 calc(33.333% - 32px);
+
+    &-img {
+      width: 100%;
+      height: 190px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      object-fit: cover;
+    }
+
+    &:last-of-type {
+      margin-right: auto;
+    }
     &-info {
       padding: 20px;
     }
@@ -113,6 +125,27 @@
 @media (max-width: 1100px) {
   .shop .shop__big-items .shop__big-item {
     flex: 0 0 calc(50% - 10px) !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .shop {
+    &__items {
+      margin-left: -50px;
+    }
+    .shop__item {
+      flex: 0 0 calc(50% - 50px);
+      margin-left: 50px;
+      max-width: unset;
+
+      img {
+        height: 220px;
+      }
+    }
+  }
+
+  .shop .container {
+    padding: 0 80px 0 80px !important;
   }
 }
 </style>

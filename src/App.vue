@@ -31,6 +31,8 @@
 <script>
 import TopNav from '@/components/TopNav'
 import RightNav from '@/components/RightNav'
+import firebase from 'firebase/app'
+import {mapState} from 'vuex'
 
 export default {
   name: 'App',
@@ -55,7 +57,32 @@ export default {
     TopNav,
     RightNav
   },
+  created() {
+    const vm = this
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        const userInfo = {
+          uid: user.uid,
+          token: user.ya
+        }
+        vm.$store.dispatch('logInToken', userInfo)
+        vm.$store.dispatch('GET_USER_INFO')
+        vm.$store.dispatch('GET_CARDS')
+        vm.$store.dispatch('GET_STORIES')
+      } else {
+        vm.$router.push({name: 'Home'})
+        console.log(vm.$store.state)
+        vm.$store.state.auth.statusPopUp = true
+      }
+    })
+  },
   mounted() {
+    if (this.token) {
+      this.GET_STORIES()
+      this.GET_CARDS()
+      this.GET_USER_INFO()
+    }
+
     this.$store.dispatch('auth')
 
     window.addEventListener('resize', this.onResize)
@@ -64,8 +91,10 @@ export default {
       this.showAlert = true
     }
   },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.onResize)
+  computed: {
+    ...mapState({
+      token: state => state.auth.token
+    })
   }
   // eslint-disable-next-line space-before-function-paren
 }

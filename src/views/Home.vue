@@ -211,9 +211,10 @@ export default {
   },
   computed: {
     ...mapState({
-      isSubmitting: state => state.auth.isSubmitting,
-      validationErrors: state => state.auth.validationErrors,
-      statusPopUp: state => state.auth.statusPopUp
+      isSubmitting: (state) => state.auth.isSubmitting,
+      validationErrors: (state) => state.auth.validationErrors,
+      statusPopUp: (state) => state.auth.statusPopUp,
+      token: (state) => state.auth.token
     }),
     ...mapGetters(['STORIES', 'CARDS', 'USER_INFO'])
   },
@@ -259,7 +260,15 @@ export default {
       this.childPopUp = null
     }
   },
-  mounted() {}
+  mounted() {
+    if (this.token) {
+      this.GET_STORIES()
+      this.GET_CARDS()
+      this.GET_USER_INFO()
+    } else {
+      this.childPopUp = 0
+    }
+  }
 }
 </script>
 

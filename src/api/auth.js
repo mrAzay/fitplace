@@ -1,5 +1,6 @@
 import axios from '@/api/axios'
-const authWithToken = token => {
+
+const authWithToken = (token) => {
   return axios.get('/sign_in', {
     headers: {
       Authorization: token,
@@ -8,7 +9,7 @@ const authWithToken = token => {
   })
 }
 
-const authWithPhone = credentials => {
+const authWithPhone = (credentials) => {
   return axios.post('/sign_in', {
     phone: credentials
   })

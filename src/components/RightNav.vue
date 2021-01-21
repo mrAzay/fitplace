@@ -10,7 +10,11 @@
     <button v-else @click="openModal" class="right-nav__profile">Войти</button>
     <ul class="right-nav__links">
       <li class="right-nav__link-item">
-        <router-link :class="[activeLink === 'main' ? 'active' : '']" class="right-nav__link" to="/category">
+        <router-link
+          :class="[activeLink === 'main' ? 'active' : '']"
+          class="right-nav__link"
+          to="/category"
+        >
           <svg
             width="32"
             height="32"
@@ -26,7 +30,11 @@
         </router-link>
       </li>
       <li class="right-nav__link-item">
-        <router-link :class="[activeLink === 'treni' ? 'active' : '']" class="right-nav__link" :to="{name: 'Training'}">
+        <router-link
+          :class="[activeLink === 'treni' ? 'active' : '']"
+          class="right-nav__link"
+          :to="{name: 'Training'}"
+        >
           <svg
             width="32"
             height="32"
@@ -82,7 +90,11 @@
         </router-link>
       </li>
       <li class="right-nav__link-item">
-        <router-link :class="[activeLink === 'shop' ? 'active' : '']" class="right-nav__link" :to="{name: 'Shop'}">
+        <router-link
+          :class="[activeLink === 'shop' ? 'active' : '']"
+          class="right-nav__link"
+          :to="{name: 'Shop'}"
+        >
           <svg
             width="32"
             height="32"
@@ -98,7 +110,11 @@
         </router-link>
       </li>
       <li class="right-nav__link-item">
-        <router-link :class="[activeLink === 'chat' ? 'active' : '']" class="right-nav__link" :to="{name: 'Chat'}">
+        <router-link
+          :class="[activeLink === 'chat' ? 'active' : '']"
+          class="right-nav__link"
+          :to="{name: 'Chat'}"
+        >
           <div class="massege-numb">3</div>
           <svg
             width="27"
@@ -220,16 +236,34 @@
 import {mapState, mapGetters} from 'vuex'
 export default {
   name: 'RightNav',
+  data() {
+    return {
+      users: this.localeUser
+    }
+  },
   computed: {
     ...mapState({
       authorizated: (state) => state.auth.authorizated
     }),
     ...mapGetters(['USER_INFO']),
     activeLink() {
-      if (this.$route.path === '/' || this.$route.path === '/category' || this.$route.path === '/videocourses' ||
-        this.$route.path === '/vebinar' || this.$route.path === '/fitness-courses' || this.$route.path === '/aboniments' || this.$route.path === '/profile-trainer' || this.$route.path === '/send-message') {
+      if (
+        this.$route.path === '/' ||
+        this.$route.path === '/category' ||
+        this.$route.path === '/videocourses' ||
+        this.$route.path === '/vebinar' ||
+        this.$route.path === '/fitness-courses' ||
+        this.$route.path === '/aboniments' ||
+        this.$route.path === '/profile-trainer' ||
+        this.$route.path === '/send-message'
+      ) {
         return 'main'
-      } else if (this.$route.path === '/training' || this.$route.path === '/training-schedule' || this.$route.path === '/coach-now' || this.$route.path === '/couch-training') {
+      } else if (
+        this.$route.path === '/training' ||
+        this.$route.path === '/training-schedule' ||
+        this.$route.path === '/coach-now' ||
+        this.$route.path === '/couch-training'
+      ) {
         return 'treni'
       } else if (this.$route.path === '/shop') {
         return 'shop'
