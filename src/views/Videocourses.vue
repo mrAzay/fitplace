@@ -4,23 +4,26 @@
       <div class="grid videocourses__inner">
         <div class="videocourses__big block">
           <div class="videocourses__big-video">
-            <img src="@/assets/img/video.jpg" alt="" />
+            <video controls="controls" :poster="course.data.preview_url.max">
+              <source
+                :src="course.data.preview_video_url"
+                type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+              />
+            </video>
           </div>
           <div class="videocourses__big-info">
             <div class="videocourses__big-title block-title">
-              СТАЛЬНОЙ ПРЕСС
+              {{ course.data.name }}
             </div>
             <div class="videocourses__big-text block-text">
-              Наверное каждый мечтает о шести или восьми кубиках на своём
-              животе. Простые скручивания по подходам здесь не работают. Ими вы
-              просто укрепите свой пресс, но не прорисуете его. Пресс это такие
-              же мышцы, как и все на вашем теле, и ему тоже нужны дополнительные
-              нагрузки.
+              {{ course.data.title }}
             </div>
             <div class="videocourses__big-bottom">
               <div class="videocourses__big-price">
                 <span class="videocourses__big-price-title">Цена курса:</span>
-                <span class="videocourses__big-price-value">11 200 руб</span>
+                <span class="videocourses__big-price-value">
+                  {{ course.data.price }}₽</span
+                >
               </div>
               <router-link to="/" class="videocourses__big-link button"
                 >Купить курс</router-link
@@ -31,23 +34,23 @@
         <div class="videocourses__items">
           <div
             class="videocourses__item block"
-            v-for="(item, index) in items"
+            v-for="(item, index) in course.data.videos"
             :key="index"
           >
             <img
-              :src="require('@/assets/img/' + item.img + '.jpg')"
+              :src="item.preview_image_url.min"
               class="videocourses__item-img"
               alt=""
             />
             <div class="videocourses__item-info">
               <div class="videocourses__item-top">
                 <div class="videocourses__item-title block-title">
-                  {{ item.title }}
+                  {{ item.name }}
                 </div>
                 <div class="videocourses__item-time">{{ item.time }}</div>
               </div>
               <div class="videocourses__item-text block-text">
-                {{ item.text }}
+                У меня в json не пришел текст, как и заголовок урока...
               </div>
               <router-link to="/" class="videocourses__item-link">
                 Перейти
@@ -71,7 +74,6 @@
           </div>
         </div>
       </div>
-      <pre>{{ VIDEOCOURSE }}</pre>
     </div>
   </div>
 </template>
@@ -125,16 +127,13 @@
         line-height: 22px;
       }
     }
-
-    img {
-      width: 100%;
-    }
   }
 
   &__item {
     max-width: 544px;
     padding: 0;
     display: flex;
+    height: 172px;
     overflow: hidden;
 
     & + & {
@@ -145,28 +144,43 @@
       padding: 20px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
     }
   }
 }
-@media(max-width: 1230px) {
-  .grid{
+
+.videocourses__item-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.videocourses__item-img {
+  display: block;
+  flex: 0 0 200px;
+  width: 200px;
+  max-width: unset;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 1230px) {
+  .grid {
     flex-direction: column;
     align-items: center;
   }
-  .videocourses__big{
+  .videocourses__big {
     margin-bottom: 24px;
   }
-  .block{
+  .block {
     max-width: none;
   }
-  .videocourses__items{
+  .videocourses__items {
     width: 100%;
   }
 }
 </style>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import {mapState} from 'vuex'
 
 export default {
   name: 'Videocourses',
@@ -197,14 +211,25 @@ export default {
       }
     }
   },
+  props: ['itemID'],
   computed: {
-    ...mapGetters(['VIDEOCOURSE'])
+    ...mapState({
+      course: state => state.auth.dataCourse
+    })
   },
   methods: {
-    ...mapActions(['GET_VIDEOCOURSE'])
+    getCourse() {
+      return this.$store.dispatch('getCouese', this.itemID)
+    }
   },
   mounted() {
-    this.GET_VIDEOCOURSE()
+    this.getCourse()
   }
 }
 </script>
+
+<style lang="scss">
+.videocourses__big-video video {
+  width: 100%;
+}
+</style>

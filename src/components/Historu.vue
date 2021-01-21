@@ -21,9 +21,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
-.block {
-  margin: 20px;
-}
+
 .history {
   overflow: auto;
   display: flex;

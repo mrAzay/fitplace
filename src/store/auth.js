@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 import {setCookie, getCookie} from '@/helpers/persistanceStorage'
-import {getCategoryCards} from '@/api/category'
+import {getCategoryCards, getCourse} from '@/api/category'
 import {authWithToken} from '@/api/auth'
 
 export default {
@@ -11,7 +11,8 @@ export default {
     statusPopUp: false,
     authorizated: false,
     uid: '',
-    dataCategory: ''
+    dataCategory: '',
+    dataCourse: ''
   },
   mutations: {
     saveToken(state, token) {
@@ -37,6 +38,9 @@ export default {
     },
     saveCategoryDate(state, data) {
       state.dataCategory = data
+    },
+    saveCourse(state, data) {
+      state.dataCourse = data
     }
   },
   actions: {
@@ -88,6 +92,19 @@ export default {
         getCategoryCards(token)
           .then(res => {
             context.commit('saveCategoryDate', res)
+            resolve(res)
+          })
+          .catch(e => {
+            console.log('error', e)
+          })
+      })
+    },
+
+    getCouese(context, ID) {
+      return new Promise(resolve => {
+        getCourse(context.state.token, ID)
+          .then(res => {
+            context.commit('saveCourse', res)
             resolve(res)
           })
           .catch(e => {

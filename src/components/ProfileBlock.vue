@@ -1,6 +1,6 @@
 <template>
   <div class="block profile">
-    <img :src="USER_INFO.photo_main_url.max" alt="" class="profile__img" />
+    <img :src="USER_INFO.photo_main_url.max || ''" alt="" class="profile__img" />
     <div class="profile__name block-title">
       {{ USER_INFO.name }} {{ USER_INFO.surname }}
     </div>
@@ -91,9 +91,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
-.block {
-  margin: 20px;
-}
+
 .profile {
   display: flex;
   flex-direction: column;

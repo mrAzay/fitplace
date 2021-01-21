@@ -120,9 +120,7 @@
 
 <style lang="scss" scoped>
 @import '@/assets/scss/_vars.scss';
-.block {
-  margin: 20px;
-}
+
 .aboniment {
   padding-bottom: 44px;
   position: relative;

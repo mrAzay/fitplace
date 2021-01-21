@@ -1,6 +1,6 @@
 <template>
   <div class="balance block">
-    <div class="balance__title title">
+    <div class="balance__title block-title">
       <span>Ваш баланс</span>
       <span>{{ USER_INFO.balance }} руб</span>
     </div>
@@ -13,9 +13,7 @@
   </div>
 </template>
 <style scoped lang="scss">
-.block {
-  margin: 20px;
-}
+
 .balance {
   &__title {
     display: flex;

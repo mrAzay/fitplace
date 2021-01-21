@@ -30,22 +30,27 @@
 </template>
 
 <style lang="scss" scoped>
-.user-about {
-  margin: 20px;
-  max-width: 736px;
-  &__item {
-    & + & {
-      margin-top: 20px;
-    }
-    &-title {
-      margin-bottom: 12px;
+  textarea {
+    width: 100%;
+  }
+
+  .user-about {
+    max-width: 736px;
+
+    &__item {
+      & + & {
+        margin-top: 20px;
+      }
+
+      &-title {
+        margin-bottom: 12px;
+      }
     }
   }
-}
 </style>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'UserAbout',
@@ -58,7 +63,7 @@ export default {
   computed: {
     ...mapGetters(['USER_INFO'])
   },
-  mounted() {
+  mounted () {
     this.badFabist = this.USER_INFO.bad_fabist
     this.restriction = this.USER_INFO.restriction
   }

@@ -8,3 +8,12 @@ export const getCategoryCards = token => {
     }
   })
 }
+
+export const getCourse = (token, categoryID) => {
+  return axios.get(`/videolibrary/cards/${categoryID}`, {
+    headers: {
+      Authorization: token,
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
+  })
+}

@@ -116,7 +116,6 @@
 <style lang="scss" scoped>
 @import '@/assets/scss/_vars.scss';
 .time {
-  margin: 20px;
   &__title {
     margin-bottom: 32px;
   }
