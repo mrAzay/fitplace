@@ -1,7 +1,7 @@
 import firebase from 'firebase/app'
-import {setCookie, getCookie} from '@/helpers/persistanceStorage'
+import {setCookie} from '@/helpers/persistanceStorage'
 import {getCategoryCards, getCourse} from '@/api/category'
-import {authWithToken} from '@/api/auth'
+// import {authWithToken} from '@/api/auth'
 
 export default {
   state: {
@@ -33,6 +33,11 @@ export default {
     authorizated(state) {
       state.authorizated = true
     },
+    authorizatedWithToken(state, data) {
+      state.authorizated = true
+      state.uid = data.uid
+      state.token = data.token
+    },
     saveUId(state, uid) {
       state.uid = uid
     },
@@ -44,30 +49,37 @@ export default {
     }
   },
   actions: {
+    logInToken: async (context, data) => {
+      console.log(data)
+      context.commit('authorizatedWithToken', data)
+    },
+    changePopup: (context) => {
+      context.commit('changeStatusPopUp')
+    },
     async login({dispatch, commit}, {email, password}) {
       try {
         commit('authStart')
         await firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
-          .then(resp => {
+          .then((resp) => {
             console.log(resp)
             commit('authEnd')
             commit('changeStatusPopUp')
             commit('authorizated')
           })
-          .catch(e => {
+          .catch((e) => {
             commit('authEnd')
             commit('validationErrors', e)
           })
         await firebase
           .auth()
           .currentUser.getIdToken(true)
-          .then(function(idToken) {
+          .then(function (idToken) {
             commit('saveToken', idToken)
             setCookie('accesToken', idToken, 'yes', '/')
           })
-        await firebase.auth().onAuthStateChanged(function(user) {
+        await firebase.auth().onAuthStateChanged(function (user) {
           if (user) {
             commit('saveUId', user.uid)
           }
@@ -75,39 +87,45 @@ export default {
       } catch (e) {}
     },
 
-    auth(context) {
-      return new Promise(resolve => {
-        authWithToken(getCookie('accesToken'))
-          .then(res => {
-            resolve(res)
-          })
-          .catch(() => {
+    auth(context, token) {
+      console.log(token)
+      return new Promise((resolve) => {
+        firebase
+          .auth()
+          .signInWithCustomToken(token)
+          .then((user) => {
+            // Signed in
             context.commit('changeStatusPopUp')
+          })
+          .catch((error) => {
+            var errorCode = error.code
+            var errorMessage = error.message
+            console.log(errorCode, errorMessage)
+            // ...
           })
       })
     },
-
     getCategory(context, token) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         getCategoryCards(token)
-          .then(res => {
+          .then((res) => {
             context.commit('saveCategoryDate', res)
             resolve(res)
           })
-          .catch(e => {
+          .catch((e) => {
             console.log('error', e)
           })
       })
     },
 
     getCouese(context, ID) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         getCourse(context.state.token, ID)
-          .then(res => {
+          .then((res) => {
             context.commit('saveCourse', res)
             resolve(res)
           })
-          .catch(e => {
+          .catch((e) => {
             console.log('error', e)
           })
       })
@@ -134,19 +152,19 @@ export default {
     // }
 
     authPhone(context, phoneNumber, appVerifier) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         context.commit('authStart')
         firebase
           .auth()
           .verifyPhoneNumber(phoneNumber)
-          .then(confirmationResult => {
+          .then((confirmationResult) => {
             window.confirmationResult = confirmationResult
             context.commit('authEnd')
             context.commit('changeStatusPopUp')
             context.commit('authorizated')
             resolve(confirmationResult)
           })
-          .catch(error => {
+          .catch((error) => {
             context.commit('authEnd')
             context.commit('validationErrors', error)
           })
