@@ -4,10 +4,11 @@
       <div class="grid videocourses__inner">
         <div class="videocourses__big block">
           <div class="videocourses__big-video">
-            <!--            :poster="course.data.preview_url.max"-->
-            <VideoCastom :options="{
+            <!--            -->
+            <VideoCastom :poster="course.data.preview_url.max" :options="{
         autoplay: false,
         controls: true,
+        poster: course.data.preview_url.max,
         sources: [
           {
             src: this.course.data.preview_video_url,
