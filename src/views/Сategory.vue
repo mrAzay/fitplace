@@ -9,7 +9,6 @@
             v-for="(item, index) in categoryData['data']"
             :key="index"
             :to="/videocourses/ + item.id"
-            :itemID="item.id"
           >
             <img :src="item.preview_url.min" alt="">
           </router-link>
