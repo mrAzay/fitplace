@@ -121,11 +121,12 @@
     align-items: center;
     font-size: 14px;
     line-height: 17px;
+    margin-bottom: 40px;
+
     &-drop{
       padding: 12px 20px;
       border-right: 1px solid rgba(0, 0, 0, 0.08);
       margin-right: 20px;
-      margin-bottom: 40px;
     }
     &-item+&-item{
       margin-left: 32px;
