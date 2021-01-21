@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="container">
-      <SliderTop :slider="STORIES"></SliderTop>
+      <SliderTop :slider="items"></SliderTop>
       <div class="home__inner">
         <h1 class="home__title title">Курсы и уроки</h1>
         <div class="home__items">
