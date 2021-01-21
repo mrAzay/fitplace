@@ -4,6 +4,27 @@
     <TopNav></TopNav>
     <RightNav></RightNav>
     <router-view />
+
+    <div
+      class="show-alert"
+      :class="showAlert == true ? 'show-alert--active' : 'show-alert'"
+    >
+      <div>
+        Ширина вашего дисплея меньше 768, скачайте мобильное приложение
+
+        <br />
+        <br />
+        <a
+          href="https://apps.apple.com/us/app/fitplace-%D1%84%D0%B8%D1%82%D0%BD%D0%B5%D1%81-%D0%B0%D0%B3%D1%80%D0%B5%D0%B3%D0%B0%D1%82%D0%BE%D1%80/id1529679274"
+          ><b>App Store</b></a
+        >
+        <br />
+        <a
+          href="https://play.google.com/store/apps/details?id=com.cidia.fit_place&hl=ru&gl=US"
+          ><b>Google Play</b></a
+        >
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,7 +36,19 @@ export default {
   name: 'App',
   data() {
     return {
-      locations: []
+      locations: [],
+      width: window.innerWidth,
+      showAlert: false
+    }
+  },
+  methods: {
+    onResize() {
+      this.width = window.innerWidth
+      if (this.width < 768) {
+        this.showAlert = true
+      } else {
+        this.showAlert = false
+      }
     }
   },
   components: {
@@ -23,11 +56,16 @@ export default {
     RightNav
   },
   mounted() {
-    setTimeout(() => {
-      this.$store.dispatch('auth').then(res => {
-        console.log(res)
-      })
-    })
+    this.$store.dispatch('auth')
+
+    window.addEventListener('resize', this.onResize)
+
+    if (this.width < 768) {
+      this.showAlert = true
+    }
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize)
   }
   // eslint-disable-next-line space-before-function-paren
 }
@@ -116,6 +154,37 @@ button:disabled {
   &:focus {
     transform: rotate(90deg);
   }
+}
+
+.show-alert {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  overflow-y: auto;
+  margin: auto;
+  opacity: 0;
+  transition: 0.2s opacity;
+  pointer-events: none;
+  z-index: 6;
+  background-color: #fff;
+
+  p {
+    margin: auto;
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+.show-alert--active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 @media (max-width: 991px) {

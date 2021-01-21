@@ -44,7 +44,11 @@
           :to="{name: 'Profile'}"
           class="right-nav__profile"
         >
-          <img src="@/assets/img/user-icon.jpg" alt="" />
+          <img
+            style="width: 45px; height: 45px;"
+            :src="USER_INFO.photo_main_url.min"
+            alt=""
+          />
         </router-link>
       </div>
     </div>
@@ -52,20 +56,20 @@
 </template>
 
 <style scoped lang="scss">
-  .top-nav__back{
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    svg {
-      margin-right: 8px;
-    }
+.top-nav__back {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  svg {
+    margin-right: 8px;
   }
+}
 .top-nav {
   padding: 20px 0 20px;
 
@@ -111,7 +115,7 @@
 </style>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 
 export default {
   name: 'TopNav',
@@ -183,7 +187,8 @@ export default {
     },
     ...mapState({
       authorizated: state => state.auth.authorizated
-    })
+    }),
+    ...mapGetters(['USER_INFO'])
   }
 }
 </script>
