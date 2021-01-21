@@ -255,7 +255,8 @@ export default {
         this.$route.path === '/fitness-courses' ||
         this.$route.path === '/aboniments' ||
         this.$route.path === '/profile-trainer' ||
-        this.$route.path === '/send-message'
+        this.$route.path === '/send-message' ||
+        this.$route.name === 'Videocourses'
       ) {
         return 'main'
       } else if (

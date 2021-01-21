@@ -68,9 +68,9 @@
 
         <div class="modal__agreement">
           <p class="modal__agreement-text">
-            Авторизуясь, вы соглашаетесь с<br /><a href="#"
-              >условиями использования политикой конфиденциальности</a
-            >
+            Авторизуясь, вы соглашаетесь с<br/><a href="#"
+          >условиями использования политикой конфиденциальности</a
+          >
           </p>
         </div>
 
@@ -134,9 +134,9 @@
           </div>
           <div class="modal__agreement">
             <p class="modal__agreement-text">
-              Авторизуясь, вы соглашаетесь с<br /><a href="#"
-                >условиями использования политикой конфиденциальности</a
-              >
+              Авторизуясь, вы соглашаетесь с<br/><a href="#"
+            >условиями использования политикой конфиденциальности</a
+            >
             </p>
           </div>
         </div>
@@ -153,7 +153,7 @@
 <script>
 import SliderTop from '@/components/SliderTop'
 import ValidationError from '@/components/ValidationError'
-import {mapState, mapGetters, mapActions} from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 // import CodeInput from 'vue-verification-code-input'
 
 export default {
@@ -164,7 +164,7 @@ export default {
     // CodeInput
   },
   // eslint-disable-next-line space-before-function-paren
-  data() {
+  data () {
     return {
       email: '',
       pass: '',
@@ -177,36 +177,7 @@ export default {
         'Videocourses',
         'Vebinar',
         'Couch Training'
-      ],
-      items: {
-        item1: {
-          img: 'home1'
-        },
-        item2: {
-          img: 'home2'
-        },
-        item3: {
-          img: 'home3'
-        },
-        item4: {
-          img: 'home4'
-        },
-        item5: {
-          img: 'home5'
-        },
-        item6: {
-          img: 'home6'
-        },
-        item7: {
-          img: 'home1'
-        },
-        item8: {
-          img: 'home2'
-        },
-        item9: {
-          img: 'home3'
-        }
-      }
+      ]
     }
   },
   computed: {
@@ -220,7 +191,7 @@ export default {
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
-    async push() {
+    async push () {
       const formData = {
         email: this.email,
         password: this.pass
@@ -231,36 +202,36 @@ export default {
       this.GET_CARDS()
       this.GET_USER_INFO()
     },
-    pushPhone() {
+    pushPhone () {
       this.$store.dispatch('authPhone', this.phone)
     },
-    closePopUp() {
+    closePopUp () {
       this.$store.commit('changeStatusPopUp')
     },
-    onChange(v) {
+    onChange (v) {
       console.log('onChange ', v)
     },
-    onComplete(v) {
+    onComplete (v) {
       console.log('onComplete ', v)
     },
     ...mapActions(['GET_STORIES', 'GET_CARDS', 'GET_USER_INFO']),
 
     // вызов попапа авторизации следующего
-    raiseChildPopUp() {
+    raiseChildPopUp () {
       this.childPopUp++
     },
 
     // Вернуться к прошлому попапу
-    backToPrevPopUp() {
+    backToPrevPopUp () {
       this.childPopUp--
     },
 
     // закрытие попапа с номером телефона
-    closeChildPopUp() {
+    closeChildPopUp () {
       this.childPopUp = null
     }
   },
-  mounted() {
+  mounted () {
     if (this.token) {
       this.GET_STORIES()
       this.GET_CARDS()
@@ -273,229 +244,232 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.block {
-  max-width: unset;
-}
-
-.swiper-wrapper {
-  margin-bottom: 64px;
-}
-.home {
-  &__items {
-    margin-bottom: -24px;
+  .block {
+    max-width: unset;
   }
-  &__item {
-    display: block;
-    height: 198px;
+
+  .swiper-wrapper {
+    margin-bottom: 64px;
+  }
+
+  .home {
+    &__items {
+      margin-bottom: -24px;
+    }
+
+    &__item {
+      display: block;
+      height: 198px;
+      margin-bottom: 24px;
+    }
+  }
+
+  .modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0);
+    opacity: 0;
+    transform: translate(-100%, -50%);
+    transition: 0.3s transform, 0.4s background 0.3s, 0.4s opacity;
+  }
+
+  .modal.modal--active {
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px 0;
+    opacity: 1;
+    margin: auto;
+    overflow-y: auto;
+    pointer-events: all;
+  }
+
+  .modal__form {
+    border-radius: 12px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    padding: 20px;
+    flex: 0 1 352px;
+    margin: auto 0;
+  }
+
+  .modal__wrapper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 34px;
+  }
+
+  .modal__title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .modal__input {
+    width: 100%;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 0 5px 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     margin-bottom: 24px;
-  }
-}
+    transition: 0.3s border-color, 0.3s color;
 
-.modal {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3;
-  pointer-events: none;
-  background: rgba(0, 0, 0, 0);
-  opacity: 0;
-  transform: translate(-100%, -50%);
-  transition: 0.3s transform, 0.4s background 0.3s, 0.4s opacity;
-}
+    &:last-of-type {
+      margin-bottom: 32px;
+    }
 
-.modal.modal--active {
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.4);
-  padding: 20px 0;
-  opacity: 1;
-  margin: auto;
-  overflow-y: auto;
-  pointer-events: all;
-}
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.32);
+    }
 
-.modal__form {
-  border-radius: 12px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-  background: #fff;
-  padding: 20px;
-  flex: 0 1 352px;
-  margin: auto 0;
-}
+    &:hover,
+    &:focus,
+    &:hover::placeholder,
+    &:focus::placeholder {
+      color: rgba(0, 0, 0, 1);
+    }
 
-.modal__wrapper-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 34px;
-}
-
-.modal__title {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
-}
-
-.modal__input {
-  width: 100%;
-  font-size: 14px;
-  line-height: 17px;
-  padding: 0 5px 8px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  margin-bottom: 24px;
-  transition: 0.3s border-color, 0.3s color;
-
-  &:last-of-type {
-    margin-bottom: 32px;
+    &:hover,
+    &:focus {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    }
   }
 
-  &::placeholder {
-    color: rgba(0, 0, 0, 0.32);
+  .modal__btn {
+    height: 44px;
+    display: block;
+    padding: 13px;
+    line-height: 44px;
+    color: #000;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    background: #ffef00;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 22px;
+    padding: 0;
+    margin-bottom: 12px;
+
+    transition: 0.2s box-shadow, 0.2s background;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.45);
+      background: rgba(#ffef00, 0.8);
+    }
+
+    &:last-of-type {
+      margin-bottom: 20px;
+    }
+
+    &.modal__btn--light {
+      background: #fff;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &.modal__btn--light:hover,
+    &.modal__btn--light:focus {
+      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.45);
+      background: rgba(#fff, 0.8);
+    }
   }
 
-  &:hover,
-  &:focus,
-  &:hover::placeholder,
-  &:focus::placeholder {
-    color: rgba(0, 0, 0, 1);
-  }
-  &:hover,
-  &:focus {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-  }
-}
-
-.modal__btn {
-  height: 44px;
-  display: block;
-  padding: 13px;
-  line-height: 44px;
-  color: #000;
-  text-align: center;
-  font-weight: 600;
-  font-size: 14px;
-  background: #ffef00;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-  border-radius: 22px;
-  padding: 0;
-  margin-bottom: 12px;
-
-  transition: 0.2s box-shadow, 0.2s background;
-
-  &:hover,
-  &:focus {
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.45);
-    background: rgba(#ffef00, 0.8);
-  }
-
-  &:last-of-type {
+  .modal__agreement {
     margin-bottom: 20px;
   }
 
-  &.modal__btn--light {
-    background: #fff;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-  }
-
-  &.modal__btn--light:hover,
-  &.modal__btn--light:focus {
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.45);
-    background: rgba(#fff, 0.8);
-  }
-}
-
-.modal__agreement {
-  margin-bottom: 20px;
-}
-
-.modal__agreement-text,
-.modal__agreement-text a {
-  font-size: 14px;
-  line-height: 130%;
-  text-align: center;
-}
-
-.modal__agreement-text a {
-  text-decoration: underline;
-  transition: 0.2s color;
-
-  &:hover,
-  &:focus {
-    color: rgba(#000, 0.6);
-  }
-}
-
-.modal__nav-helpers {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 20px 0 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  margin: 0 -20px;
-
-  a {
+  .modal__agreement-text,
+  .modal__agreement-text a {
     font-size: 14px;
+    line-height: 130%;
+    text-align: center;
+  }
+
+  .modal__agreement-text a {
+    text-decoration: underline;
     transition: 0.2s color;
 
     &:hover,
     &:focus {
-      text-decoration: underline;
-      color: rgba(#000, 0.8);
+      color: rgba(#000, 0.6);
     }
   }
-}
 
-.phone-btns__wrapper {
-  justify-content: space-between;
-}
+  .modal__nav-helpers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 0 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    margin: 0 -20px;
 
-.phone-btns__wrapper button {
-  flex: 0 0 calc(50% - 5px);
-}
+    a {
+      font-size: 14px;
+      transition: 0.2s color;
 
-// home items
-
-.home__items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-right: -32px;
-}
-
-.home__item {
-  flex: 0 1 calc(33.3333% - 32px);
-  margin-right: 32px;
-}
-
-.home__item:last-child {
-  margin-right: auto;
-}
-
-@media (max-width: 1200px) {
-  .home__items {
-    margin-right: -10px;
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        color: rgba(#000, 0.8);
+      }
+    }
   }
 
-  .home__item {
-    margin-right: 10px;
-    flex: 0 1 calc(33.3333% - 10px);
+  .phone-btns__wrapper {
+    justify-content: space-between;
   }
-}
 
-@media (max-width: 1100px) {
-  .home__item {
-    margin-right: 32px;
-    flex: 0 0 calc(50% - 32px);
-    max-width: unset;
-    height: calc(170px + 70 * ((100vw - 768px) / (1100 - 768)));
+  .phone-btns__wrapper button {
+    flex: 0 0 calc(50% - 5px);
   }
+
+  // home items
 
   .home__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-right: -32px;
   }
-}
+
+  .home__item {
+    flex: 0 1 calc(33.3333% - 32px);
+    margin-right: 32px;
+  }
+
+  .home__item:last-child {
+    margin-right: auto;
+  }
+
+  @media (max-width: 1200px) {
+    .home__items {
+      margin-right: -10px;
+    }
+
+    .home__item {
+      margin-right: 10px;
+      flex: 0 1 calc(33.3333% - 10px);
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .home__item {
+      margin-right: 32px;
+      flex: 0 0 calc(50% - 32px);
+      max-width: unset;
+      height: calc(170px + 70 * ((100vw - 768px) / (1100 - 768)));
+    }
+
+    .home__items {
+      margin-right: -32px;
+    }
+  }
 </style>
