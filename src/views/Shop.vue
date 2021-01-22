@@ -92,13 +92,13 @@
   padding: 0 100px 0 calc(100px - 66px) !important;
 }
 .shop {
-  &__title{
+  &__title {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  &__cart{
-    background: #FFFFFF;
+  &__cart {
+    background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 8px;
     display: flex;
@@ -113,8 +113,8 @@
       margin-right: 8px;
     }
   }
-  &__top{
-    background: #FFFFFF;
+  &__top {
+    background: #ffffff;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     display: flex;
@@ -123,12 +123,12 @@
     line-height: 17px;
     margin-bottom: 40px;
 
-    &-drop{
+    &-drop {
       padding: 12px 20px;
       border-right: 1px solid rgba(0, 0, 0, 0.08);
       margin-right: 20px;
     }
-    &-item+&-item{
+    &-item + &-item {
       margin-left: 32px;
     }
   }

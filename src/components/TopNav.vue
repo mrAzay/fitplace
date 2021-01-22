@@ -45,7 +45,7 @@
           class="right-nav__profile"
         >
           <img
-            style="width: 45px; height: 45px;"
+            style="width: 45px; height: 45px"
             :src="USER_INFO.photo_main_url.min"
             alt=""
           />
@@ -174,7 +174,7 @@ export default {
       } else if (this.$route.path === '/shop-item') {
         return {
           text: 'Список товаров',
-          link: ''
+          link: '/shop'
         }
       } else if (this.$route.path === '/profile-user-info') {
         return {
@@ -186,7 +186,7 @@ export default {
       }
     },
     ...mapState({
-      authorizated: state => state.auth.authorizated
+      authorizated: (state) => state.auth.authorizated
     }),
     ...mapGetters(['USER_INFO'])
   }
