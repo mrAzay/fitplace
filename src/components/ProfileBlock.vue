@@ -1,6 +1,10 @@
 <template>
   <div class="block profile">
-    <img :src="USER_INFO.photo_main_url.max || ''" alt="" class="profile__img" />
+    <img
+      :src="USER_INFO.photo_main_url.max || ''"
+      alt=""
+      class="profile__img"
+    />
     <div class="profile__name block-title">
       {{ USER_INFO.name }} {{ USER_INFO.surname }}
     </div>
@@ -86,12 +90,11 @@
           stroke-linejoin="round"
         />
       </svg>
-      <span> Выйти из аккаунта </span>
+      <span @click.prevent="logout"> Выйти из аккаунта </span>
     </a>
   </div>
 </template>
 <style lang="scss" scoped>
-
 .profile {
   display: flex;
   flex-direction: column;
@@ -147,11 +150,28 @@
 </style>
 <script>
 import {mapGetters} from 'vuex'
+import firebase from 'firebase/app'
 
 export default {
   name: 'ProfileBlock',
   computed: {
     ...mapGetters(['USER_INFO'])
+  },
+  methods: {
+    logout() {
+      const vm = this
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          vm.$router.push({name: 'Home'})
+          vm.$store.state.auth.authorizated = false
+          vm.$store.state.auth.statusPopUp = true
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   }
 }
 </script>

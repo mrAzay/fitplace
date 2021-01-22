@@ -10,7 +10,7 @@
             :key="index"
             :to="/videocourses/ + item.id"
           >
-            <img :src="item.preview_url.min" alt="">
+            <img :src="item.preview_url.min" :alt="item.title" />
           </router-link>
         </div>
       </div>
@@ -67,7 +67,7 @@ export default {
   margin-bottom: 24px;
   border-radius: 12px;
   overflow: hidden;
-  img{
+  img {
     width: 100%;
     border-radius: 12px;
   }

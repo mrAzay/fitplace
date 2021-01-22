@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import {setCookie} from '@/helpers/persistanceStorage'
 import {getCategoryCards, getCourse} from '@/api/category'
+import {getTrainers} from '@/api/trainers'
 // import {authWithToken} from '@/api/auth'
 
 export default {
@@ -12,7 +13,8 @@ export default {
     authorizated: false,
     uid: '',
     dataCategory: '',
-    dataCourse: ''
+    dataCourse: '',
+    trainers: ''
   },
   mutations: {
     saveToken(state, token) {
@@ -47,6 +49,9 @@ export default {
     saveCourse(state, data) {
       state.dataCourse = data
     },
+    saveTrainers(state, data) {
+      state.trainers = data
+    },
     deleteCourse(state) {
       state.dataCourse = null
     }
@@ -56,7 +61,7 @@ export default {
       console.log(data)
       context.commit('authorizatedWithToken', data)
     },
-    changePopup: (context) => {
+    changePopup: context => {
       context.commit('changeStatusPopUp')
     },
     async login({dispatch, commit}, {email, password}) {
@@ -65,24 +70,24 @@ export default {
         await firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
-          .then((resp) => {
+          .then(resp => {
             console.log(resp)
             commit('authEnd')
             commit('changeStatusPopUp')
             commit('authorizated')
           })
-          .catch((e) => {
+          .catch(e => {
             commit('authEnd')
             commit('validationErrors', e)
           })
         await firebase
           .auth()
           .currentUser.getIdToken(true)
-          .then(function (idToken) {
+          .then(function(idToken) {
             commit('saveToken', idToken)
             setCookie('accesToken', idToken, 'yes', '/')
           })
-        await firebase.auth().onAuthStateChanged(function (user) {
+        await firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             commit('saveUId', user.uid)
           }
@@ -92,15 +97,15 @@ export default {
 
     auth(context, token) {
       console.log(token)
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         firebase
           .auth()
           .signInWithCustomToken(token)
-          .then((user) => {
+          .then(user => {
             // Signed in
             context.commit('changeStatusPopUp')
           })
-          .catch((error) => {
+          .catch(error => {
             var errorCode = error.code
             var errorMessage = error.message
             console.log(errorCode, errorMessage)
@@ -109,32 +114,46 @@ export default {
       })
     },
     getCategory(context, token) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         getCategoryCards(token)
-          .then((res) => {
+          .then(res => {
             context.commit('saveCategoryDate', res)
             resolve(res)
           })
-          .catch((e) => {
+          .catch(e => {
             console.log('error', e)
           })
       })
     },
 
     getCouese(context, ID) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         getCourse(context.state.token, ID)
-          .then((res) => {
+          .then(res => {
             context.commit('saveCourse', res)
             resolve(res)
           })
-          .catch((e) => {
+          .catch(e => {
             console.log('error', e)
           })
       })
     },
     deleteCourse(context) {
       context.commit('deleteCourse')
+    },
+
+    getTrainers(context, token) {
+      return new Promise(resolve => {
+        getTrainers(token)
+          .then(res => {
+            context.commit('saveTrainers', res)
+            console.log(res)
+            resolve(res)
+          })
+          .catch(e => {
+            console.log('trainers error', e)
+          })
+      })
     },
 
     // authPhone(context, phoneNumber, appVerifier) {
@@ -158,19 +177,19 @@ export default {
     // }
 
     authPhone(context, phoneNumber, appVerifier) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         context.commit('authStart')
         firebase
           .auth()
           .verifyPhoneNumber(phoneNumber)
-          .then((confirmationResult) => {
+          .then(confirmationResult => {
             window.confirmationResult = confirmationResult
             context.commit('authEnd')
             context.commit('changeStatusPopUp')
             context.commit('authorizated')
             resolve(confirmationResult)
           })
-          .catch((error) => {
+          .catch(error => {
             context.commit('authEnd')
             context.commit('validationErrors', error)
           })
