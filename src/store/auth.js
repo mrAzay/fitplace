@@ -96,7 +96,6 @@ export default {
     },
 
     auth(context, token) {
-      console.log(token)
       return new Promise(resolve => {
         firebase
           .auth()
@@ -109,7 +108,6 @@ export default {
             var errorCode = error.code
             var errorMessage = error.message
             console.log(errorCode, errorMessage)
-            // ...
           })
       })
     },

@@ -83,7 +83,7 @@ export default {
       this.GET_USER_INFO()
     }
 
-    this.$store.dispatch('auth')
+    this.$store.dispatch('auth', this.token)
 
     window.addEventListener('resize', this.onResize)
 
