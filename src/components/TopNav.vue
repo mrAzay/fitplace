@@ -174,7 +174,7 @@ export default {
       } else if (this.$route.path === '/shop-item') {
         return {
           text: 'Список товаров',
-          link: '/shop'
+          link: 'shop'
         }
       } else if (this.$route.path === '/profile-user-info') {
         return {
