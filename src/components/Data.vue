@@ -73,7 +73,9 @@
         placeholder="Вес"
         v-model="weight"
       />
-      <button class="data__button button">Сохранить</button>
+      <button class="data__button button" @click.prevent="changeProfile">
+        Сохранить
+      </button>
     </form>
   </div>
 </template>
@@ -137,7 +139,9 @@
 </style>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapState} from 'vuex'
+import server from '@/server.js'
+import qs from 'qs'
 
 export default {
   name: 'Data',
@@ -156,16 +160,47 @@ export default {
   },
   methods: {
     changeProfile() {
-      this.$store.dispatch('changeProfile', {
-        name: this.name + 'dfd',
+      const vm = this
+      // this.$store.dispatch('changeProfile', {
+      //   name: this.name + 'dfd',
+      //   email: this.email,
+      //   height: this.height,
+      //   weight: this.weight
+      // })
+      const data = {
+        name: this.name,
         email: this.email,
         height: this.height,
-        weight: this.weight
-      })
+        weight: this.weight,
+        surname: this.surname,
+        date_of_birth: this.birthday,
+        city: this.city,
+        male: this.sexValue === 'женский' ? 'true' : 'false'
+      }
+      server
+        .put(`users/${this.uid}`, qs.stringify(data), {
+          headers: {
+            Authorization: this.token,
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+          },
+          data: {
+            name: vm.name
+          }
+        })
+        .then((res) => {
+          vm.$store.dispatch('GET_USER_INFO')
+        })
+        .catch((e) => {
+          console.log('error', e)
+        })
     }
   },
   computed: {
-    ...mapGetters(['USER_INFO'])
+    ...mapGetters(['USER_INFO']),
+    ...mapState({
+      token: (state) => state.auth.token,
+      uid: (state) => state.auth.uid
+    })
   },
   mounted() {
     this.name = this.USER_INFO.name
@@ -173,11 +208,9 @@ export default {
     this.email = this.USER_INFO.email
     this.birthday = this.USER_INFO.date_of_birth
     this.city = this.USER_INFO.city
-    this.sexValue = this.USER_INFO.male ? 'Мужской' : 'Женский'
+    this.sexValue = this.USER_INFO.male === 'true' ? 'Мужской' : 'Женский'
     this.height = this.USER_INFO.height
     this.weight = this.USER_INFO.weight
-
-    this.changeProfile()
   }
 }
 </script>
