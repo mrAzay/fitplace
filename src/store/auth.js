@@ -51,6 +51,9 @@ export default {
     },
     saveTrainers(state, data) {
       state.trainers = data
+    },
+    deleteCourse(state) {
+      state.dataCourse = null
     }
   },
   actions: {
@@ -134,6 +137,9 @@ export default {
             console.log('error', e)
           })
       })
+    },
+    deleteCourse(context) {
+      context.commit('deleteCourse')
     },
 
     getTrainers(context, token) {

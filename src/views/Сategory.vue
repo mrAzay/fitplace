@@ -8,7 +8,7 @@
             class="category__item"
             v-for="(item, index) in categoryData['data']"
             :key="index"
-            :to="{name: 'Videocourses', params: {itemID: item.id}}"
+            :to="/videocourses/ + item.id"
           >
             <img :src="item.preview_url.min" :alt="item.title" />
           </router-link>
@@ -34,21 +34,7 @@ import {mapState} from 'vuex'
 export default {
   data() {
     return {
-      category: '',
-      items: {
-        item1: {
-          img: 'category1'
-        },
-        item2: {
-          img: 'category2'
-        },
-        item3: {
-          img: 'category3'
-        },
-        item4: {
-          img: 'category4'
-        }
-      }
+      category: ''
     }
   },
   computed: {

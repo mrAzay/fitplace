@@ -4,11 +4,12 @@
       <div class="grid videocourses__inner">
         <div class="videocourses__big block">
           <div class="videocourses__big-video">
-            <!--            :poster="course.data.preview_url.max"-->
-            <VideoCastom :options="{
-        autoplay: false,
-        controls: true,
-        sources: [
+            <!--            -->
+            <VideoCastom :poster="course.data.preview_url.max" :options="{
+              autoplay: false,
+              controls: true,
+              poster: course.data.preview_url.max,
+              sources: [
           {
             src: this.course.data.preview_video_url,
             type: 'video/mp4'
@@ -193,7 +194,9 @@ import VideoCastom from '../components/VideoCastom'
 export default {
   name: 'Videocourses',
   components: { VideoCastom },
-  props: ['itemID'],
+  created () {
+    this.itemID = this.$route.params.id
+  },
   computed: {
     ...mapState({
       course: state => state.auth.dataCourse
@@ -202,10 +205,16 @@ export default {
   methods: {
     getCourse () {
       return this.$store.dispatch('getCouese', this.itemID)
+    },
+    deleteCourse () {
+      this.$store.dispatch('deleteCourse')
     }
   },
   mounted () {
     this.getCourse()
+  },
+  destroyed () {
+    this.deleteCourse()
   }
 }
 </script>
@@ -214,17 +223,21 @@ export default {
   .videocourses__big-video video {
     width: 100%;
   }
-  .video-js{
+
+  .video-js {
     width: 100%;
     min-height: 300px;
     height: auto;
   }
-  .vjs-icon-play:before, .video-js .vjs-play-control .vjs-icon-placeholder:before, .video-js .vjs-big-play-button .vjs-icon-placeholder:before{
+
+  .vjs-icon-play:before, .video-js .vjs-play-control .vjs-icon-placeholder:before, .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
     content: '';
   }
-  .vjs-paused .vjs-big-play-button{
+
+  .vjs-paused .vjs-big-play-button {
     display: block !important;
   }
+
   .video-js .vjs-big-play-button {
     width: 58px;
     height: 58px;
@@ -237,50 +250,65 @@ export default {
     outline: transparent;
     border: none;
   }
-  .vjs-mouse-display .vjs-time-tooltip{
+
+  .vjs-mouse-display .vjs-time-tooltip {
     display: none;
   }
-  .vjs-current-time{
+
+  .vjs-current-time {
     display: none;
   }
-  .video-js:hover .vjs-big-play-button, .video-js .vjs-big-play-button:focus{
+
+  .video-js:hover .vjs-big-play-button, .video-js .vjs-big-play-button:focus {
     background-color: transparent;
   }
-  .video-js .vjs-play-control{
+
+  .video-js .vjs-play-control {
     display: none;
   }
-  .video-js .vjs-volume-panel{
+
+  .video-js .vjs-volume-panel {
     display: none;
   }
-  .video-js .vjs-time-control{
+
+  .video-js .vjs-time-control {
     display: none;
   }
-  .video-js .vjs-picture-in-picture-control{
+
+  .video-js .vjs-picture-in-picture-control {
     display: none;
   }
-  .video-js .vjs-fullscreen-control{
+
+  .video-js .vjs-fullscreen-control {
     display: none;
   }
-  .video-js .vjs-control-bar{
+
+  .video-js .vjs-control-bar {
     background-color: transparent !important;
     height: 5px;
   }
-  .video-js .vjs-play-progress{
+
+  .video-js .vjs-play-progress {
     background-color: #FFF000;
   }
-  .video-js .vjs-progress-control .vjs-mouse-display{
+
+  .video-js .vjs-progress-control .vjs-mouse-display {
     display: none !important;
   }
-  .video-js .vjs-progress-control .vjs-progress-holder{
+
+  .video-js .vjs-progress-control .vjs-progress-holder {
     margin: 0;
   }
-  .vjs-time-tooltip:before{
+
+  .vjs-time-tooltip:before {
     display: none;
   }
-  .vjs-time-tooltip{
+
+  .vjs-time-tooltip {
     height: 100%;
   }
-  .vjs-time-tooltip{
+
+  .vjs-time-tooltip {
     display: none !important;
   }
 </style>

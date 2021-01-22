@@ -1,6 +1,6 @@
 <template>
   <div>
-    <video ref="VideoCastom" class="video-js"></video>
+    <video ref="VideoCastom" class="video-js vjs-16-9"></video>
   </div>
 </template>
 

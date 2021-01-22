@@ -42,19 +42,36 @@
               </span>
             </div>
             <div class="profile-block__tags">
-              <button class="profile-block__tags-pluces text-black">+</button>
-              <span class="profile-block__tags-text text-black">ТАЙ-БО</span>
-              <span class="profile-block__tags-text text-black">КАРДИО</span>
-              <span
-                class="profile-block__tags-text profile-block__tags-text-active text-black"
-                >КАЛЛАНЕТИКА</span
-              >
-              <span class="profile-block__tags-text text-black"
-                >БОДИБИЛДИНГ</span
-              >
-              <span class="profile-block__tags-text text-black"
-                >АРМРЕСТЛИНГ</span
-              >
+              <swiper ref="swiper" :options="swiperOptions">
+                <swiper-slide>
+                  <button class="profile-block__tags-pluces text-black">
+                    +
+                  </button>
+                </swiper-slide>
+                <swiper-slide class="profile-block__tags-text text-black">
+                  <span>ТАЙ-БО</span>
+                </swiper-slide>
+                <swiper-slide class="profile-block__tags-text text-black">
+                  <span>КАРДИО</span>
+                </swiper-slide>
+                <swiper-slide
+                  class="profile-block__tags-text profile-block__tags-text-active text-black"
+                >
+                  <span>КАЛЛАНЕТИКА</span>
+                </swiper-slide>
+                <swiper-slide class="profile-block__tags-text text-black">
+                  <span>КАРДИО</span>
+                </swiper-slide>
+                <swiper-slide class="profile-block__tags-text text-black">
+                  <span>КАРДИО</span>
+                </swiper-slide>
+                <swiper-slide class="profile-block__tags-text text-black">
+                  <span>БОДИБИЛДИНГ</span>
+                </swiper-slide>
+                <swiper-slide class="profile-block__tags-text text-black">
+                  <span>АРМРЕСТЛИНГ</span>
+                </swiper-slide>
+              </swiper>
             </div>
             <div class="profile-block__info">
               <h4 class="profile-block__info-title text-black">
@@ -365,8 +382,22 @@
 </template>
 
 <script>
+import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
 export default {
-  name: 'Profile-coach'
+  name: 'Profile-coach',
+  data() {
+    return {
+      swiperOptions: {
+        slidesPerView: 3.5,
+        spaceBetween: 8
+      }
+    }
+  },
+  components: {
+    Swiper,
+    SwiperSlide
+  }
 }
 </script>
 
