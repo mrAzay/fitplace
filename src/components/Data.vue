@@ -80,7 +80,6 @@
 
 <style lang="scss" scoped>
 .data {
-
   &__select {
     position: relative;
     &-list {
@@ -155,6 +154,16 @@ export default {
       weight: Number
     }
   },
+  methods: {
+    changeProfile() {
+      this.$store.dispatch('changeProfile', {
+        name: this.name + 'dfd',
+        email: this.email,
+        height: this.height,
+        weight: this.weight
+      })
+    }
+  },
   computed: {
     ...mapGetters(['USER_INFO'])
   },
@@ -167,6 +176,8 @@ export default {
     this.sexValue = this.USER_INFO.male ? 'Мужской' : 'Женский'
     this.height = this.USER_INFO.height
     this.weight = this.USER_INFO.weight
+
+    this.changeProfile()
   }
 }
 </script>
