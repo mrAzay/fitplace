@@ -37,16 +37,12 @@
                 <h4 class="static__block-number text-black">10 лет</h4>
                 <div class="static__block-text text-gray">Стаж работы</div>
               </div>
-              <span class="profile-block__static-pro text-black">
-                PRO
-              </span>
+              <span class="profile-block__static-pro text-black"> PRO </span>
             </div>
             <div class="profile-block__tags">
               <swiper ref="swiper" :options="swiperOptions">
-                <swiper-slide>
-                  <button class="profile-block__tags-pluces text-black">
-                    +
-                  </button>
+                <swiper-slide class="profile-block__tags-pluces text-black">
+                  <button>+</button>
                 </swiper-slide>
                 <swiper-slide class="profile-block__tags-text text-black">
                   <span>ТАЙ-БО</span>
@@ -55,21 +51,30 @@
                   <span>КАРДИО</span>
                 </swiper-slide>
                 <swiper-slide
-                  class="profile-block__tags-text profile-block__tags-text-active text-black"
+                  class="profile-block__tags-text profile-block__tags-text--width-160 profile-block__tags-text-active text-black"
                 >
                   <span>КАЛЛАНЕТИКА</span>
                 </swiper-slide>
                 <swiper-slide class="profile-block__tags-text text-black">
                   <span>КАРДИО</span>
                 </swiper-slide>
-                <swiper-slide class="profile-block__tags-text text-black">
-                  <span>КАРДИО</span>
-                </swiper-slide>
-                <swiper-slide class="profile-block__tags-text text-black">
+                <swiper-slide
+                  class="profile-block__tags-text profile-block__tags-text--width-160 text-black"
+                >
                   <span>БОДИБИЛДИНГ</span>
                 </swiper-slide>
-                <swiper-slide class="profile-block__tags-text text-black">
+                <swiper-slide
+                  class="profile-block__tags-text profile-block__tags-text--width-160 text-black"
+                >
                   <span>АРМРЕСТЛИНГ</span>
+                </swiper-slide>
+
+                <!-- Последний элемент до конца не скроллися, поэтому этот элемент я добавил чисто как лишний слайд и сделал его невидимым и не кликабельным -->
+                <swiper-slide
+                  class="profile-block__tags-text text-black"
+                  style="opacity: 0; pointer-events: none"
+                >
+                  <span>ТАЙ</span>
                 </swiper-slide>
               </swiper>
             </div>
@@ -102,9 +107,7 @@
           <div class="profile-block p-20 mb-24">
             <div class="information-block">
               <div class="information-block__text">
-                <h4 class="information-block__text-title text-black">
-                  Баланс
-                </h4>
+                <h4 class="information-block__text-title text-black">Баланс</h4>
               </div>
               <div class="information-block__link coach-numb">
                 353 руб
@@ -132,13 +135,9 @@
                 <h4 class="information-block__text-title text-black">
                   Бесплатные тренировки
                 </h4>
-                <p class="information-block__text-bot text-gray">
-                  Осталось
-                </p>
+                <p class="information-block__text-bot text-gray">Осталось</p>
               </div>
-              <div class="information-block__link coach-numb">
-                3
-              </div>
+              <div class="information-block__link coach-numb">3</div>
             </div>
             <div class="information-block">
               <div class="information-block__text">
@@ -274,9 +273,7 @@
                 </svg>
               </div>
             </div>
-            <a class="logout-block">
-              Выйти из аккаунта
-            </a>
+            <a class="logout-block"> Выйти из аккаунта </a>
           </div>
           <div class="profile-block"></div>
         </div>
@@ -369,9 +366,7 @@
                   Мне всё очень понравилось, тренер замечательный, эффективные
                   тренировки, купил весь курс.
                 </p>
-                <p class="review__block-date">
-                  25.05.2020
-                </p>
+                <p class="review__block-date">25.05.2020</p>
               </div>
             </div>
           </div>
@@ -389,7 +384,7 @@ export default {
   data() {
     return {
       swiperOptions: {
-        slidesPerView: 3.5,
+        slidesPerView: 2.5,
         spaceBetween: 8
       }
     }
@@ -706,6 +701,23 @@ export default {
   }
 }
 
+.wrapper .column-wrapper .profile-block__tags-text {
+  padding: 10px 0;
+  text-align: center;
+  margin-left: 0;
+  span {
+    margin: 0;
+  }
+}
+
+.profile-block__tags-pluces {
+  width: 42px !important;
+  height: 42px !important;
+}
+
+.profile-block__tags-text--width-160 {
+  width: 170px !important;
+}
 @media (max-width: 1220px) {
   div.wrapper {
     flex-direction: column;
