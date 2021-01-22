@@ -140,8 +140,6 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex'
-import server from '@/server.js'
-import qs from 'qs'
 
 export default {
   name: 'Data',
@@ -160,14 +158,7 @@ export default {
   },
   methods: {
     changeProfile() {
-      const vm = this
-      // this.$store.dispatch('changeProfile', {
-      //   name: this.name + 'dfd',
-      //   email: this.email,
-      //   height: this.height,
-      //   weight: this.weight
-      // })
-      const data = {
+      this.$store.dispatch('changeProfile', {
         name: this.name,
         email: this.email,
         height: this.height,
@@ -176,23 +167,8 @@ export default {
         date_of_birth: this.birthday,
         city: this.city,
         male: this.sexValue === 'женский' ? 'true' : 'false'
-      }
-      server
-        .put(`users/${this.uid}`, qs.stringify(data), {
-          headers: {
-            Authorization: this.token,
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-          },
-          data: {
-            name: vm.name
-          }
-        })
-        .then((res) => {
-          vm.$store.dispatch('GET_USER_INFO')
-        })
-        .catch((e) => {
-          console.log('error', e)
-        })
+      })
+      this.$store.dispatch('GET_USER_INFO')
     }
   },
   computed: {
