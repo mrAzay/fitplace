@@ -59,7 +59,7 @@ export default {
   },
   created() {
     const vm = this
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         const userInfo = {
           uid: user.uid,
@@ -71,7 +71,6 @@ export default {
         vm.$store.dispatch('GET_STORIES')
       } else {
         vm.$router.push({name: 'Home'})
-        console.log(vm.$store.state)
         vm.$store.state.auth.statusPopUp = true
       }
     })
@@ -93,7 +92,7 @@ export default {
   },
   computed: {
     ...mapState({
-      token: state => state.auth.token
+      token: (state) => state.auth.token
     })
   }
   // eslint-disable-next-line space-before-function-paren

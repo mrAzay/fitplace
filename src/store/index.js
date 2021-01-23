@@ -157,7 +157,6 @@ export default new Vuex.Store({
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }
       })
-      console.log(data)
       context.commit('SET_USER_INFO', data)
     }
   },

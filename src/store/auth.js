@@ -59,7 +59,6 @@ export default {
   },
   actions: {
     logInToken: async (context, data) => {
-      console.log(data)
       context.commit('authorizatedWithToken', data)
     },
     changePopup: (context) => {
@@ -146,7 +145,6 @@ export default {
         getTrainers(token)
           .then((res) => {
             context.commit('saveTrainers', res)
-            console.log(res)
             resolve(res)
           })
           .catch((e) => {
@@ -159,7 +157,6 @@ export default {
       return new Promise((resolve) => {
         changeProfile(context.state.token, context.state.uid, credentials)
           .then((res) => {
-            console.log(res)
             resolve(res)
           })
           .catch((e) => {
