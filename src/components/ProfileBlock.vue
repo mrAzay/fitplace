@@ -69,7 +69,7 @@
           />
         </svg>
       </a>
-      <a href="" :data-id="USER_INFO.id" class="profile__link"
+      <a href="#" :data-id="USER_INFO.id" v-clipboard="id" class="profile__link"
         >Скопировать ID</a
       >
     </div>
@@ -154,6 +154,11 @@ import firebase from 'firebase/app'
 
 export default {
   name: 'ProfileBlock',
+  data() {
+    return {
+      id: null
+    }
+  },
   computed: {
     ...mapGetters(['USER_INFO'])
   },
@@ -172,6 +177,9 @@ export default {
           console.log(error)
         })
     }
+  },
+  mounted() {
+    this.id = this.USER_INFO.id
   }
 }
 </script>

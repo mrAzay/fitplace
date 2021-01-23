@@ -5,31 +5,80 @@
       <div class="time__item-title">Дни недели</div>
       <div class="time__item-checkboxs">
         <label class="time__item-checkbox-wrap">
-          <input type="checkbox" class="time__item-checkbox check" />
+          <input
+            type="checkbox"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.days_of_the_weeks.sort()[0] == 1 ? true : false"
+            value="1"
+            v-model.number="days"
+            @change="pushData"
+          />
           <span class="time__item-checkbox-text">Пн</span>
         </label>
         <label class="time__item-checkbox-wrap">
-          <input type="checkbox" class="time__item-checkbox check" />
+          <input
+            type="checkbox"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.days_of_the_weeks.sort()[1] == 2 ? true : false"
+            value="2"
+            v-model.number="days"
+            @change="pushData"
+          />
           <span class="time__item-checkbox-text">Вт</span>
         </label>
         <label class="time__item-checkbox-wrap">
-          <input type="checkbox" class="time__item-checkbox check" />
+          <input
+            type="checkbox"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.days_of_the_weeks.sort()[2] == 3 ? true : false"
+            value="3"
+            v-model.number="days"
+            @change="pushData"
+          />
           <span class="time__item-checkbox-text">Ср</span>
         </label>
         <label class="time__item-checkbox-wrap">
-          <input type="checkbox" class="time__item-checkbox check" />
+          <input
+            type="checkbox"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.days_of_the_weeks.sort()[3] == 4 ? true : false"
+            value="4"
+            v-model.number="days"
+            @change="pushData"
+          />
           <span class="time__item-checkbox-text">Чт</span>
         </label>
         <label class="time__item-checkbox-wrap">
-          <input type="checkbox" class="time__item-checkbox check" />
+          <input
+            type="checkbox"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.days_of_the_weeks.sort()[4] == 5 ? true : false"
+            value="5"
+            v-model.number="days"
+            @change="pushData"
+          />
           <span class="time__item-checkbox-text">Пт</span>
         </label>
         <label class="time__item-checkbox-wrap">
-          <input type="checkbox" class="time__item-checkbox check" />
+          <input
+            type="checkbox"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.days_of_the_weeks.sort()[5] == 6 ? true : false"
+            value="6"
+            v-model.number="days"
+            @change="pushData"
+          />
           <span class="time__item-checkbox-text">Сб</span>
         </label>
         <label class="time__item-checkbox-wrap">
-          <input type="checkbox" class="time__item-checkbox check" />
+          <input
+            type="checkbox"
+            class="time__item-checkbox check"
+            :checked="USER_INFO.days_of_the_weeks.sort()[6] == 7 ? true : false"
+            value="7"
+            v-model.number="days"
+            @change="pushData"
+          />
           <span class="time__item-checkbox-text">Вс</span>
         </label>
       </div>
@@ -42,7 +91,10 @@
             type="radio"
             name="vremia"
             class="time__item-checkbox check"
-            :checked="USER_INFO.daytime == 1"
+            :checked="USER_INFO.duration == 1 ? true : false"
+            value="1"
+            v-model.number="daytime"
+            @change="pushData"
           />
           <span class="time__item-checkbox-text time__item-checkbox-long"
             >Утро</span
@@ -53,7 +105,10 @@
             type="radio"
             name="vremia"
             class="time__item-checkbox check"
-            :checked="USER_INFO.daytime == 2"
+            :checked="USER_INFO.daytime == 2 ? true : false"
+            value="2"
+            v-model.number="daytime"
+            @change="pushData"
           />
           <span class="time__item-checkbox-text time__item-checkbox-long"
             >День</span
@@ -64,7 +119,10 @@
             type="radio"
             name="vremia"
             class="time__item-checkbox check"
-            :checked="USER_INFO.daytime == 3"
+            :checked="USER_INFO.daytime == 3 ? true : false"
+            value="3"
+            v-model.number="daytime"
+            @change="pushData"
           />
           <span class="time__item-checkbox-text time__item-checkbox-long"
             >Вечер</span
@@ -81,6 +139,9 @@
             name="time"
             class="time__item-checkbox check"
             :checked="USER_INFO.duration == 30"
+            value="30"
+            v-model.number="duration"
+            @change="pushData"
           />
           <span class="time__item-checkbox-text time__item-checkbox-long"
             >30 мин</span
@@ -92,6 +153,9 @@
             name="time"
             class="time__item-checkbox check"
             :checked="USER_INFO.duration == 45"
+            value="45"
+            v-model.number="duration"
+            @change="pushData"
           />
           <span class="time__item-checkbox-text time__item-checkbox-long"
             >45 мин</span
@@ -103,6 +167,9 @@
             name="time"
             class="time__item-checkbox check"
             :checked="USER_INFO.duration == 60"
+            value="60"
+            v-model.number="duration"
+            @change="pushData"
           />
           <span class="time__item-checkbox-text time__item-checkbox-long"
             >60 мин</span
@@ -160,6 +227,10 @@
     }
   }
 }
+
+// .time__item-checkbox-wrap--active span {
+//   background-color: $accent;
+// }
 </style>
 
 <script>
@@ -167,8 +238,28 @@ import {mapGetters} from 'vuex'
 
 export default {
   name: 'Time',
+  data() {
+    return {
+      days: [],
+      daytime: null,
+      duration: null
+    }
+  },
   computed: {
     ...mapGetters(['USER_INFO'])
+  },
+  methods: {
+    pushData() {
+      this.$store.commit('acceptDaysOfTheWeeks', this.days)
+      this.$store.commit('acceptDaytime', this.daytime)
+      this.$store.commit('acceptDuration', this.duration)
+    }
+  },
+  mounted() {
+    this.days = this.USER_INFO.days_of_the_weeks.sort()
+    this.daytime = this.USER_INFO.daytime
+    this.duration = this.USER_INFO.duration
+    this.pushData()
   }
 }
 </script>

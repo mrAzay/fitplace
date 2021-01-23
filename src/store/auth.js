@@ -15,7 +15,12 @@ export default {
     uid: '',
     dataCategory: '',
     dataCourse: '',
-    trainers: ''
+    trainers: '',
+    days_of_the_weeks: [],
+    duration: Number,
+    daytime: Number,
+    workout_notification_for: Number,
+    notification: null
   },
   mutations: {
     saveToken(state, token) {
@@ -55,6 +60,21 @@ export default {
     },
     deleteCourse(state) {
       state.dataCourse = null
+    },
+    acceptDaysOfTheWeeks(state, payload) {
+      state.days_of_the_weeks = payload
+    },
+    acceptDaytime(state, payload) {
+      state.daytime = payload
+    },
+    acceptDuration(state, payload) {
+      state.duration = payload
+    },
+    setNotification(state, payload) {
+      state.notification = payload
+    },
+    setWorkoutNotification(state, payload) {
+      state.workout_notification_for = payload
     }
   },
   actions: {

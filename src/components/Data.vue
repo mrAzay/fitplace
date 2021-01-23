@@ -24,7 +24,7 @@
         type="text"
         class="data__input input"
         placeholder="День рождения"
-        v-model="birthday"
+        v-model="date_of_birth"
       />
       <input
         type="text"
@@ -130,7 +130,7 @@
   &__button {
     width: 100%;
     padding: 13px 0;
-    background: rgba(0, 0, 0, 0.08);
+    background: #ffef00;
     display: block;
     margin-top: 40px;
     box-shadow: none;
@@ -150,8 +150,8 @@ export default {
       name: '',
       surname: '',
       email: '',
-      birthday: Number,
       city: '',
+      date_of_birth: '',
       height: Number,
       weight: Number
     }
@@ -164,7 +164,12 @@ export default {
         height: this.height,
         weight: this.weight,
         surname: this.surname,
-        date_of_birth: this.birthday,
+        date_of_birth: this.date_of_birth,
+        days_of_the_weeks: this.days_of_the_weeks,
+        daytime: this.daytime,
+        duration: this.duration,
+        notification: this.notification,
+        workout_notification_for: this.workout_notification_for,
         city: this.city,
         male: this.sexValue === 'женский' ? 'true' : 'false'
       })
@@ -175,18 +180,23 @@ export default {
     ...mapGetters(['USER_INFO']),
     ...mapState({
       token: (state) => state.auth.token,
-      uid: (state) => state.auth.uid
+      uid: (state) => state.auth.uid,
+      duration: (state) => state.auth.duration,
+      daytime: (state) => state.auth.daytime,
+      days_of_the_weeks: (state) => state.auth.days_of_the_weeks,
+      notification: (state) => state.auth.notification,
+      workout_notification_for: (state) => state.auth.workout_notification_for
     })
   },
   mounted() {
     this.name = this.USER_INFO.name
     this.surname = this.USER_INFO.surname
     this.email = this.USER_INFO.email
-    this.birthday = this.USER_INFO.date_of_birth
     this.city = this.USER_INFO.city
     this.sexValue = this.USER_INFO.male === 'true' ? 'Мужской' : 'Женский'
     this.height = this.USER_INFO.height
     this.weight = this.USER_INFO.weight
+    this.date_of_birth = this.USER_INFO.date_of_birth
   }
 }
 </script>

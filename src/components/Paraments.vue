@@ -8,6 +8,7 @@
           class="paraments__uved-check-input check"
           type="checkbox"
           :checked="USER_INFO.notification"
+          v-model="notification"
         />
         <span class="paraments__uved-check-input-castom castom-check"></span>
       </label>
@@ -39,7 +40,7 @@
           </svg>
         </button>
         <div class="paraments__napomit-schet-value schet-value">
-          {{ USER_INFO.workout_notification_for }}
+          {{ workout_notification_for }}
         </div>
         <button
           class="paraments__napomit-schet-btn paraments__napomit-chet-btn-plus schet-btn schet-btn-plus"
@@ -106,8 +107,42 @@ import {mapGetters} from 'vuex'
 
 export default {
   name: 'Paraments',
+  data() {
+    return {
+      notification: null,
+      workout_notification_for: null
+    }
+  },
   computed: {
     ...mapGetters(['USER_INFO'])
+  },
+  methods: {
+    pushData() {
+      this.$store.commit('setNotification', this.notification)
+      this.$store.commit(
+        'setWorkoutNotification',
+        this.workout_notification_for
+      )
+    },
+    remindForDecrement() {
+      this.workout_notification_for--
+      this.$store.commit(
+        'setWorkoutNotification',
+        this.workout_notification_for
+      )
+    },
+    remindForIncrement() {
+      this.workout_notification_for++
+      this.$store.commit(
+        'setWorkoutNotification',
+        this.workout_notification_for
+      )
+    }
+  },
+  mounted() {
+    this.notification = this.USER_INFO.notification
+    this.workout_notification_for = this.USER_INFO.workout_notification_for
+    this.pushData()
   }
 }
 </script>
