@@ -13,7 +13,7 @@
         <router-link
           :class="[activeLink === 'main' ? 'active' : '']"
           class="right-nav__link"
-          to="/category"
+          to="/"
         >
           <svg
             width="32"

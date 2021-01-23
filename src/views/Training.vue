@@ -21,9 +21,7 @@
           </div>
         </div>
         <div class="training__content">
-          <h2 class="training__content-title">
-            Мои тренировки
-          </h2>
+          <h2 class="training__content-title">Мои тренировки</h2>
           <div class="training__content-blocks">
             <div class="training-block" v-for="item in 12" :key="item.id">
               <div class="training-block__header">
@@ -35,7 +33,7 @@
                 дневниками питания и рационом.
               </p>
               <div class="training-block__coach">
-                <router-link :to="{name: 'Couch Traning'}">
+                <router-link :to="{name: 'Couch Training'}">
                   <img
                     src="../assets/img/coach-img.png"
                     :alt="item"
