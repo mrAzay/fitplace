@@ -119,7 +119,6 @@ export default {
         })
         .then((res) => {
           console.log(res)
-          this.$store.dispatch('GET_USER_INFO')
         })
     },
     remindForIncrement() {
@@ -130,7 +129,6 @@ export default {
         })
         .then((res) => {
           console.log(res)
-          this.$store.dispatch('GET_USER_INFO')
         })
     },
     changeNotification() {

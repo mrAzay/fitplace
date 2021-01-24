@@ -9,9 +9,7 @@
             type="checkbox"
             class="time__item-checkbox check"
             :checked="days.includes(1)"
-            value="1"
-            v-model.number="days"
-            @change="pushData"
+            @change="changeDays(1)"
           />
           <span class="time__item-checkbox-text">Пн</span>
         </label>
@@ -20,9 +18,7 @@
             type="checkbox"
             class="time__item-checkbox check"
             :checked="days.includes(2)"
-            value="2"
-            v-model.number="days"
-            @change="pushData"
+            @change="changeDays(2)"
           />
           <span class="time__item-checkbox-text">Вт</span>
         </label>
@@ -31,9 +27,7 @@
             type="checkbox"
             class="time__item-checkbox check"
             :checked="days.includes(3)"
-            value="3"
-            v-model.number="days"
-            @change="pushData"
+            @change="changeDays(3)"
           />
           <span class="time__item-checkbox-text">Ср</span>
         </label>
@@ -42,9 +36,7 @@
             type="checkbox"
             class="time__item-checkbox check"
             :checked="days.includes(4)"
-            value="4"
-            v-model.number="days"
-            @change="pushData"
+            @change="changeDays(4)"
           />
           <span class="time__item-checkbox-text">Чт</span>
         </label>
@@ -53,9 +45,7 @@
             type="checkbox"
             class="time__item-checkbox check"
             :checked="days.includes(5)"
-            value="5"
-            v-model.number="days"
-            @change="pushData"
+            @change="changeDays(5)"
           />
           <span class="time__item-checkbox-text">Пт</span>
         </label>
@@ -64,9 +54,7 @@
             type="checkbox"
             class="time__item-checkbox check"
             :checked="days.includes(6)"
-            value="6"
-            v-model.number="days"
-            @change="pushData"
+            @change="changeDays(6)"
           />
           <span class="time__item-checkbox-text">Сб</span>
         </label>
@@ -75,9 +63,7 @@
             type="checkbox"
             class="time__item-checkbox check"
             :checked="days.includes(7)"
-            :value="7"
-            v-model="days"
-            @change="pushData"
+            @change="changeDays(7)"
           />
           <span class="time__item-checkbox-text">Вс</span>
         </label>
@@ -188,14 +174,28 @@ export default {
   data() {
     return {
       days: [],
-      daytime: null,
-      duration: null
+      daytime: Number,
+      duration: Number
     }
   },
   computed: {
     ...mapGetters(['USER_INFO'])
   },
   methods: {
+    changeDays(value) {
+      if (this.days === 'true' || this.days === 'false') {
+        this.days = []
+      }
+      if (!this.days.includes(value)) {
+        this.days.push(value)
+      } else {
+        const index = this.days.indexOf(value)
+        if (index > -1) {
+          this.days.splice(index, 1)
+        }
+      }
+      this.pushData()
+    },
     pushData() {
       this.$store
         .dispatch('changeProfile', {
@@ -206,12 +206,11 @@ export default {
         })
         .then((res) => {
           console.log(res)
-          this.$store.dispatch('GET_USER_INFO')
         })
     }
   },
   mounted() {
-    this.days = this.USER_INFO.days_of_the_weeks.sort()
+    this.days = this.USER_INFO.days_of_the_weeks
     this.daytime = this.USER_INFO.daytime
     this.duration = this.USER_INFO.duration
   }

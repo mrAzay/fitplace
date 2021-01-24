@@ -1,7 +1,6 @@
 <template>
   <div class="profile-user">
     <div class="container grid-container">
-
       <ProfileBlock class="profile"></ProfileBlock>
       <Paraments class="parametr"></Paraments>
 
@@ -15,46 +14,46 @@
 </template>
 
 <style lang="scss" scoped>
-  .profile-user{
-    padding-bottom: 70px;
-  }
-  .block{
-    max-width: none;
-  }
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 191px 274px;
-    gap: 24px 32px;
-    grid-template-areas:
-    "profile data mode"
-    "profile data activiti"
-    "parametr health health";
-  }
+.profile-user {
+  padding-bottom: 70px;
+}
+.block {
+  max-width: none;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 191px 274px;
+  gap: 24px 32px;
+  grid-template-areas:
+    'profile data mode'
+    'profile data activiti'
+    'parametr health health';
+}
 
-  .profile {
-    grid-area: profile;
-  }
+.profile {
+  grid-area: profile;
+}
 
-  .data {
-    grid-area: data;
-  }
+.data {
+  grid-area: data;
+}
 
-  .mode {
-    grid-area: mode;
-  }
+.mode {
+  grid-area: mode;
+}
 
-  .activiti {
-    grid-area: activiti;
-  }
+.activiti {
+  grid-area: activiti;
+}
 
-  .health {
-    grid-area: health;
-  }
+.health {
+  grid-area: health;
+}
 
-  .parametr {
-    grid-area: parametr;
-  }
+.parametr {
+  grid-area: parametr;
+}
 </style>
 
 <script>
@@ -74,7 +73,9 @@ export default {
     Data,
     Paraments,
     ProfileBlock
+  },
+  mounted() {
+    this.$store.dispatch('GET_USER_INFO')
   }
 }
-
 </script>

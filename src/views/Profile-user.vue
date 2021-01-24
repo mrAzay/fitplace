@@ -10,15 +10,11 @@
                 src="../assets/img/coach-modal-img.png"
                 alt=""
               />
-              <h4 class="profile-block__header-name">
-                Дарья Крылова
-              </h4>
+              <h4 class="profile-block__header-name">Дарья Крылова</h4>
             </div>
             <div class="information-block">
               <div class="information-block__text">
-                <h4 class="information-block__text-title text-black">
-                  Баланс
-                </h4>
+                <h4 class="information-block__text-title text-black">Баланс</h4>
               </div>
               <div class="information-block__link coach-numb">
                 353 руб
@@ -104,9 +100,7 @@
                   ></span>
                 </label>
               </div>
-              <a class="logout-block">
-                Выйти из аккаунта
-              </a>
+              <a class="logout-block"> Выйти из аккаунта </a>
             </div>
           </div>
           <div class="profile-block">
@@ -125,7 +119,10 @@
 
 <script>
 export default {
-  name: 'Profile-user'
+  name: 'Profile-user',
+  mounted() {
+    this.$store.dispatch('GET_USER_INFO')
+  }
 }
 </script>
 
