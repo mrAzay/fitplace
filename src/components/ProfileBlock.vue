@@ -69,7 +69,7 @@
           />
         </svg>
       </a>
-      <a href="#" :data-id="USER_INFO.id" v-clipboard="id" class="profile__link"
+      <a href="#" :data-id="USER_INFO.id" class="profile__link"
         >Скопировать ID</a
       >
     </div>

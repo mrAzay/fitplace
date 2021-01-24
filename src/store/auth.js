@@ -177,6 +177,7 @@ export default {
       return new Promise((resolve) => {
         changeProfile(context.state.token, context.state.uid, credentials)
           .then((res) => {
+            console.log(res)
             resolve(res)
           })
           .catch((e) => {

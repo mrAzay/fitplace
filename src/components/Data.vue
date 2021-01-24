@@ -139,7 +139,7 @@
 </style>
 
 <script>
-import {mapGetters, mapState} from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'Data',
@@ -165,11 +165,6 @@ export default {
         weight: this.weight,
         surname: this.surname,
         date_of_birth: this.date_of_birth,
-        days_of_the_weeks: this.days_of_the_weeks,
-        daytime: this.daytime,
-        duration: this.duration,
-        notification: this.notification,
-        workout_notification_for: this.workout_notification_for,
         city: this.city,
         male: this.sexValue === 'женский' ? 'true' : 'false'
       })
@@ -177,16 +172,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['USER_INFO']),
-    ...mapState({
-      token: (state) => state.auth.token,
-      uid: (state) => state.auth.uid,
-      duration: (state) => state.auth.duration,
-      daytime: (state) => state.auth.daytime,
-      days_of_the_weeks: (state) => state.auth.days_of_the_weeks,
-      notification: (state) => state.auth.notification,
-      workout_notification_for: (state) => state.auth.workout_notification_for
-    })
+    ...mapGetters(['USER_INFO'])
   },
   mounted() {
     this.name = this.USER_INFO.name

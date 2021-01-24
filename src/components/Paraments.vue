@@ -7,8 +7,8 @@
         <input
           class="paraments__uved-check-input check"
           type="checkbox"
-          :checked="USER_INFO.notification"
-          v-model="notification"
+          :checked="USER_INFO.notification === 'true'"
+          @click="changeNotification"
         />
         <span class="paraments__uved-check-input-castom castom-check"></span>
       </label>
@@ -21,7 +21,7 @@
       <div class="paraments__napomit-schet schet">
         <button
           class="paraments__napomit-schet-btn paraments__napomit-chet-btn-minus schet-btn schet-btn-minus"
-          @click.passive="remindForDecrement"
+          @click.prevent="remindForDecrement"
         >
           <svg
             width="18"
@@ -40,11 +40,11 @@
           </svg>
         </button>
         <div class="paraments__napomit-schet-value schet-value">
-          {{ workout_notification_for }}
+          {{ USER_INFO.workout_notification_for }}
         </div>
         <button
           class="paraments__napomit-schet-btn paraments__napomit-chet-btn-plus schet-btn schet-btn-plus"
-          @click.passive="remindForIncrement"
+          @click.prevent="remindForIncrement"
         >
           <svg
             width="18"
@@ -107,42 +107,50 @@ import {mapGetters} from 'vuex'
 
 export default {
   name: 'Paraments',
-  data() {
-    return {
-      notification: null,
-      workout_notification_for: null
-    }
-  },
   computed: {
     ...mapGetters(['USER_INFO'])
   },
   methods: {
-    pushData() {
-      this.$store.commit('setNotification', this.notification)
-      this.$store.commit(
-        'setWorkoutNotification',
-        this.workout_notification_for
-      )
-    },
     remindForDecrement() {
-      this.workout_notification_for--
-      this.$store.commit(
-        'setWorkoutNotification',
-        this.workout_notification_for
-      )
+      this.USER_INFO.workout_notification_for--
+      this.$store
+        .dispatch('changeProfile', {
+          workout_notification_for: this.USER_INFO.workout_notification_for
+        })
+        .then((res) => {
+          console.log(res)
+          this.$store.dispatch('GET_USER_INFO')
+        })
     },
     remindForIncrement() {
-      this.workout_notification_for++
-      this.$store.commit(
-        'setWorkoutNotification',
-        this.workout_notification_for
-      )
+      this.USER_INFO.workout_notification_for++
+      this.$store
+        .dispatch('changeProfile', {
+          workout_notification_for: this.USER_INFO.workout_notification_for
+        })
+        .then((res) => {
+          console.log(res)
+          this.$store.dispatch('GET_USER_INFO')
+        })
+    },
+    changeNotification() {
+      this.USER_INFO.notification =
+        this.USER_INFO.notification === 'true' ? 'false' : 'true'
+      console.log(this.USER_INFO.notification)
+      this.$store
+        .dispatch('changeProfile', {
+          notification: this.USER_INFO.notification.toString()
+        })
+        .then((res) => {
+          console.log(res)
+          this.$store.dispatch('GET_USER_INFO')
+          console.log(this.USER_INFO)
+        })
     }
   },
   mounted() {
-    this.notification = this.USER_INFO.notification
-    this.workout_notification_for = this.USER_INFO.workout_notification_for
-    this.pushData()
+    this.$store.dispatch('GET_USER_INFO')
+    console.log(this.USER_INFO)
   }
 }
 </script>

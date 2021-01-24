@@ -8,7 +8,7 @@
           <input
             type="checkbox"
             class="time__item-checkbox check"
-            :checked="USER_INFO.days_of_the_weeks.sort()[0] == 1 ? true : false"
+            :checked="days.includes(1)"
             value="1"
             v-model.number="days"
             @change="pushData"
@@ -19,7 +19,7 @@
           <input
             type="checkbox"
             class="time__item-checkbox check"
-            :checked="USER_INFO.days_of_the_weeks.sort()[1] == 2 ? true : false"
+            :checked="days.includes(2)"
             value="2"
             v-model.number="days"
             @change="pushData"
@@ -30,7 +30,7 @@
           <input
             type="checkbox"
             class="time__item-checkbox check"
-            :checked="USER_INFO.days_of_the_weeks.sort()[2] == 3 ? true : false"
+            :checked="days.includes(3)"
             value="3"
             v-model.number="days"
             @change="pushData"
@@ -41,7 +41,7 @@
           <input
             type="checkbox"
             class="time__item-checkbox check"
-            :checked="USER_INFO.days_of_the_weeks.sort()[3] == 4 ? true : false"
+            :checked="days.includes(4)"
             value="4"
             v-model.number="days"
             @change="pushData"
@@ -52,7 +52,7 @@
           <input
             type="checkbox"
             class="time__item-checkbox check"
-            :checked="USER_INFO.days_of_the_weeks.sort()[4] == 5 ? true : false"
+            :checked="days.includes(5)"
             value="5"
             v-model.number="days"
             @change="pushData"
@@ -63,7 +63,7 @@
           <input
             type="checkbox"
             class="time__item-checkbox check"
-            :checked="USER_INFO.days_of_the_weeks.sort()[5] == 6 ? true : false"
+            :checked="days.includes(6)"
             value="6"
             v-model.number="days"
             @change="pushData"
@@ -74,9 +74,9 @@
           <input
             type="checkbox"
             class="time__item-checkbox check"
-            :checked="USER_INFO.days_of_the_weeks.sort()[6] == 7 ? true : false"
-            value="7"
-            v-model.number="days"
+            :checked="days.includes(7)"
+            :value="7"
+            v-model="days"
             @change="pushData"
           />
           <span class="time__item-checkbox-text">Вс</span>
@@ -180,6 +180,44 @@
   </div>
 </template>
 
+<script>
+import {mapGetters} from 'vuex'
+
+export default {
+  name: 'Time',
+  data() {
+    return {
+      days: [],
+      daytime: null,
+      duration: null
+    }
+  },
+  computed: {
+    ...mapGetters(['USER_INFO'])
+  },
+  methods: {
+    pushData() {
+      this.$store
+        .dispatch('changeProfile', {
+          days_of_the_week: this.days,
+          days_of_the_weeks: this.days,
+          duration: this.duration,
+          daytime: this.daytime
+        })
+        .then((res) => {
+          console.log(res)
+          this.$store.dispatch('GET_USER_INFO')
+        })
+    }
+  },
+  mounted() {
+    this.days = this.USER_INFO.days_of_the_weeks.sort()
+    this.daytime = this.USER_INFO.daytime
+    this.duration = this.USER_INFO.duration
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 @import '@/assets/scss/_vars.scss';
 .time {
@@ -232,34 +270,3 @@
 //   background-color: $accent;
 // }
 </style>
-
-<script>
-import {mapGetters} from 'vuex'
-
-export default {
-  name: 'Time',
-  data() {
-    return {
-      days: [],
-      daytime: null,
-      duration: null
-    }
-  },
-  computed: {
-    ...mapGetters(['USER_INFO'])
-  },
-  methods: {
-    pushData() {
-      this.$store.commit('acceptDaysOfTheWeeks', this.days)
-      this.$store.commit('acceptDaytime', this.daytime)
-      this.$store.commit('acceptDuration', this.duration)
-    }
-  },
-  mounted() {
-    this.days = this.USER_INFO.days_of_the_weeks.sort()
-    this.daytime = this.USER_INFO.daytime
-    this.duration = this.USER_INFO.duration
-    this.pushData()
-  }
-}
-</script>
