@@ -3,10 +3,8 @@
     <div class="container grid-container">
       <ProfileBlock class="profile"></ProfileBlock>
       <Paraments class="parametr"></Paraments>
-
       <Data class="data"></Data>
       <Time class="mode"></Time>
-
       <Info class="activiti"></Info>
       <UserAbout class="health"></UserAbout>
     </div>
