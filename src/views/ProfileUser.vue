@@ -1,14 +1,14 @@
 <template>
   <div class="profile-user">
     <div class="container grid-container">
-      <ProfileBlock class="profile"></ProfileBlock>
-      <Paraments class="parametr"></Paraments>
+<!--      <ProfileBlock class="profile"></ProfileBlock>-->
+<!--      <Paraments class="parametr"></Paraments>-->
 
       <Data class="data"></Data>
-      <Time class="mode"></Time>
+<!--      <Time class="mode"></Time>-->
 
-      <Info class="activiti"></Info>
-      <UserAbout class="health"></UserAbout>
+<!--      <Info class="activiti"></Info>-->
+<!--      <UserAbout class="health"></UserAbout>-->
     </div>
   </div>
 </template>
@@ -57,25 +57,22 @@
 </style>
 
 <script>
-import ProfileBlock from '../components/ProfileBlock'
-import Paraments from '../components/Paraments'
+// import ProfileBlock from '../components/ProfileBlock'
+// import Paraments from '../components/Paraments'
 import Data from '../components/Data'
-import Time from '../components/Time'
-import Info from '../components/Info'
-import UserAbout from '../components/UserAbout'
+// import Time from '../components/Time'
+// import Info from '../components/Info'
+// import UserAbout from '../components/UserAbout'
 
 export default {
   name: 'ProfileUser',
   components: {
-    UserAbout,
-    Info,
-    Time,
-    Data,
-    Paraments,
-    ProfileBlock
-  },
-  mounted() {
-    this.$store.dispatch('GET_USER_INFO')
+    // UserAbout,
+    // Info,
+    // Time,
+    Data
+    // Paraments,
+    // ProfileBlock
   }
 }
 </script>

@@ -119,10 +119,7 @@
 
 <script>
 export default {
-  name: 'Profile-user',
-  mounted() {
-    this.$store.dispatch('GET_USER_INFO')
-  }
+  name: 'Profile-user'
 }
 </script>
 

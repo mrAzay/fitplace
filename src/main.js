@@ -7,7 +7,9 @@ import '@/assets/scss/style.scss'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
+import Clipboard from 'v-clipboard'
 
+Vue.use(Clipboard)
 Vue.config.productionTip = false
 Vue.use(VCalendar, {
   componentPrefix: 'vc'

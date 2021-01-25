@@ -36,6 +36,7 @@ export default new Vuex.Store({
       return state.users
     },
     USER_INFO: (state) => {
+      console.log(state.userInfo)
       return state.userInfo
     }
   },

@@ -145,10 +145,6 @@ export default {
           console.log(this.USER_INFO)
         })
     }
-  },
-  mounted() {
-    this.$store.dispatch('GET_USER_INFO')
-    console.log(this.USER_INFO)
   }
 }
 </script>

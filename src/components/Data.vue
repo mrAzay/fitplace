@@ -81,66 +81,76 @@
 </template>
 
 <style lang="scss" scoped>
-.data {
-  &__select {
-    position: relative;
-    &-list {
-      display: none;
-      position: absolute;
-      width: 100%;
-      background-color: #fff;
-      border-radius: 10px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      &-item {
-        padding: 10px;
+  .data {
+    &__select {
+      position: relative;
+
+      &-list {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+
+        &-item {
+          padding: 10px;
+          cursor: pointer;
+        }
+
+        &.active {
+          display: block;
+        }
+      }
+
+      &-value {
+        color: rgba(0, 0, 0, 0.32);
         cursor: pointer;
-      }
-      &.active {
-        display: block;
-      }
-    }
-    &-value {
-      color: rgba(0, 0, 0, 0.32);
-      cursor: pointer;
-      &.active {
-        color: #000;
+
+        &.active {
+          color: #000;
+        }
       }
     }
-  }
-  &__title {
-    margin-bottom: 32px;
-  }
-  &__form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  &__input {
-    width: 100%;
-    display: block;
-    font-size: 14px;
-    line-height: 17px;
-    & + & {
-      margin-top: 32px;
+
+    &__title {
+      margin-bottom: 32px;
     }
-    &-small {
-      max-width: 148px;
+
+    &__form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    &__input {
+      width: 100%;
+      display: block;
+      font-size: 14px;
+      line-height: 17px;
+
+      & + & {
+        margin-top: 32px;
+      }
+
+      &-small {
+        max-width: 148px;
+      }
+    }
+
+    &__button {
+      width: 100%;
+      padding: 13px 0;
+      background: #ffef00;
+      display: block;
+      margin-top: 40px;
+      box-shadow: none;
     }
   }
-  &__button {
-    width: 100%;
-    padding: 13px 0;
-    background: #ffef00;
-    display: block;
-    margin-top: 40px;
-    box-shadow: none;
-  }
-}
 </style>
 
 <script>
 import {mapGetters} from 'vuex'
-
 export default {
   name: 'Data',
   data: function () {

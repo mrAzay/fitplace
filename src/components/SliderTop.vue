@@ -1,31 +1,129 @@
 <template>
-  <div class="swiper-wrapper">
-    <swiper ref="mySwiper" :options="swiperOptions">
-      <swiper-slide class="swiper-item"
-                    v-for="(item, index) in swiperVal"
-                    :key="index"
-                    :style="{
+  <div>
+    <div class="swiper-wrapper">
+      <swiper ref="mySwiper" :options="swiperOptions">
+        <swiper-slide class="swiper-item"
+                      v-for="(item, index) in swiperVal"
+                      :key="index"
+                      :style="{
                     backgroundImage: 'url('+item.previewImage.min+')',
-                    backgroundSize: 'cover'
+                    backgroundSize: 'cover',
                   }">
-        <a href="#">
-          {{ item.title }}
-        </a>
-      </swiper-slide>
-    </swiper>
-    <div class="swiper-button-prev" slot="button-prev">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15 6L9 12L15 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+          <a href="#"
+             class="swiper-item__inner"
+             @click.prevent="openModal(index)">
+            {{ item.title }}
+          </a>
+        </swiper-slide>
+      </swiper>
+      <div class="swiper-button-prev" slot="button-prev">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 6L9 12L15 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="swiper-button-next" slot="button-next">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 18L15 12L9 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
     </div>
-    <div class="swiper-button-next" slot="button-next">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 18L15 12L9 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <div class="modal"  v-show="modal">
+      <button class="modal__close" @click="modal = false; modalImgs = []; modalSwiper.slideTo(0)">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M28.4211 1.24232e-06L30 1.57895L1.57895 30L0 28.4211L28.4211 1.24232e-06Z" fill="#1F1235"/>
+          <path d="M30 28.4211L28.4211 30L1.17331e-06 1.57895L1.57895 0L30 28.4211Z" fill="#1F1235"/>
+        </svg>
+      </button>
+      <swiper class="modal__swiper"  ref="myModalSwiper" :options="swiperModalOptions">
+        <swiper-slide class="modal__swiper-item"
+                      v-for="(item, index) in modalImgs"
+                      :key="index">
+          <img class="modal__swiper-item-img" :src="item.min" alt="">
+        </swiper-slide>
+      </swiper>
+      <div class="modal-swiper-button-prev" slot="modal-button-prev">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 6L9 12L15 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="modal-swiper-button-next" slot="modal-button-next">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 18L15 12L9 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
     </div>
   </div>
 </template>
-<style>
+<style lang="scss">
+  .modal-swiper-button-next,
+  .modal-swiper-button-prev{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    z-index: 50;
+    cursor: pointer;
+    &.swiper-button-disabled{
+      display: none;
+    }
+  }
+  .modal-swiper-button-next{
+    right: 20%;
+  }
+  .modal-swiper-button-prev{
+    left: 20%;
+  }
+  .modal{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0, 0.8);
+    z-index: 5;
+    &__close{
+      position: absolute;
+      top: 10%;
+      right: 15%;
+      width: 15px;
+      height: 15px;
+      z-index: 50;
+      padding: 10px;
+      border-radius: 50%;
+      background-color: #fff;
+      cursor: pointer;
+      box-sizing: content-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg{
+        width: 100%;
+        height: 100%;
+      }
+      path {
+        fill: black;
+      }
+    }
+    &__swiper{
+      height: 100vh;
+      &-item{
+        position: relative;
+        &-img{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: block;
+          max-height: 80vh;
+        }
+      }
+    }
+  }
   .swiper-wrapper {
     position: relative;
   }
@@ -53,13 +151,17 @@
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
     filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.15));
     border-radius: 12px;
-    padding: 16px;
     display: flex;
     align-items: flex-end;
     font-weight: bold;
     font-size: 12px;
     line-height: 15px;
     color: #FFFFFF;
+
+    &__inner {
+      width: 100%;
+      height: 100%;
+    }
   }
 </style>
 <script>
@@ -80,7 +182,16 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
-      }
+      },
+      swiperModalOptions: {
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.modal-swiper-button-next',
+          prevEl: '.modal-swiper-button-prev'
+        }
+      },
+      modal: false,
+      modalImgs: []
     }
   },
   props: {
@@ -89,6 +200,9 @@ export default {
   computed: {
     swiper () {
       return this.$refs.mySwiper.$swiper
+    },
+    modalSwiper() {
+      return this.$refs.myModalSwiper.$swiper
     },
     swiperLengh () {
       return Object.keys(this.slider).length - 1
@@ -274,6 +388,13 @@ export default {
         }]
       }
       return this.slider
+    }
+  },
+  methods: {
+    openModal (index) {
+      this.modal = true
+      this.modalImgs = this.swiperVal[index].image
+      console.log(this.modalImgs)
     }
   }
 }
