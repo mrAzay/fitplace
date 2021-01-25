@@ -173,13 +173,15 @@ export default {
   name: 'Time',
   data() {
     return {
-      days: [],
       daytime: Number,
       duration: Number
     }
   },
   computed: {
-    ...mapGetters(['USER_INFO'])
+    ...mapGetters(['USER_INFO']),
+    days() {
+      return JSON.parse(this.USER_INFO.days_of_the_weeks)
+    }
   },
   methods: {
     changeDays(value) {
@@ -199,8 +201,7 @@ export default {
     pushData() {
       this.$store
         .dispatch('changeProfile', {
-          days_of_the_week: this.days,
-          days_of_the_weeks: this.days,
+          days_of_the_weeks: JSON.stringify(this.days),
           duration: this.duration,
           daytime: this.daytime
         })
@@ -210,7 +211,6 @@ export default {
     }
   },
   mounted() {
-    this.days = this.USER_INFO.days_of_the_weeks
     this.daytime = this.USER_INFO.daytime
     this.duration = this.USER_INFO.duration
   }
